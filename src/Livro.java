@@ -29,7 +29,6 @@ public class Livro {
 	}
 	
 	//getters e setters
-	
 	//principais gets
 	public String getTitulo() {
 		return titulo;

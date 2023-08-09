@@ -17,18 +17,11 @@ public class Main {
 		printInfosLivro(livro1);
 		printInfosMembro(membro1);
 		printInfosEmprestimo(emprestimo1);
-//		printInfosFuncionario(funcionario1);
+		printInfosFuncionario(funcionario1);
 		
-		//Modificando atributos (sets)
+		//Modificando atributos (sets) da classe Livro
 		livro1.setStatusEmprestado();
 		livro1.setStatusDisponivel();
-		
-		//QUAIS MÉTODOS IMPLEMENTAR? ALGO POR ENQUANTO 'SIMBÓLICO' - UM PRINT, COMO NO 
-		//EXEMPLO DO CARRO - OU ALGUMA MODIFICAÇÃO DE STATUS (LIVRO EMPRESTADO, numEMPRESTIMOS)
-		//ENTRE AS CLASSES.
-
-		//COMO FAZER UPLOAD PARA O GITHUB?
-		
 	}
 	public static void printInfosLivro(Livro livro) {
 		System.out.println("Informações do livro:\n" +
