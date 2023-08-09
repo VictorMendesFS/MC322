@@ -17,7 +17,7 @@ public class Main {
 		printInfosLivro(livro1);
 		printInfosMembro(membro1);
 		printInfosEmprestimo(emprestimo1);
-		printInfosFuncionario(funcionario1);
+//		printInfosFuncionario(funcionario1);
 		
 		//Modificando atributos (sets)
 		livro1.setStatusEmprestado();
