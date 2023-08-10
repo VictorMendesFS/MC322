@@ -6,18 +6,18 @@ public class Membro {
 	private String email;
 	private String senha;
 	private int numEmprestimos;
-	private String emprestimos[];
+	private Emprestimo emprestimos[]; //armazena os empréstimos, será implementado futuramente
 	
 	//metodos
 	
 	
 //	construtor
-	public Membro(String nome,String id,String email,String senha,int numEmprestimos) {
+	public Membro(String nome,String id,String email,String senha) {
 		this.nome=nome;
 		this.id=id;
 		this.email=email;
 		this.senha=senha;
-		this.numEmprestimos=numEmprestimos;
+		this.numEmprestimos=0;
 	}
 	
 	//getters e setters

@@ -8,7 +8,7 @@ public class Livro {
 	private String dataPublicacao; //Como armazenar data?
 	private int paginas;
 	private String isbn;
-	private String status;
+	private boolean status;
 	private String codigo;
 	
 	//metodos
@@ -16,7 +16,7 @@ public class Livro {
 	
 	//construtor
 	public Livro(String titulo, String autores, int edicao, String idioma, 
-			String dataPublicacao, int paginas, String isbn, String status, String codigo) {
+			String dataPublicacao, int paginas, String isbn, boolean status, String codigo) {
 		this.titulo = titulo;
 		this.autores = autores;
 		this.edicao = edicao;
@@ -37,14 +37,17 @@ public class Livro {
 		return codigo;
 	}
 	public String getStatus() {
-		return status;
+		if(this.status)
+			return "Emprestado";
+		else
+			return "Disponível";
 	}
 	
 	//principais sets
-		public void setStatusEmprestado() {
-			this.status = "emprestado";
-		}
-		public void setStatusDisponivel() {
-			this.status = "disponível";
-		}
+	public void setStatusEmprestado() { //true = livro emprestado
+		this.status = true;		
+	}
+	public void setStatusDisponivel() {	//false = livro disponível
+		this.status = false;
+	}
 }
