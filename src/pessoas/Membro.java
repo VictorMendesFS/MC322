@@ -1,3 +1,6 @@
+package pessoas;
+import procedimentos.*;
+
 
 public class Membro {
 	//atributos

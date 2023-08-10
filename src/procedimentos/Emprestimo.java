@@ -1,3 +1,8 @@
+package procedimentos;
+
+import objetos.Livro;
+import pessoas.*;
+
 
 public class Emprestimo {
 	// atributos

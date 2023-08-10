@@ -1,3 +1,6 @@
+import pessoas.*;
+import procedimentos.*;
+import objetos.*;
 
 public class Main {
 

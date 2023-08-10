@@ -1,3 +1,4 @@
+package pessoas;
 
 public class Funcionario {
 	//atributos
