@@ -16,18 +16,19 @@ public class Main {
 		//instanciar um novo objeto livro1 atraves da classe Livro
 		Livro livro1 = new Livro("Aprendendo Orientação a Objetos","Autor1",5, "português", 
 				"01/01/2000", 200, "0201704331", false, "123465");
-		
+		//informações do livro antes do empréstimo
+		printInfosLivro(livro1);
+				
 		//instanciar um novo Membro 
 		Membro membro1 = new Membro("Victor M.F. Silva","206574","v206574@dac.unicamp.br","aa12345");
 		
 		//instanciar novo funcionario
 		Funcionario funcionario1 = new Funcionario("Roberto", "316547", "Biblioteconomia");
 		
-		printInfosLivro(livro1);
+		
 		//instanciar um novo emprestimo e atribuir o livro1 ao membro1 na própria construção do objeto
 		Emprestimo emprestimo1 = new Emprestimo("abc123", "vigente", livro1, 
 				membro1,"12/08/2023", "19/08/2023");
-		
 		
 		//Acessando e imprimindo os atributos dos objetos (gets)
 		System.out.println("APÓS EMPRESTAR O LIVRO\n");
@@ -45,6 +46,7 @@ public class Main {
 		printInfosMembro(membro1);
 		printInfosEmprestimo(emprestimo1);
 	}
+	//subrotinas para impressão dos atributos dos objetos.
 	public static void printInfosLivro(Livro livro) {
 		System.out.println("Informações do livro:\n" +
 				"Título: " + livro.getTitulo() + 
