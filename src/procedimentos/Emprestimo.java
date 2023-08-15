@@ -67,4 +67,17 @@ public class Emprestimo {
 	public void setDataDevolucao(String dataDevolucao) {
 		this.dataDevolucao=dataDevolucao;
 	}
+	
+	
+	//encapsulamento do print das infos 
+	public void printInfosEmprestimo() {
+		System.out.println("informações do empréstimo: \n"+
+				"Codigo do emprestimo: "+ this.getCodigoEmprestimo() + 
+				"\nStatus: " + this.getStatus() +
+				"\nTitulo do Livro emprestado: " + this.getLivroEmprestado().getTitulo() +
+				"\nEmprestante / ID: " + this.getEmprestante().getNome() + 
+				" / " + this.getEmprestante().getId() +
+				"\nData de empréstimo: " + this.getDataEmprestimo() +
+				"\nData de devolução: " + this.getDataDevolucao()+ "\n");
+	}
 }

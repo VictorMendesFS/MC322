@@ -51,4 +51,12 @@ public class Livro {
 	public void setStatusDisponivel() {	//false = livro disponível
 		this.status = false;
 	}
+	
+	//encapsulamento do print: printInfosLivro
+	public void printInfosLivro() {
+		System.out.println("Informações do livro:\n" +
+				"Título: " + this.getTitulo() + 
+				"\nCódigo: " + this.getCodigo() + 
+				"\nStatus: " + this.getStatus() + "\n");
+	}
 }
