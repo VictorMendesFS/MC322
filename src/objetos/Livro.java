@@ -2,12 +2,7 @@ package objetos;
 
 public class Livro {
 	//atributos
-	private String titulo;
-	private String autores;
-	private int edicao;
-	private String idioma;
-	private String dataPublicacao; //Como armazenar data?
-	private int paginas;
+	private Informacoes infos;
 	private String isbn;
 	private boolean status;
 	private String codigo;
@@ -18,12 +13,7 @@ public class Livro {
 	//construtor
 	public Livro(String titulo, String autores, int edicao, String idioma, 
 			String dataPublicacao, int paginas, String isbn, boolean status, String codigo) {
-		this.titulo = titulo;
-		this.autores = autores;
-		this.edicao = edicao;
-		this.idioma = idioma;
-		this.dataPublicacao = dataPublicacao;
-		this.paginas = paginas;
+		infos = new Informacoes(titulo, autores, edicao, idioma, dataPublicacao, paginas);
 		this.isbn = isbn;
 		this.status = status;
 		this.codigo = codigo;
@@ -31,9 +21,6 @@ public class Livro {
 	
 	//getters e setters
 	//principais gets
-	public String getTitulo() {
-		return titulo;
-	}
 	public String getCodigo() {
 		return codigo;
 	}
@@ -42,6 +29,9 @@ public class Livro {
 			return "Emprestado";
 		else
 			return "Disponível";
+	}
+	public String getTitulo() {
+		return this.infos.getTitulo();
 	}
 	
 	//principais sets
@@ -55,7 +45,7 @@ public class Livro {
 	//encapsulamento do print: printInfosLivro
 	public void printInfosLivro() {
 		System.out.println("Informações do livro:\n" +
-				"Título: " + this.getTitulo() + 
+				"Título: " + this.infos.getTitulo() + 
 				"\nCódigo: " + this.getCodigo() + 
 				"\nStatus: " + this.getStatus() + "\n");
 	}
