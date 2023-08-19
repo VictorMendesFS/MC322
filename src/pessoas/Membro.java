@@ -1,5 +1,5 @@
 package pessoas;
-import procedimentos.*;
+import procedimentos.Emprestimo;
 
 
 public class Membro {

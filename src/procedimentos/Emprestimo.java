@@ -1,7 +1,7 @@
 package procedimentos;
 
 import objetos.Livro;
-import pessoas.*;
+import pessoas.Membro;
 
 
 public class Emprestimo {
@@ -56,8 +56,7 @@ public class Emprestimo {
 	//principais sets
 	public void setStatusEmprestimo(String status) {
 		this.status=status;
-		//implementar a mudança em Membro e Livro quando o emprestimo é finalizado
-		// **será implementado futuramente ** 
+		//mudança em Membro e Livro quando o emprestimo é finalizado
 		if(status == "finalizado") {
 			this.livroEmprestado.setStatusDisponivel();
 			//diminui em 1 o numero de livros emprestados do membro
