@@ -1,6 +1,6 @@
 package procedimentos;
 
-import objetos.Livro;
+import itensMultimidia.LivroFisico;
 import pessoas.Membro;
 
 
@@ -8,7 +8,7 @@ public class Emprestimo {
 	// atributos
 	private String codigoEmprestimo;
 	private String status; //3 possíveis status: "vigente", "atraso" ou "finalizado"
-	private Livro livroEmprestado;
+	private LivroFisico livroEmprestado;
 	private String dataEmprestimo;
 	private String dataDevolucao;
 	private Membro emprestante;
@@ -18,7 +18,7 @@ public class Emprestimo {
 	
 	//construtor
 	public Emprestimo(String codigoEmprestimo, String status,
-			Livro livroEmprestado, Membro emprestante,
+			LivroFisico livroEmprestado, Membro emprestante,
 			String dataEmprestimo, String dataDevolucao) {
 		this.codigoEmprestimo = codigoEmprestimo;
 		this.status=status;
@@ -40,7 +40,7 @@ public class Emprestimo {
 	public String getStatus() {
 		return status;
 	}
-	public Livro getLivroEmprestado() {
+	public LivroFisico getLivroEmprestado() {
 		return livroEmprestado;
 	}
 	public String getDataDevolucao() {
