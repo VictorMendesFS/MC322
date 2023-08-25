@@ -23,7 +23,7 @@ public abstract class Pessoa {
 	}
 	
 	//metodos
-	//adiciona um emprestimo a lista da pessoa
+	//adiciona um emprestimo a lista da pessoa, supondo que todas realizam o mesmo tipo de emprestimo
 	public void addEmprestimo(Emprestimo emprestimo) {
 		emprestimos.add(emprestimo);
 		numEmprestimos++;
@@ -34,12 +34,13 @@ public abstract class Pessoa {
 		//RESTA IMPLEMENTAR A MUDANÇA DE "STATUS" DO EMPRESTIMO
 	}
 	//remove um emprestimo a lista da pessoa
-	public void removerEmprestimo(String codigo) {
+	public void removerEmprestimo(Emprestimo emprestimo) {
 		for(int i=0; i<numEmprestimos;i++) {
-			if(emprestimos.get(i).getCodigoEmprestimo()==codigo) {
+			if(emprestimos.get(i)==emprestimo) {
 				emprestimos.remove(i);
 				numEmprestimos--;
-				System.out.println("Emprestimo Código '"+codigo+"' removido\n");
+				System.out.println("Emprestimo Código '"+emprestimo.getCodigoEmprestimo()
+				+"' removido\n");
 			}
 		}
 	}
@@ -56,6 +57,4 @@ public abstract class Pessoa {
 	public int getNumEmprestimos() {
 		return this.numEmprestimos;
 	}
-	
-	
 }

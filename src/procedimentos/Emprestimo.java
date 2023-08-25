@@ -1,7 +1,13 @@
 package procedimentos;
 
+import java.time.LocalDate;
+
 import itensMultimidia.*;
+import pessoas.EstudanteGrad;
+import pessoas.EstudantePos;
+import pessoas.Funcionario;
 import pessoas.Pessoa;
+import pessoas.Professor;
 
 
 public class Emprestimo implements Prints{
@@ -9,8 +15,8 @@ public class Emprestimo implements Prints{
 	private String codigoEmprestimo;
 	private String status; //3 possíveis status: "vigente", "atraso" ou "finalizado"
 	private ItemMultimidia itemMultimidia;
-	private String dataEmprestimo;
-	private String dataDevolucao;
+	private LocalDate dataEmprestimo;
+	private LocalDate dataDevolucao;
 	private Pessoa emprestante;
 	
 	//metodos
@@ -18,13 +24,15 @@ public class Emprestimo implements Prints{
 	//construtor
 	public Emprestimo(String codigoEmprestimo, String status,
 			ItemMultimidia materialEmprestado, Pessoa emprestante,
-			String dataEmprestimo, String dataDevolucao) {
+			LocalDate dataEmprestimo) {
 		this.codigoEmprestimo = codigoEmprestimo;
 		this.status=status;
 		this.itemMultimidia = materialEmprestado;
 		this.emprestante = emprestante;
 		this.dataEmprestimo=dataEmprestimo;
-		this.dataDevolucao=dataDevolucao;
+		
+		//o prazo para devolução vai dependeder de quem pegou emprestado
+		this.setDataDevolucao(emprestante);
 		 //seta o livro como emprestado
 		materialEmprestado.setStatusEmprestado();
 		//add um livro a contagem de emprestimos do membro
@@ -42,10 +50,10 @@ public class Emprestimo implements Prints{
 	public ItemMultimidia getMaterialEmprestado() {
 		return this.itemMultimidia;
 	}
-	public String getDataDevolucao() {
+	public LocalDate getDataDevolucao() {
 		return dataDevolucao;
 	}
-	public String getDataEmprestimo() {
+	public LocalDate getDataEmprestimo() {
 		return dataEmprestimo;
 	}
 	public Pessoa getEmprestante() {
@@ -60,8 +68,17 @@ public class Emprestimo implements Prints{
 			this.itemMultimidia.setStatusDisponivel();
 		}
 	}
-	public void setDataDevolucao(String dataDevolucao) {
-		this.dataDevolucao=dataDevolucao;
+	//data de devolução em função do emprestante
+	public void setDataDevolucao(Pessoa emprestante) {
+		if(emprestante instanceof EstudanteGrad) {
+			this.dataDevolucao=dataEmprestimo.plusDays(7);
+		}else if(emprestante instanceof Professor) {
+			this.dataDevolucao=dataEmprestimo.plusDays(14);
+		}else if(emprestante instanceof EstudantePos) {
+			this.dataDevolucao=dataEmprestimo.plusDays(10);
+		}else if(emprestante instanceof Funcionario) {
+			this.dataDevolucao=dataEmprestimo.plusDays(7);
+		}
 	}
 	
 	

@@ -1,4 +1,6 @@
 package main;
+import java.time.LocalDate;
+
 import itensMultimidia.*;
 import pessoas.*;
 import procedimentos.*;
@@ -23,29 +25,30 @@ public class Main {
 //		livroDigital1.printInfos();
 //		cd1.printInfos();
 //		dvd1.printInfos();
-		
-		//instanciar uma nova pessoa 
+//		
+		//instanciar um aluno de grad. e um prof.
 		EstudanteGrad estudanteGrad1 = new EstudanteGrad("Victor M.F. Silva","206574","v206574@dac.unicamp.br","aa12345", "Eng. Controle e Automação");
+		Professor professor1 = new Professor("Bruno Cafeo", "123456", "cafeo@ic.unicamp.br", "cafeo321", "Instituto de Computação UNICAMP");
+		//imprimindo as infos das pessoas
 		estudanteGrad1.printInfos();
-//		//instanciar novo funcionario
-//		Funcionario funcionario1 = new Funcionario("Roberto", "316547","r316547@dac.unicamp.br",
-//				"senha321","Biblioteconomia");
+		professor1.printInfos();
 		
-
-//		criar novos emprestimos e atribui para o estudante
-		Emprestimo emprestimo1 = new Emprestimo("001", "vigente", livroFisico1, estudanteGrad1, "25/08/2023", "02/09/2023");
-		Emprestimo emprestimo2 = new Emprestimo("002", "vigente", dvd1, estudanteGrad1, "25/08/2023", "02/09/2023");
-		Emprestimo emprestimo3 = new Emprestimo("003", "vigente", livroDigital1, estudanteGrad1, "25/08/2023", "02/09/2023");
+//		criar novos emprestimos e atribui para o estudante e o prof
+		Emprestimo emprestimo1 = new Emprestimo("001", "vigente", livroFisico1, estudanteGrad1, LocalDate.now());
+		Emprestimo emprestimo2 = new Emprestimo("002", "vigente", dvd1, estudanteGrad1, LocalDate.now());
+		Emprestimo emprestimo3 = new Emprestimo("003", "vigente", livroDigital1, professor1, LocalDate.now());
+		
 		System.out.println("Após realizar os emprestimos:\n");
 		estudanteGrad1.printInfos();
+		professor1.printInfos();
 		
-		//finaliza o emprestimo do livro Físico do estudante
-		estudanteGrad1.removerEmprestimo(emprestimo1.getCodigoEmprestimo());
-		System.out.println("Após finalizar o emprestimo:\n");
+//		remove os emprestimos dos usuarios
+		estudanteGrad1.removerEmprestimo(emprestimo1);
+		estudanteGrad1.removerEmprestimo(emprestimo2);
+		professor1.removerEmprestimo(emprestimo3);
+		
+		System.out.println("Após finalizar os emprestimos:\n");
 		estudanteGrad1.printInfos();
-		//remove o restante dos emprestimos
-		estudanteGrad1.removerEmprestimo("003");
-		estudanteGrad1.removerEmprestimo("002");
-		estudanteGrad1.printInfos();		
+		professor1.printInfos();
 	}
 }
