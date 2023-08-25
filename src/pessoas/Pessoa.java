@@ -44,6 +44,7 @@ public abstract class Pessoa {
 			}
 		}
 	}
+	//chama a implementaçao de renovação de um determinado emprestimo
 	public void renovarEmprestimo(Emprestimo emprestimo) {
 		for(int i=0; i<numEmprestimos;i++) {
 			if(emprestimos.get(i)==emprestimo) {
