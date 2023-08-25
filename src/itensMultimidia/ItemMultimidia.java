@@ -1,6 +1,6 @@
 package itensMultimidia;
 
-abstract class ItemMultimidia {
+public abstract class ItemMultimidia {
 //	atributos
 	protected String titulo;
 	protected String autores;
@@ -12,9 +12,6 @@ abstract class ItemMultimidia {
 	protected boolean status;
 	
 //	metodos
-
-//	metodo abstrato
-	public abstract void printInfos();
 
 //	construtor
 	public ItemMultimidia(String titulo, String autores,int edicao,

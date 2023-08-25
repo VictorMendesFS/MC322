@@ -1,35 +1,34 @@
 package procedimentos;
 
-import itensMultimidia.LivroFisico;
-import pessoas.Membro;
+import itensMultimidia.*;
+import pessoas.Pessoa;
 
 
-public class Emprestimo {
+public class Emprestimo implements Prints{
 	// atributos
 	private String codigoEmprestimo;
 	private String status; //3 possíveis status: "vigente", "atraso" ou "finalizado"
-	private LivroFisico livroEmprestado;
+	private ItemMultimidia itemMultimidia;
 	private String dataEmprestimo;
 	private String dataDevolucao;
-	private Membro emprestante;
+	private Pessoa emprestante;
 	
 	//metodos
 	
-	
 	//construtor
 	public Emprestimo(String codigoEmprestimo, String status,
-			LivroFisico livroEmprestado, Membro emprestante,
+			ItemMultimidia materialEmprestado, Pessoa emprestante,
 			String dataEmprestimo, String dataDevolucao) {
 		this.codigoEmprestimo = codigoEmprestimo;
 		this.status=status;
-		this.livroEmprestado = livroEmprestado;
+		this.itemMultimidia = materialEmprestado;
 		this.emprestante = emprestante;
 		this.dataEmprestimo=dataEmprestimo;
 		this.dataDevolucao=dataDevolucao;
 		 //seta o livro como emprestado
-		livroEmprestado.setStatusEmprestado();
+		materialEmprestado.setStatusEmprestado();
 		//add um livro a contagem de emprestimos do membro
-		emprestante.setNumEmprestimos(emprestante.getnumEmprestimos()+1); 
+		emprestante.addEmprestimo(this);
 	}
 	
 	//getters e setters
@@ -40,8 +39,8 @@ public class Emprestimo {
 	public String getStatus() {
 		return status;
 	}
-	public LivroFisico getLivroEmprestado() {
-		return livroEmprestado;
+	public ItemMultimidia getMaterialEmprestado() {
+		return this.itemMultimidia;
 	}
 	public String getDataDevolucao() {
 		return dataDevolucao;
@@ -49,7 +48,7 @@ public class Emprestimo {
 	public String getDataEmprestimo() {
 		return dataEmprestimo;
 	}
-	public Membro getEmprestante() {
+	public Pessoa getEmprestante() {
 		return emprestante;
 	}
 	
@@ -58,9 +57,7 @@ public class Emprestimo {
 		this.status=status;
 		//mudança em Membro e Livro quando o emprestimo é finalizado
 		if(status == "finalizado") {
-			this.livroEmprestado.setStatusDisponivel();
-			//diminui em 1 o numero de livros emprestados do membro
-			this.emprestante.setNumEmprestimos(this.emprestante.getnumEmprestimos()-1);
+			this.itemMultimidia.setStatusDisponivel();
 		}
 	}
 	public void setDataDevolucao(String dataDevolucao) {
@@ -69,13 +66,13 @@ public class Emprestimo {
 	
 	
 	//encapsulamento do print das infos 
-	public void printInfosEmprestimo() {
+	public void printInfos() {
 		System.out.println("informações do empréstimo: \n"+
 				"Codigo do emprestimo: "+ this.getCodigoEmprestimo() + 
 				"\nStatus: " + this.getStatus() +
-				"\nTitulo do Livro emprestado: " + this.getLivroEmprestado().getTitulo() +
-				"\nEmprestante / ID: " + this.getEmprestante().getNome() + 
-				" / " + this.getEmprestante().getId() +
+				"\nTitulo do Material emprestado: " + this.getMaterialEmprestado().getTitulo() +
+				"\nEmprestante: " + this.getEmprestante().getNome()+ 
+				" / Id:  " + this.getEmprestante().getId() +
 				"\nData de empréstimo: " + this.getDataEmprestimo() +
 				"\nData de devolução: " + this.getDataDevolucao()+ "\n");
 	}

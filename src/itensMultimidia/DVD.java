@@ -1,6 +1,8 @@
 package itensMultimidia;
 
-public class DVD extends ItemMultimidia {
+import procedimentos.Prints;
+
+public class DVD extends ItemMultimidia implements Prints {
 	//atributos
 	String resolucao;
 	
@@ -12,8 +14,18 @@ public class DVD extends ItemMultimidia {
 
 	@Override
 	public void printInfos() {
-		// TODO Auto-generated method stub
+		System.out.println("Informações do DVD:\n" +
+				"Título: " + this.getTitulo() + 
+				"\nAutores: " + this.autores +
+				"\nEdicao: " + this.edicao +
+				"\nIdioma: " + this.idioma +
+				"\nData de Publicação: " + this.dataPublicacao +
+				"\nTamanho do Arquivo (Mb): " + this.tamanho +
+				"\nResolução: " + this.resolucao +
+				"\nCódigo: " + this.getCodigo() + 
+				"\nStatus: " + this.getStatus() + "\n");
 
 	}
+
 
 }

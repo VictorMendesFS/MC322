@@ -1,6 +1,8 @@
 package itensMultimidia;
 
-public class CD extends ItemMultimidia {
+import procedimentos.Prints;
+
+public class CD extends ItemMultimidia implements Prints{
 	//atributos
 	String tipo;
 	public CD(String titulo, String autores, int edicao, String idioma, int tamanho, String dataPublicacao, String codigo,
@@ -12,14 +14,14 @@ public class CD extends ItemMultimidia {
 	@Override
 	//implementando o metodo de impressao das informações 
 	public void printInfos() {
-		System.out.println("Informações do livro físico:\n" +
+		System.out.println("Informações do CD:\n" +
 				"Título: " + this.getTitulo() + 
-				"\n Autores: " + this.autores +
-				"\n Edicao: " + this.edicao +
-				"\n Idioma" + this.idioma +
-				"\n Data de Publicação: " + this.dataPublicacao +
-				"\n Tamanho do Arquivo (Kb): " + this.tamanho +
-				"\n Tipo de CD: " + this.tipo +
+				"\nAutores: " + this.autores +
+				"\nEdicao: " + this.edicao +
+				"\nIdioma: " + this.idioma +
+				"\nData de Publicação: " + this.dataPublicacao +
+				"\nTamanho do Arquivo (Kb): " + this.tamanho +
+				"\nTipo de CD: " + this.tipo +
 				"\nCódigo: " + this.getCodigo() + 
 				"\nStatus: " + this.getStatus() + "\n");
 

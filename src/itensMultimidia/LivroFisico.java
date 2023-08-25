@@ -1,6 +1,8 @@
 package itensMultimidia;
 
-public class LivroFisico extends ItemMultimidia{
+import procedimentos.Prints;
+
+public class LivroFisico extends ItemMultimidia implements Prints{
 	//atributos
 	private String editora;
 	private String isbn;	
@@ -20,13 +22,13 @@ public class LivroFisico extends ItemMultimidia{
 	public void printInfos() {
 		System.out.println("Informações do livro físico:\n" +
 				"Título: " + this.getTitulo() + 
-				"\n Autores: " + this.autores +
-				"\n Editora: " + this.editora +
-				"\n Edicao: " + this.edicao +
-				"\n Idioma: " + this.idioma +
-				"\n Data de Publicação: " + this.dataPublicacao +
-				"\n N° de Páginas: " + this.tamanho +
-				"\n ISBN: " + this.isbn +
+				"\nAutores: " + this.autores +
+				"\nEditora: " + this.editora +
+				"\nEdicao: " + this.edicao +
+				"\nIdioma: " + this.idioma +
+				"\nData de Publicação: " + this.dataPublicacao +
+				"\nN° de Páginas: " + this.tamanho +
+				"\nISBN: " + this.isbn +
 				"\nCódigo: " + this.getCodigo() + 
 				"\nStatus: " + this.getStatus() + "\n");
 	}
