@@ -44,6 +44,15 @@ public abstract class Pessoa {
 			}
 		}
 	}
+	public void renovarEmprestimo(Emprestimo emprestimo) {
+		for(int i=0; i<numEmprestimos;i++) {
+			if(emprestimos.get(i)==emprestimo) {
+				emprestimos.get(i).renovarEmprestimo();
+				System.out.println("Emprestimo Código '"+emprestimo.getCodigoEmprestimo()
+				+"' renovado até "+emprestimo.getDataDevolucao()+"\n");
+			}
+		}
+	}
 	//getters
 	public String getNome() {
 		return this.nome;

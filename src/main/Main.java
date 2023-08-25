@@ -42,9 +42,9 @@ public class Main {
 		estudanteGrad1.printInfos();
 		professor1.printInfos();
 		
-//		remove os emprestimos dos usuarios
+//		manipulação de emprestimos
 		estudanteGrad1.removerEmprestimo(emprestimo1);
-		estudanteGrad1.removerEmprestimo(emprestimo2);
+		estudanteGrad1.renovarEmprestimo(emprestimo2);
 		professor1.removerEmprestimo(emprestimo3);
 		
 		System.out.println("Após finalizar os emprestimos:\n");

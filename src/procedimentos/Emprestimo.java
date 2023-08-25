@@ -19,8 +19,6 @@ public class Emprestimo implements Prints{
 	private LocalDate dataDevolucao;
 	private Pessoa emprestante;
 	
-	//metodos
-	
 	//construtor
 	public Emprestimo(String codigoEmprestimo, String status,
 			ItemMultimidia materialEmprestado, Pessoa emprestante,
@@ -38,6 +36,9 @@ public class Emprestimo implements Prints{
 		//add um livro a contagem de emprestimos do membro
 		emprestante.addEmprestimo(this);
 	}
+	
+	//metodos
+	
 	
 	//getters e setters
 	//principais gets
@@ -71,17 +72,29 @@ public class Emprestimo implements Prints{
 	//data de devolução em função do emprestante
 	public void setDataDevolucao(Pessoa emprestante) {
 		if(emprestante instanceof EstudanteGrad) {
-			this.dataDevolucao=dataEmprestimo.plusDays(7);
+			dataDevolucao=dataEmprestimo.plusDays(7);
 		}else if(emprestante instanceof Professor) {
-			this.dataDevolucao=dataEmprestimo.plusDays(14);
+			dataDevolucao=dataEmprestimo.plusDays(14);
 		}else if(emprestante instanceof EstudantePos) {
-			this.dataDevolucao=dataEmprestimo.plusDays(10);
+			dataDevolucao=dataEmprestimo.plusDays(10);
 		}else if(emprestante instanceof Funcionario) {
-			this.dataDevolucao=dataEmprestimo.plusDays(7);
+			dataDevolucao=dataEmprestimo.plusDays(7);
 		}
 	}
-	
-	
+	//renovação de emprestimo
+	public void renovarEmprestimo() {
+		if(emprestante instanceof EstudanteGrad) {
+			dataDevolucao=dataDevolucao.plusDays(7);
+		}else if(emprestante instanceof Professor) {
+			dataDevolucao=dataDevolucao.plusDays(14);
+		}else if(emprestante instanceof EstudantePos) {
+			dataDevolucao=dataDevolucao.plusDays(10);
+		}else if(emprestante instanceof Funcionario) {
+			dataDevolucao=dataDevolucao.plusDays(7);
+		}
+		//poderá haver uma contagem de renocações permitidas, também a depender do tipo de pessoa
+	}
+	@Override
 	//encapsulamento do print das infos 
 	public void printInfos() {
 		System.out.println("informações do empréstimo: \n"+
