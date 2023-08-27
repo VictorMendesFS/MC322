@@ -10,6 +10,7 @@ public abstract class ItemMultimidia {
 	protected String dataPublicacao; //formato correto de data será implementado futuramente
 	protected String codigo;
 	protected boolean status;
+	protected boolean reservado;
 	
 //	metodos
 
@@ -24,7 +25,7 @@ public abstract class ItemMultimidia {
 		this.dataPublicacao=dataPublicacao;
 		this.codigo=codigo;
 		this.status=status;
-	
+		this.reservado=false;
 	}
 	
 //	getters e setters
@@ -35,11 +36,14 @@ public abstract class ItemMultimidia {
 	public String getCodigo() {
 		return codigo;
 	}
-	public String getStatus() {
-		if(this.status)
-			return "Emprestado";
+	public String getStatusString() {
+		if(this.status)//true = material emprestado ou reservado
+			return "Indisponível";
 		else
 			return "Disponível";
+	}
+	public boolean getStatusBool() {
+		return this.status;
 	}
 	
 	//sets
@@ -58,7 +62,7 @@ public abstract class ItemMultimidia {
 	public void setDataPublicacao(String dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
-	public void setStatusEmprestado() { //true = material emprestado
+	public void setStatusIndispoivel() { //true = material emprestado
 		this.status = true;		
 	}
 	public void setStatusDisponivel() {	//false = material disponível

@@ -23,18 +23,21 @@ public class Emprestimo implements Prints{
 	public Emprestimo(String codigoEmprestimo, String status,
 			ItemMultimidia materialEmprestado, Pessoa emprestante,
 			LocalDate dataEmprestimo) {
-		this.codigoEmprestimo = codigoEmprestimo;
-		this.status=status;
-		this.itemMultimidia = materialEmprestado;
-		this.emprestante = emprestante;
-		this.dataEmprestimo=dataEmprestimo;
+		if(!materialEmprestado.getStatusBool()) {
+			this.codigoEmprestimo = codigoEmprestimo;
+			this.status=status;
+			this.itemMultimidia = materialEmprestado;
+			this.emprestante = emprestante;
+			this.dataEmprestimo=dataEmprestimo;
 		
-		//o prazo para devolução vai dependeder de quem pegou emprestado
-		this.setDataDevolucao(emprestante);
-		 //seta o livro como emprestado
-		materialEmprestado.setStatusEmprestado();
-		//add um livro a contagem de emprestimos do membro
-		emprestante.addEmprestimo(this);
+			//o prazo para devolução vai dependeder de quem pegou emprestado
+			this.setDataDevolucao(emprestante);
+			 //seta o livro como emprestado
+			materialEmprestado.setStatusIndispoivel();
+			//add um livro a contagem de emprestimos do membro
+			emprestante.addEmprestimo(this);
+		}else
+			System.out.println("Livro indisponível!");
 	}
 	
 	//metodos

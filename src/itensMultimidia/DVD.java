@@ -23,7 +23,7 @@ public class DVD extends ItemMultimidia implements Prints {
 				"\nTamanho do Arquivo (Mb): " + this.tamanho +
 				"\nResolução: " + this.resolucao +
 				"\nCódigo: " + this.getCodigo() + 
-				"\nStatus: " + this.getStatus() + "\n");
+				"\nStatus: " + this.getStatusString() + "\n");
 
 	}
 

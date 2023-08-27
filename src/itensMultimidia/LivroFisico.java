@@ -30,7 +30,7 @@ public class LivroFisico extends ItemMultimidia implements Prints{
 				"\nN° de Páginas: " + this.tamanho +
 				"\nISBN: " + this.isbn +
 				"\nCódigo: " + this.getCodigo() + 
-				"\nStatus: " + this.getStatus() + "\n");
+				"\nStatus: " + this.getStatusString() + "\n");
 	}
 	
 	

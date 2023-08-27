@@ -19,6 +19,7 @@ public class Main {
 		LivroDigital livroDigital1 = new LivroDigital("Aprendendo JAVA - Edição Digital", "CAFEO, B.", 1, "PT-BR", 250, "ago/2023", "abc123", false, "Ed. UNICAMP", "aass336541");
 		CD cd1 = new CD("Audiobook JAVA", "CAFEO, B.", 2, "PT-BR", 2370, "jul/2022", "zzxx6654", false, 0, "CD-R");
 		DVD dvd1 = new DVD("Videobook JAVA", "CAFEO, B.", 2, "PT-BR", 16578, "jul/2022", "zzxx6654", false, "HD");
+		
 		//informações dos itens
 //		System.out.println("Impressão dos itens instanciados:\n");
 //		livroFisico1.printInfos();
@@ -30,8 +31,8 @@ public class Main {
 		EstudanteGrad estudanteGrad1 = new EstudanteGrad("Victor M.F. Silva","206574","v206574@dac.unicamp.br","aa12345", "Eng. Controle e Automação");
 		Professor professor1 = new Professor("Bruno Cafeo", "123456", "cafeo@ic.unicamp.br", "cafeo321", "Instituto de Computação UNICAMP");
 		//imprimindo as infos das pessoas
-		estudanteGrad1.printInfos();
-		professor1.printInfos();
+//		estudanteGrad1.printInfos();
+//		professor1.printInfos();
 		
 //		criar novos emprestimos e atribui para o estudante e o prof
 		Emprestimo emprestimo1 = new Emprestimo("001", "vigente", livroFisico1, estudanteGrad1, LocalDate.now());

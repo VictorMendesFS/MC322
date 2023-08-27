@@ -23,7 +23,7 @@ public class CD extends ItemMultimidia implements Prints{
 				"\nTamanho do Arquivo (Kb): " + this.tamanho +
 				"\nTipo de CD: " + this.tipo +
 				"\nCódigo: " + this.getCodigo() + 
-				"\nStatus: " + this.getStatus() + "\n");
+				"\nStatus: " + this.getStatusString() + "\n");
 
 	}
 

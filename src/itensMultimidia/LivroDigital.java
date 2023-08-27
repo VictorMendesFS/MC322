@@ -30,7 +30,7 @@ public class LivroDigital extends ItemMultimidia implements Prints {
 				"\nTamanho do Arquivo (Kb): " + this.tamanho +
 				"\nISBN: " + this.isbn +
 				"\nCódigo: " + this.getCodigo() + 
-				"\nStatus: " + this.getStatus() + "\n");
+				"\nStatus: " + this.getStatusString() + "\n");
 	}
 
 }
