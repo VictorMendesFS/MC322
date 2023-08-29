@@ -1,36 +1,91 @@
 package itensMultimidia;
 
+import java.time.LocalDate;
+
 import procedimentos.Prints;
 
 public class LivroDigital extends ItemMultimidia implements Prints {
 	//atributos
-	private String editora;
-	private String isbn;	
-	
-	//metodos
+	private String formato;
+	private int numDisponivel;
+	private String url;
+	private String requisitos;
+	private LocalDate dataDisponibilidade;
 	
 	//construtor
-	public LivroDigital(String titulo, String autores, int edicao, String idioma, int tamanho, String dataPublicacao, String codigo,
-			boolean status, String editora, String isbn) {
-		super(titulo, autores, edicao, idioma, tamanho, dataPublicacao, codigo, status);
-		this.editora=editora;
-		this.isbn=isbn;
+	
+	public LivroDigital(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
+			String genero, String sinopse, String capa, String formato, int numDisponivel, String url,
+			String requisitos, LocalDate dataDisponibilidade) {
+		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa);
+		this.formato = formato;
+		this.numDisponivel = numDisponivel;
+		this.url = url;
+		this.requisitos = requisitos;
+		this.dataDisponibilidade = dataDisponibilidade;
 	}
+
 
 	@Override
 	//implementando o metodo de impressao das informações 
 	public void printInfos() {
 		System.out.println("Informações do livro digital:\n" +
 				"Título: " + this.getTitulo() + 
-				"\nAutores: " + this.autores +
-				"\nEdicao: " + this.edicao +
+				"\nAutores: " + this.autor +
 				"\nEditora: " + this.editora +
 				"\nIdioma: " + this.idioma +
-				"\nData de Publicação: " + this.dataPublicacao +
-				"\nTamanho do Arquivo (Kb): " + this.tamanho +
-				"\nISBN: " + this.isbn +
-				"\nCódigo: " + this.getCodigo() + 
-				"\nStatus: " + this.getStatusString() + "\n");
+				"\nData de Publicação: " + this.dataPublicacao);
 	}
 
+//	geters e seters
+	public String getFormato() {
+		return formato;
+	}
+
+
+	public int getNumDisponivel() {
+		return numDisponivel;
+	}
+
+
+	public String getUrl() {
+		return url;
+	}
+
+
+	public String getRequisitos() {
+		return requisitos;
+	}
+
+
+	public LocalDate getDataDisponibilidade() {
+		return dataDisponibilidade;
+	}
+
+
+	public void setFormato(String formato) {
+		this.formato = formato;
+	}
+
+
+	public void setNumDisponivel(int numDisponivel) {
+		this.numDisponivel = numDisponivel;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+	public void setRequisitos(String requisitos) {
+		this.requisitos = requisitos;
+	}
+
+
+	public void setDataDisponibilidade(LocalDate dataDisponibilidade) {
+		this.dataDisponibilidade = dataDisponibilidade;
+	}
+
+	
 }

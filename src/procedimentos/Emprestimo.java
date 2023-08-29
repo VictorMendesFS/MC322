@@ -1,6 +1,7 @@
 package procedimentos;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import itensMultimidia.*;
 import pessoas.EstudanteGrad;
@@ -41,7 +42,14 @@ public class Emprestimo implements Prints{
 	}
 	
 	//metodos
-	
+	//impressão da lista de emprestimos que uma pessoa possui
+	public void printListaEmprestimos(List<Emprestimo> emprestimos) {
+		System.out.println("Lista de Emprestimos da pessoa:\n");   
+		for (Emprestimo emprestimoAux : emprestimos) {
+			emprestimoAux.printInfos();
+		}
+
+	}
 	
 	//getters e setters
 	//principais gets

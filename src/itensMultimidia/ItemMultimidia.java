@@ -1,72 +1,100 @@
 package itensMultimidia;
 
+import java.time.LocalDate;
+
 public abstract class ItemMultimidia {
 //	atributos
 	protected String titulo;
-	protected String autores;
-	protected int edicao;
+	protected String autor;
+	protected String editora;
 	protected String idioma;
-	protected int tamanho;
-	protected String dataPublicacao; //formato correto de data será implementado futuramente
-	protected String codigo;
-	protected boolean status;
-	protected boolean reservado;
+	protected LocalDate dataPublicacao;
+	protected String genero;
+	protected String sinopse;
+	protected String capa; //a imagem será implementada futuramente
 	
 //	metodos
 
 //	construtor
-	public ItemMultimidia(String titulo, String autores,int edicao,
-			String idioma,int tamanho, String dataPublicacao,String codigo,boolean status) {
+	public ItemMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
+			String genero, String sinopse, String capa) {
+		super();
 		this.titulo = titulo;
-		this.autores=autores;
-		this.edicao=edicao;
-		this.idioma=idioma;
-		this.tamanho=tamanho;
-		this.dataPublicacao=dataPublicacao;
-		this.codigo=codigo;
-		this.status=status;
-		this.reservado=false;
+		this.autor = autor;
+		this.editora = editora;
+		this.idioma = idioma;
+		this.dataPublicacao = dataPublicacao;
+		this.genero = genero;
+		this.sinopse = sinopse;
+		this.capa = capa;
 	}
-	
+
+
 //	getters e setters
-	//gets
 	public String getTitulo() {
 		return titulo;
 	}
-	public String getCodigo() {
-		return codigo;
+
+	public String getAutor() {
+		return autor;
 	}
-	public String getStatusString() {
-		if(this.status)//true = material emprestado ou reservado
-			return "Indisponível";
-		else
-			return "Disponível";
+
+	public String getEditora() {
+		return editora;
 	}
-	public boolean getStatusBool() {
-		return this.status;
+
+	public String getIdioma() {
+		return idioma;
 	}
-	
-	//sets
+
+	public LocalDate getDataPublicacao() {
+		return dataPublicacao;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public String getSinopse() {
+		return sinopse;
+	}
+
+	public String getCapa() {
+		return capa;
+	}
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public void setAutores(String autores) {
-		this.autores = autores;
+
+	public void setAutor(String autor) {
+		this.autor = autor;
 	}
-	public void setEdicao(int edicao) {
-		this.edicao = edicao;
+
+	public void setEditora(String editora) {
+		this.editora = editora;
 	}
+
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
 	}
-	public void setDataPublicacao(String dataPublicacao) {
+
+	public void setDataPublicacao(LocalDate dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
-	public void setStatusIndispoivel() { //true = material emprestado
-		this.status = true;		
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
-	public void setStatusDisponivel() {	//false = material disponível
-		this.status = false;
+
+	public void setSinopse(String sinopse) {
+		this.sinopse = sinopse;
 	}
+
+	public void setCapa(String capa) {
+		this.capa = capa;
+	}
+
+	
 }
 	

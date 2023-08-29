@@ -15,7 +15,7 @@ public class Main {
 		
 		
 		//instanciação de itens multimídia
-		LivroFisico livroFisico1 = new LivroFisico("Aprendendo JAVA", "CAFEO, B.", 1, "PT-BR", 230, "ago/2023", "abc123", false, "Ed. UNICAMP", "aass336541");
+		LivroFisico livroFisico1 = new LivroFisico("Aprendendo JAVA", "CAFEO, B.", 1, "PT-BR", "ago/2023", "abc123", false, null, "aass336541", null, null, null, null, null);
 		LivroDigital livroDigital1 = new LivroDigital("Aprendendo JAVA - Edição Digital", "CAFEO, B.", 1, "PT-BR", 250, "ago/2023", "abc123", false, "Ed. UNICAMP", "aass336541");
 		CD cd1 = new CD("Audiobook JAVA", "CAFEO, B.", 2, "PT-BR", 2370, "jul/2022", "zzxx6654", false, 0, "CD-R");
 		DVD dvd1 = new DVD("Videobook JAVA", "CAFEO, B.", 2, "PT-BR", 16578, "jul/2022", "zzxx6654", false, "HD");

@@ -1,5 +1,6 @@
 package pessoas;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,29 +10,35 @@ public abstract class Pessoa {
 	//atributos
 	protected String nome;
 	protected String id;
-	protected String email;
-	protected String senha;
-	protected int numEmprestimos;
+	protected String endereco;
+	protected String contato;
+	protected LocalDate dataRegistro;
 	protected List<Emprestimo> emprestimos = new ArrayList<>();
-	
-	public Pessoa(String nome,String id,String email,String senha) {
-		this.nome=nome;
-		this.id=id;
-		this.email=email;
-		this.senha=senha;
-		numEmprestimos=0;
+	protected int numEmprestimos;
+
+	//construtor
+	public Pessoa(String nome, String id, String endereco, String contato, LocalDate dataRegistro,
+			List<Emprestimo> emprestimos, int numEmprestimos) {
+		super();
+		this.nome = nome;
+		this.id = id;
+		this.endereco = endereco;
+		this.contato = contato;
+		this.dataRegistro = dataRegistro;
+		this.emprestimos = emprestimos;
+		this.numEmprestimos = numEmprestimos;
 	}
-	
 	//metodos
+		
+	
 	//adiciona um emprestimo a lista da pessoa, supondo que todas realizam o mesmo tipo de emprestimo
 	public void addEmprestimo(Emprestimo emprestimo) {
 		emprestimos.add(emprestimo);
 		numEmprestimos++;
-//		implementar print com o titulo do emprestimo
+		//		implementar print com o titulo do emprestimo
 		System.out.println("Emprestimo do material '" +
 				emprestimos.get(numEmprestimos-1).getMaterialEmprestado().getTitulo()
 				+ "' para '" +this.nome +"' realizado com sucesso!\n");
-		//RESTA IMPLEMENTAR A MUDANÇA DE "STATUS" DO EMPRESTIMO
 	}
 	//remove um emprestimo a lista da pessoa
 	public void removerEmprestimo(Emprestimo emprestimo) {
@@ -54,17 +61,49 @@ public abstract class Pessoa {
 			}
 		}
 	}
-	//getters
+	//geters e seters
 	public String getNome() {
-		return this.nome;
+		return nome;
 	}
 	public String getId() {
-		return this.id;
+		return id;
 	}
-	public String getEmail() {
-		return this.email;
+	public String getEndereco() {
+		return endereco;
+	}
+	public String getContato() {
+		return contato;
+	}
+	public LocalDate getDataRegistro() {
+		return dataRegistro;
+	}
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
 	}
 	public int getNumEmprestimos() {
-		return this.numEmprestimos;
+		return numEmprestimos;
 	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+	public void setContato(String contato) {
+		this.contato = contato;
+	}
+	public void setDataRegistro(LocalDate dataRegistro) {
+		this.dataRegistro = dataRegistro;
+	}
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
+	}
+	public void setNumEmprestimos(int numEmprestimos) {
+		this.numEmprestimos = numEmprestimos;
+	}
+
+
 }
