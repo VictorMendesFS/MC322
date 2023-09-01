@@ -81,7 +81,7 @@ public abstract class Pessoa {
 					&& !emprestimo.getDataDevolucao().isBefore(LocalDate.now())) {
 				emprestimosVigentes.get(i).renovarEmprestimo();
 				System.out.println("Emprestimo Código '"+emprestimo.getCodigoEmprestimo()
-				+"' renovado até "+emprestimo.getDataDevolucao()+"\n");
+				+"' renovado até "+emprestimosVigentes.get(i).getDataDevolucao()+"\n");
 			}
 		}
 	}
