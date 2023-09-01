@@ -16,7 +16,7 @@ public abstract class Pessoa {
 	protected LocalDate dataRegistro;
 	protected List<Emprestimo> emprestimosVigentes = new ArrayList<>();
 	protected List<Emprestimo> historicoEmprestimos = new ArrayList<>();
-	protected int numEmprestimos=0;
+	protected int numEmprestimosVigentes=0;
 	protected double multaDevida=0;
 
 	//construtor
@@ -34,10 +34,10 @@ public abstract class Pessoa {
 	public void addEmprestimo(Emprestimo emprestimo) {
 		emprestimosVigentes.add(emprestimo);
 		historicoEmprestimos.add(emprestimo);
-		numEmprestimos++;
+		numEmprestimosVigentes++;
 		//implementar print com o titulo do emprestimo
 		System.out.println("Emprestimo do material '" +
-				emprestimosVigentes.get(numEmprestimos-1).getMaterialEmprestado().getTitulo()
+				emprestimosVigentes.get(numEmprestimosVigentes-1).getMaterialEmprestado().getTitulo()
 				+ "' para '" +this.nome +"' realizado com sucesso!\n");
 	}
 
@@ -46,8 +46,11 @@ public abstract class Pessoa {
 		for(int i=0; i<emprestimosVigentes.size();i++) {
 			if(emprestimosVigentes.get(i)==emprestimo) {
 				emprestimosVigentes.remove(i);
-				numEmprestimos--;
-
+				numEmprestimosVigentes--;
+				
+				//set o material como disponivel
+				emprestimo.getMaterialEmprestado().setEmprestado(false);
+				
 				//se o livro for devolvido com atraso, avisar e acrescer multa
 				if(emprestimo.getDataDevolucao().isAfter(LocalDate.now())){
 					double diferencaEmDias = (double)ChronoUnit.DAYS.between(emprestimo.getDataDevolucao(), LocalDate.now());
@@ -67,6 +70,7 @@ public abstract class Pessoa {
 							+ "\nMulta total devida pelo usuário é R$" + this.multaDevida );
 					
 				}
+			
 				System.out.println("Emprestimo Código '"+emprestimo.getCodigoEmprestimo()
 				+"' removido\n");
 			}
@@ -84,6 +88,16 @@ public abstract class Pessoa {
 				+"' renovado até "+emprestimosVigentes.get(i).getDataDevolucao()+"\n");
 			}
 		}
+	}
+	
+	//realiza pagamento de multa
+	public double pagarMulta(double pagamento) {
+		//desconta o pagamento da multa
+		this.multaDevida -= pagamento;
+		System.out.println("Pagamento realizado!\n"
+				+ "Valor atual da multa devida: R$" 
+				+ this.multaDevida);
+		return this.multaDevida;
 	}
 	//geters e seters
 	public String getNome() {
@@ -104,8 +118,8 @@ public abstract class Pessoa {
 	public List<Emprestimo> getEmprestimos() {
 		return emprestimosVigentes;
 	}
-	public int getNumEmprestimos() {
-		return numEmprestimos;
+	public int getNumEmprestimosVigentes() {
+		return numEmprestimosVigentes;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -125,8 +139,8 @@ public abstract class Pessoa {
 	public void setEmprestimos(List<Emprestimo> emprestimos) {
 		this.emprestimosVigentes = emprestimos;
 	}
-	public void setNumEmprestimos(int numEmprestimos) {
-		this.numEmprestimos = numEmprestimos;
+	public void setNumEmprestimosVigentes(int numEmprestimos) {
+		this.numEmprestimosVigentes = numEmprestimos;
 	}
 
 

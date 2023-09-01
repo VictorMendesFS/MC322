@@ -23,8 +23,8 @@ public class EstudantePos extends Pessoa implements Relatorios {
 				+ "Nome: "+ this.getNome()+
 				"\nId: "+this.getId()+
 				"\nEndereço: "+this.getEndereco()+
-				"\nN° emprestimos: "+this.getNumEmprestimos()+"\n");
-		if(this.getNumEmprestimos()>0) {
+				"\nN° emprestimos: "+this.getNumEmprestimosVigentes()+"\n");
+		if(this.getNumEmprestimosVigentes()>0) {
 			emprestimosVigentes.get(0).printListaEmprestimosVigentes(emprestimosVigentes);
 		}
 	}

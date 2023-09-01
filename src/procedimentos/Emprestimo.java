@@ -20,15 +20,22 @@ public class Emprestimo implements Relatorios{
 	public Emprestimo(String codigoEmprestimo, String status,
 			ItemMultimidia materialEmprestado, Pessoa emprestante,
 			LocalDate dataEmprestimo) {
-		//se o material nao estiver emprestado e nem reservado
-		if(!materialEmprestado.isReservado() && !materialEmprestado.isEmprestado()) { 
+		//se o material nao estiver emprestado e nem reservado (ou reservado para o proprio membro)
+		//alem disso a pessoa nao pode exceder seu limite de emprestimos
+		if((!materialEmprestado.isReservado() || 
+				(materialEmprestado.isReservado() && materialEmprestado.getReservante() == emprestante))
+				&& !materialEmprestado.isEmprestado() && checarLimiteEmprestimos(emprestante)) {
 			this.codigoEmprestimo = codigoEmprestimo;
 			this.status=status;
 			this.itemMultimidia = materialEmprestado;
 			this.emprestante = emprestante;
 			this.dataEmprestimo=dataEmprestimo;
 
-			//o prazo para devolução vai dependeder de quem pegou emprestado
+			//retira a reserva do item
+			materialEmprestado.setReservado(false);
+			//retira reservante
+			materialEmprestado.setReservante(null);
+			//o prazo para devolução vai dependeder de quem pegou emprestado, contando do dia da criação do emprestimo
 			this.setDataDevolucao(emprestante);
 			//seta o material como emprestado e o add ao historico
 			materialEmprestado.addEmprestimo(this);
@@ -39,13 +46,64 @@ public class Emprestimo implements Relatorios{
 	}
 
 	//metodos
+
 	//impressão da lista de emprestimos que uma pessoa possui
 	public void printListaEmprestimosVigentes(List<Emprestimo> emprestimos) {
 		System.out.println("Lista de Emprestimos da pessoa:\n");   
 		for (Emprestimo emprestimoAux : emprestimos) {
 			emprestimoAux.printInfos();
 		}
+	}
+	//data de devolução em função do emprestante
+	public void setDataDevolucao(Pessoa emprestante) {
+		if(emprestante instanceof EstudanteGrad) {
+			dataDevolucao=dataEmprestimo.plusDays(EstudanteGrad.PRAZO_EMPRESTIMO); //adiciona o prazo dependendo do emprestante
+		}else if(emprestante instanceof Professor) {
+			dataDevolucao=dataEmprestimo.plusDays(Professor.PRAZO_EMPRESTIMO);
+		}else if(emprestante instanceof EstudantePos) {
+			dataDevolucao=dataEmprestimo.plusDays(EstudantePos.PRAZO_EMPRESTIMO);
+		}else if(emprestante instanceof Funcionario) {
+			dataDevolucao=dataEmprestimo.plusDays(Funcionario.PRAZO_EMPRESTIMO);
+		}
+	}
+	//renovação de emprestimo
+	public void renovarEmprestimo() {
+		//aumenta o prazo de entrega
+		if(emprestante instanceof EstudanteGrad) {
+			dataDevolucao=dataDevolucao.plusDays(EstudanteGrad.PRAZO_EMPRESTIMO);
+		}else if(emprestante instanceof Professor) {
+			dataDevolucao=dataDevolucao.plusDays(Professor.PRAZO_EMPRESTIMO);
+		}else if(emprestante instanceof EstudantePos) {
+			dataDevolucao=dataDevolucao.plusDays(EstudantePos.PRAZO_EMPRESTIMO);
+		}else if(emprestante instanceof Funcionario) {
+			dataDevolucao=dataDevolucao.plusDays(Funcionario.PRAZO_EMPRESTIMO);
+		}
+		//poderá haver uma contagem de renovações permitidas, também a depender do tipo de pessoa
+	}
 
+	private static boolean checarLimiteEmprestimos(Pessoa emprestante) {
+		if(emprestante instanceof EstudanteGrad && emprestante.getNumEmprestimosVigentes()<=EstudanteGrad.LIMITE_EMPRESTIMO) {
+			return true;
+		}else if(emprestante instanceof EstudantePos && emprestante.getNumEmprestimosVigentes()<=EstudantePos.LIMITE_EMPRESTIMO) {
+			return true;
+		}else if(emprestante instanceof Professor && emprestante.getNumEmprestimosVigentes()<=Professor.LIMITE_EMPRESTIMO) {
+			return true;
+		}else if(emprestante instanceof Funcionario && emprestante.getNumEmprestimosVigentes()<=Funcionario.LIMITE_EMPRESTIMO) {
+			return true;
+		}else
+			return false;
+	}
+	@Override
+	//encapsulamento do print das infos 
+	public void printInfos() {
+		System.out.println("informações do empréstimo: \n"+
+				"Codigo do emprestimo: "+ this.getCodigoEmprestimo() + 
+				"\nStatus: " + this.getStatus() +
+				"\nTitulo do Material emprestado: " + this.getMaterialEmprestado().getTitulo() +
+				"\nEmprestante: " + this.getEmprestante().getNome()+ 
+				" / Id:  " + this.getEmprestante().getId() +
+				"\nData de empréstimo: " + this.getDataEmprestimo() +
+				"\nData de devolução: " + this.getDataDevolucao()+ "\n");
 	}
 
 	//getters e setters
@@ -68,45 +126,5 @@ public class Emprestimo implements Relatorios{
 	public Pessoa getEmprestante() {
 		return emprestante;
 	}
-	
-	//data de devolução em função do emprestante
-	public void setDataDevolucao(Pessoa emprestante) {
-		if(emprestante instanceof EstudanteGrad) {
-			dataDevolucao=dataEmprestimo.plusDays(EstudanteGrad.PRAZO_EMPRESTIMO); //adiciona o prazo dependendo do emprestante
-		}else if(emprestante instanceof Professor) {
-			dataDevolucao=dataEmprestimo.plusDays(Professor.PRAZO_EMPRESTIMO);
-		}else if(emprestante instanceof EstudantePos) {
-			dataDevolucao=dataEmprestimo.plusDays(EstudantePos.PRAZO_EMPRESTIMO);
-		}else if(emprestante instanceof Funcionario) {
-			dataDevolucao=dataEmprestimo.plusDays(Funcionario.PRAZO_EMPRESTIMO);
-		}
-	}
-	//renovação de emprestimo
-	public void renovarEmprestimo() {
-		//aumenta +1 o numero de renovações
-		this.emprestante.setNumEmprestimos(this.emprestante.getNumEmprestimos()+1);
-		//aumenta o prazo de entrega
-		if(emprestante instanceof EstudanteGrad) {
-			dataDevolucao=dataDevolucao.plusDays(EstudanteGrad.PRAZO_EMPRESTIMO);
-		}else if(emprestante instanceof Professor) {
-			dataDevolucao=dataDevolucao.plusDays(Professor.PRAZO_EMPRESTIMO);
-		}else if(emprestante instanceof EstudantePos) {
-			dataDevolucao=dataDevolucao.plusDays(EstudantePos.PRAZO_EMPRESTIMO);
-		}else if(emprestante instanceof Funcionario) {
-			dataDevolucao=dataDevolucao.plusDays(Funcionario.PRAZO_EMPRESTIMO);
-		}
-		//poderá haver uma contagem de renocações permitidas, também a depender do tipo de pessoa
-	}
-	@Override
-	//encapsulamento do print das infos 
-	public void printInfos() {
-		System.out.println("informações do empréstimo: \n"+
-				"Codigo do emprestimo: "+ this.getCodigoEmprestimo() + 
-				"\nStatus: " + this.getStatus() +
-				"\nTitulo do Material emprestado: " + this.getMaterialEmprestado().getTitulo() +
-				"\nEmprestante: " + this.getEmprestante().getNome()+ 
-				" / Id:  " + this.getEmprestante().getId() +
-				"\nData de empréstimo: " + this.getDataEmprestimo() +
-				"\nData de devolução: " + this.getDataDevolucao()+ "\n");
-	}
+
 }
