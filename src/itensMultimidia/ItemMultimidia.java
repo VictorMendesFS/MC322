@@ -21,7 +21,7 @@ public abstract class ItemMultimidia {
 	protected boolean reservado; //TRUE = RESERVADO, INDISPONIVEL
 	protected List<Emprestimo> historicoEmprestimos = new ArrayList<>();
 	protected Pessoa reservante;
-	
+
 	//	construtor
 	public ItemMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean disponibilidade, boolean reservado) {
@@ -36,7 +36,7 @@ public abstract class ItemMultimidia {
 		this.emprestado = disponibilidade;
 		this.reservado = reservado;
 	}
-	
+
 	//	metodos
 	public void addEmprestimo(Emprestimo emprestimo) {
 		//add ao histórico
@@ -46,7 +46,7 @@ public abstract class ItemMultimidia {
 		//o coloca como emprestado
 		emprestimo.getMaterialEmprestado().setEmprestado(true);
 	}
-	
+
 	public void criarReserva(Pessoa reservante) {
 		//se nao esta reservado e esta emprestado
 		if(this.isEmprestado() && !this.isReservado()) {
@@ -58,11 +58,11 @@ public abstract class ItemMultimidia {
 		}else {
 			System.out.println("material indisponivel para reserva");
 		}
-	
+
 	}
 	//aumenta o contador de emprestimos de um item
 	public abstract void addCountEmprestimo();
-	
+
 	//	getters e setters
 	public String getTitulo() {
 		return titulo;
