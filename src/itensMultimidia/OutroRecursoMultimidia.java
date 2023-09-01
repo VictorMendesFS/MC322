@@ -10,12 +10,18 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 	private int numDisponivel;
 	private String localizacao;
 	private String estadoConvserv;
+	private static int CONTADOR_EMPRESTIMOS=0;
+
+	//metodos
+	@Override
+	public void addCountEmprestimo() {
+		this.CONTADOR_EMPRESTIMOS++;
+	}
 	
-	//construtor
 	public OutroRecursoMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
-			String genero, String sinopse, String capa, String tipo, String formato, int numCopias, int numDisponivel,
-			String localizacao, String estadoConvserv) {
-		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa);
+			String genero, String sinopse, String capa, boolean disponibilidade, boolean reservado, String tipo,
+			String formato, int numCopias, int numDisponivel, String localizacao, String estadoConvserv) {
+		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, disponibilidade, reservado);
 		this.tipo = tipo;
 		this.formato = formato;
 		this.numCopias = numCopias;
@@ -72,6 +78,4 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 	public void setEstadoConvserv(String estadoConvserv) {
 		this.estadoConvserv = estadoConvserv;
 	}
-	
-
 }

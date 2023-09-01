@@ -1,6 +1,7 @@
 package pessoas;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,39 +14,59 @@ public abstract class Pessoa {
 	protected String endereco;
 	protected String contato;
 	protected LocalDate dataRegistro;
-	protected List<Emprestimo> emprestimos = new ArrayList<>();
-	protected int numEmprestimos;
+	protected List<Emprestimo> emprestimosVigentes = new ArrayList<>();
+	protected List<Emprestimo> historicoEmprestimos = new ArrayList<>();
+	protected int numEmprestimos=0;
+	protected double multaDevida=0;
 
 	//construtor
-	public Pessoa(String nome, String id, String endereco, String contato, LocalDate dataRegistro,
-			List<Emprestimo> emprestimos, int numEmprestimos) {
-		super();
+	public Pessoa(String nome, String id, String endereco, String contato, LocalDate dataRegistro) {
 		this.nome = nome;
 		this.id = id;
 		this.endereco = endereco;
 		this.contato = contato;
 		this.dataRegistro = dataRegistro;
-		this.emprestimos = emprestimos;
-		this.numEmprestimos = numEmprestimos;
 	}
+
 	//metodos
-		
-	
-	//adiciona um emprestimo a lista da pessoa, supondo que todas realizam o mesmo tipo de emprestimo
+
+	//adiciona um emprestimo vigente e a historico a lista da pessoa
 	public void addEmprestimo(Emprestimo emprestimo) {
-		emprestimos.add(emprestimo);
+		emprestimosVigentes.add(emprestimo);
+		historicoEmprestimos.add(emprestimo);
 		numEmprestimos++;
-		//		implementar print com o titulo do emprestimo
+		//implementar print com o titulo do emprestimo
 		System.out.println("Emprestimo do material '" +
-				emprestimos.get(numEmprestimos-1).getMaterialEmprestado().getTitulo()
+				emprestimosVigentes.get(numEmprestimos-1).getMaterialEmprestado().getTitulo()
 				+ "' para '" +this.nome +"' realizado com sucesso!\n");
 	}
+
 	//remove um emprestimo a lista da pessoa
 	public void removerEmprestimo(Emprestimo emprestimo) {
-		for(int i=0; i<numEmprestimos;i++) {
-			if(emprestimos.get(i)==emprestimo) {
-				emprestimos.remove(i);
+		for(int i=0; i<emprestimosVigentes.size();i++) {
+			if(emprestimosVigentes.get(i)==emprestimo) {
+				emprestimosVigentes.remove(i);
 				numEmprestimos--;
+
+				//se o livro for devolvido com atraso, avisar e acrescer multa
+				if(emprestimo.getDataDevolucao().isAfter(LocalDate.now())){
+					double diferencaEmDias = (double)ChronoUnit.DAYS.between(emprestimo.getDataDevolucao(), LocalDate.now());
+					//aplica a multa conforme a pessoa
+					if(emprestimo.getEmprestante() instanceof EstudanteGrad) {
+						this.multaDevida += diferencaEmDias*EstudanteGrad.MULTA_ATRASO;
+					}else if(emprestimo.getEmprestante() instanceof Professor) {
+						this.multaDevida += diferencaEmDias*Professor.MULTA_ATRASO;
+					}else if(emprestimo.getEmprestante() instanceof EstudantePos) {
+						this.multaDevida += diferencaEmDias*EstudantePos.MULTA_ATRASO;
+					}else if(emprestimo.getEmprestante() instanceof Funcionario) {
+						this.multaDevida += diferencaEmDias*Funcionario.MULTA_ATRASO;
+					}
+					//imprimir o aviso de multa
+					System.out.println("Emprestimo atradado em "+ diferencaEmDias + "dias\n"
+							+ "Multa aplicada de R$" + diferencaEmDias*EstudanteGrad.MULTA_ATRASO
+							+ "\nMulta total devida pelo usuário é R$" + this.multaDevida );
+					
+				}
 				System.out.println("Emprestimo Código '"+emprestimo.getCodigoEmprestimo()
 				+"' removido\n");
 			}
@@ -53,9 +74,12 @@ public abstract class Pessoa {
 	}
 	//chama a implementaçao de renovação de um determinado emprestimo
 	public void renovarEmprestimo(Emprestimo emprestimo) {
-		for(int i=0; i<numEmprestimos;i++) {
-			if(emprestimos.get(i)==emprestimo) {
-				emprestimos.get(i).renovarEmprestimo();
+		for(int i=0; i<emprestimosVigentes.size();i++) {
+			//se ainda houver o emprestimo no nome da pessoa, este material nao estiver reservado e
+			//estiver dentro do prazo de devolução (data devolução não é antes de hoje)
+			if(emprestimosVigentes.get(i)==emprestimo && !emprestimo.getMaterialEmprestado().isReservado() 
+					&& !emprestimo.getDataDevolucao().isBefore(LocalDate.now())) {
+				emprestimosVigentes.get(i).renovarEmprestimo();
 				System.out.println("Emprestimo Código '"+emprestimo.getCodigoEmprestimo()
 				+"' renovado até "+emprestimo.getDataDevolucao()+"\n");
 			}
@@ -78,7 +102,7 @@ public abstract class Pessoa {
 		return dataRegistro;
 	}
 	public List<Emprestimo> getEmprestimos() {
-		return emprestimos;
+		return emprestimosVigentes;
 	}
 	public int getNumEmprestimos() {
 		return numEmprestimos;
@@ -99,7 +123,7 @@ public abstract class Pessoa {
 		this.dataRegistro = dataRegistro;
 	}
 	public void setEmprestimos(List<Emprestimo> emprestimos) {
-		this.emprestimos = emprestimos;
+		this.emprestimosVigentes = emprestimos;
 	}
 	public void setNumEmprestimos(int numEmprestimos) {
 		this.numEmprestimos = numEmprestimos;

@@ -1,22 +1,23 @@
 package pessoas;
 
 import java.time.LocalDate;
-import java.util.List;
+import procedimentos.Relatorios;
 
-import procedimentos.Emprestimo;
-import procedimentos.Prints;
-
-public class Funcionario extends Pessoa implements Prints {
-
+public class Funcionario extends Pessoa implements Relatorios {
+	//atributos
+	public static final int LIMITE_EMPRESTIMO = 4; 
+	public static final int PRAZO_EMPRESTIMO = 20; 
+	public static final double MULTA_ATRASO = 0.75; 
+	private PerfilFuncionario perfil;
 
 	//construtor
-	public Funcionario(String nome, String id, String endereco, String contato, LocalDate dataRegistro,
-			List<Emprestimo> emprestimos, int numEmprestimos) {
-		super(nome, id, endereco, contato, dataRegistro, emprestimos, numEmprestimos);
-		// TODO Auto-generated constructor stub
+	public Funcionario(String nome, String id, String endereco, String contato, LocalDate dataRegistro, PerfilFuncionario perfil) {
+		super(nome, id, endereco, contato, dataRegistro);
+		this.perfil = perfil;
 	}
 
 	//metodos
+
 
 
 	@Override
@@ -27,7 +28,15 @@ public class Funcionario extends Pessoa implements Prints {
 				"\nEndereço: "+this.getEndereco()+
 				"\nN° emprestimos: "+this.getNumEmprestimos()+"\n");
 		if(this.getNumEmprestimos()>0) {
-			emprestimos.get(0).printListaEmprestimos(emprestimos);
+			emprestimosVigentes.get(0).printListaEmprestimosVigentes(emprestimosVigentes);
 		}
+	}
+	//geters e seters
+	public PerfilFuncionario getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(PerfilFuncionario perfil) {
+		this.perfil = perfil;
 	}
 }

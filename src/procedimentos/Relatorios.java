@@ -1,6 +1,6 @@
 package procedimentos;
 
-public interface Prints {
+public interface Relatorios {
 	public abstract void printInfos();
 	
 }

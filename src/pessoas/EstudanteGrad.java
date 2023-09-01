@@ -1,23 +1,19 @@
 package pessoas;
 
 import java.time.LocalDate;
-import java.util.List;
+import procedimentos.Relatorios;
 
-import procedimentos.Emprestimo;
-import procedimentos.Prints;
-
-public class EstudanteGrad extends Pessoa implements Prints {
+public class EstudanteGrad extends Pessoa implements Relatorios {
+	//atributos
+	public static final int LIMITE_EMPRESTIMO = 3; 
+	public static final int PRAZO_EMPRESTIMO = 15; 
+	public static final double MULTA_ATRASO = 1; 
 
 	//construtor
-	public EstudanteGrad(String nome, String id, String endereco, String contato, LocalDate dataRegistro,
-			List<Emprestimo> emprestimos, int numEmprestimos) {
-		super(nome, id, endereco, contato, dataRegistro, emprestimos, numEmprestimos);
+	public EstudanteGrad(String nome, String id, String endereco, String contato, LocalDate dataRegistro) {
+		super(nome, id, endereco, contato, dataRegistro);
 		// TODO Auto-generated constructor stub
 	}
-
-
-	//metodos
-
 
 	@Override
 	public void printInfos() {
@@ -27,7 +23,7 @@ public class EstudanteGrad extends Pessoa implements Prints {
 				"\nEndereço: "+this.getEndereco()+
 				"\nN° emprestimos: "+this.getNumEmprestimos()+"\n");
 		if(this.getNumEmprestimos()>0) {
-			emprestimos.get(0).printListaEmprestimos(emprestimos);
+			emprestimosVigentes.get(0).printListaEmprestimosVigentes(emprestimosVigentes);
 		}
 
 	}

@@ -2,28 +2,34 @@ package itensMultimidia;
 
 import java.time.LocalDate;
 
-import procedimentos.Prints;
+import procedimentos.Relatorios;
 
-public class LivroDigital extends ItemMultimidia implements Prints {
+public class LivroDigital extends ItemMultimidia implements Relatorios {
 	//atributos
 	private String formato;
 	private int numDisponivel;
 	private String url;
 	private String requisitos;
 	private LocalDate dataDisponibilidade;
-	
+	private static int CONTADOR_EMPRESTIMOS=0;
+
+	//metodos
+	@Override
+	public void addCountEmprestimo() {
+		this.CONTADOR_EMPRESTIMOS++;
+	}
 	//construtor
-	
 	public LivroDigital(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
-			String genero, String sinopse, String capa, String formato, int numDisponivel, String url,
-			String requisitos, LocalDate dataDisponibilidade) {
-		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa);
+			String genero, String sinopse, String capa, boolean disponibilidade, boolean reservado, String formato,
+			int numDisponivel, String url, String requisitos, LocalDate dataDisponibilidade) {
+		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, disponibilidade, reservado);
 		this.formato = formato;
 		this.numDisponivel = numDisponivel;
 		this.url = url;
 		this.requisitos = requisitos;
 		this.dataDisponibilidade = dataDisponibilidade;
 	}
+
 
 
 	@Override
@@ -36,31 +42,11 @@ public class LivroDigital extends ItemMultimidia implements Prints {
 				"\nIdioma: " + this.idioma +
 				"\nData de Publicação: " + this.dataPublicacao);
 	}
-
-//	geters e seters
+	//	geters e seters
 	public String getFormato() {
 		return formato;
 	}
 
-
-	public int getNumDisponivel() {
-		return numDisponivel;
-	}
-
-
-	public String getUrl() {
-		return url;
-	}
-
-
-	public String getRequisitos() {
-		return requisitos;
-	}
-
-
-	public LocalDate getDataDisponibilidade() {
-		return dataDisponibilidade;
-	}
 
 
 	public void setFormato(String formato) {
@@ -68,9 +54,23 @@ public class LivroDigital extends ItemMultimidia implements Prints {
 	}
 
 
+
+	public int getNumDisponivel() {
+		return numDisponivel;
+	}
+
+
+
 	public void setNumDisponivel(int numDisponivel) {
 		this.numDisponivel = numDisponivel;
 	}
+
+
+
+	public String getUrl() {
+		return url;
+	}
+
 
 
 	public void setUrl(String url) {
@@ -78,14 +78,27 @@ public class LivroDigital extends ItemMultimidia implements Prints {
 	}
 
 
+
+	public String getRequisitos() {
+		return requisitos;
+	}
+
+
+
 	public void setRequisitos(String requisitos) {
 		this.requisitos = requisitos;
 	}
+
+
+
+	public LocalDate getDataDisponibilidade() {
+		return dataDisponibilidade;
+	}
+
 
 
 	public void setDataDisponibilidade(LocalDate dataDisponibilidade) {
 		this.dataDisponibilidade = dataDisponibilidade;
 	}
 
-	
 }

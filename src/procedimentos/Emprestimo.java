@@ -4,53 +4,50 @@ import java.time.LocalDate;
 import java.util.List;
 
 import itensMultimidia.*;
-import pessoas.EstudanteGrad;
-import pessoas.EstudantePos;
-import pessoas.Funcionario;
-import pessoas.Pessoa;
-import pessoas.Professor;
+import pessoas.*;
 
 
-public class Emprestimo implements Prints{
+public class Emprestimo implements Relatorios{
 	// atributos
 	private String codigoEmprestimo;
-	private String status; //3 possíveis status: "vigente", "atraso" ou "finalizado"
+	private String status; //3 possíveis status: "vigente", "atraso" ou "finalizado", SERÁ UM ENUM EM BREVE
 	private ItemMultimidia itemMultimidia;
 	private LocalDate dataEmprestimo;
 	private LocalDate dataDevolucao;
 	private Pessoa emprestante;
-	
+
 	//construtor
 	public Emprestimo(String codigoEmprestimo, String status,
 			ItemMultimidia materialEmprestado, Pessoa emprestante,
 			LocalDate dataEmprestimo) {
-		if(!materialEmprestado.getStatusBool()) {
+		//se o material nao estiver emprestado e nem reservado
+		if(!materialEmprestado.isReservado() && !materialEmprestado.isEmprestado()) { 
 			this.codigoEmprestimo = codigoEmprestimo;
 			this.status=status;
 			this.itemMultimidia = materialEmprestado;
 			this.emprestante = emprestante;
 			this.dataEmprestimo=dataEmprestimo;
-		
+
 			//o prazo para devolução vai dependeder de quem pegou emprestado
 			this.setDataDevolucao(emprestante);
-			 //seta o livro como emprestado
-			materialEmprestado.setStatusIndispoivel();
-			//add um livro a contagem de emprestimos do membro
+			//seta o material como emprestado e o add ao historico
+			materialEmprestado.addEmprestimo(this);
+			//add um material a contagem de emprestimos do membro
 			emprestante.addEmprestimo(this);
 		}else
-			System.out.println("Livro indisponível!");
+			System.out.println("Material indisponível!");
 	}
-	
+
 	//metodos
 	//impressão da lista de emprestimos que uma pessoa possui
-	public void printListaEmprestimos(List<Emprestimo> emprestimos) {
+	public void printListaEmprestimosVigentes(List<Emprestimo> emprestimos) {
 		System.out.println("Lista de Emprestimos da pessoa:\n");   
 		for (Emprestimo emprestimoAux : emprestimos) {
 			emprestimoAux.printInfos();
 		}
 
 	}
-	
+
 	//getters e setters
 	//principais gets
 	public String getCodigoEmprestimo() {
@@ -72,36 +69,31 @@ public class Emprestimo implements Prints{
 		return emprestante;
 	}
 	
-	//principais sets
-	public void setStatusEmprestimo(String status) {
-		this.status=status;
-		//mudança em Membro e Livro quando o emprestimo é finalizado
-		if(status == "finalizado") {
-			this.itemMultimidia.setStatusDisponivel();
-		}
-	}
 	//data de devolução em função do emprestante
 	public void setDataDevolucao(Pessoa emprestante) {
 		if(emprestante instanceof EstudanteGrad) {
-			dataDevolucao=dataEmprestimo.plusDays(7);
+			dataDevolucao=dataEmprestimo.plusDays(EstudanteGrad.PRAZO_EMPRESTIMO); //adiciona o prazo dependendo do emprestante
 		}else if(emprestante instanceof Professor) {
-			dataDevolucao=dataEmprestimo.plusDays(14);
+			dataDevolucao=dataEmprestimo.plusDays(Professor.PRAZO_EMPRESTIMO);
 		}else if(emprestante instanceof EstudantePos) {
-			dataDevolucao=dataEmprestimo.plusDays(10);
+			dataDevolucao=dataEmprestimo.plusDays(EstudantePos.PRAZO_EMPRESTIMO);
 		}else if(emprestante instanceof Funcionario) {
-			dataDevolucao=dataEmprestimo.plusDays(7);
+			dataDevolucao=dataEmprestimo.plusDays(Funcionario.PRAZO_EMPRESTIMO);
 		}
 	}
 	//renovação de emprestimo
 	public void renovarEmprestimo() {
+		//aumenta +1 o numero de renovações
+		this.emprestante.setNumEmprestimos(this.emprestante.getNumEmprestimos()+1);
+		//aumenta o prazo de entrega
 		if(emprestante instanceof EstudanteGrad) {
-			dataDevolucao=dataDevolucao.plusDays(7);
+			dataDevolucao=dataDevolucao.plusDays(EstudanteGrad.PRAZO_EMPRESTIMO);
 		}else if(emprestante instanceof Professor) {
-			dataDevolucao=dataDevolucao.plusDays(14);
+			dataDevolucao=dataDevolucao.plusDays(Professor.PRAZO_EMPRESTIMO);
 		}else if(emprestante instanceof EstudantePos) {
-			dataDevolucao=dataDevolucao.plusDays(10);
+			dataDevolucao=dataDevolucao.plusDays(EstudantePos.PRAZO_EMPRESTIMO);
 		}else if(emprestante instanceof Funcionario) {
-			dataDevolucao=dataDevolucao.plusDays(7);
+			dataDevolucao=dataDevolucao.plusDays(Funcionario.PRAZO_EMPRESTIMO);
 		}
 		//poderá haver uma contagem de renocações permitidas, também a depender do tipo de pessoa
 	}

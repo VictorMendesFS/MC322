@@ -2,22 +2,28 @@ package itensMultimidia;
 
 import java.time.LocalDate;
 
-import procedimentos.Prints;
+import procedimentos.Relatorios;
 
-public class DVD extends ItemMultimidia implements Prints {
+public class DVD extends ItemMultimidia implements Relatorios {
 	//atributos
-	private String elendo;
+	private String elenco;
 	private float duracao;
 	private int numCopias;
 	private int numDisponivel;
 	private String estadoConvserv;
-	
+	private static int CONTADOR_EMPRESTIMOS=0;
+
+	//metodos
+	@Override
+	public void addCountEmprestimo() {
+		this.CONTADOR_EMPRESTIMOS++;
+	}
 	//construtor
 	public DVD(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao, String genero,
-			String sinopse, String capa, String elendo, float duracao, int numCopias, int numDisponivel,
-			String estadoConvserv) {
-		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa);
-		this.elendo = elendo;
+			String sinopse, String capa, boolean disponibilidade, boolean reservado, String elenco, float duracao,
+			int numCopias, int numDisponivel, String estadoConvserv) {
+		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, disponibilidade, reservado);
+		this.elenco = elenco;
 		this.duracao = duracao;
 		this.numCopias = numCopias;
 		this.numDisponivel = numDisponivel;
@@ -36,11 +42,15 @@ public class DVD extends ItemMultimidia implements Prints {
 				"\nN° Cópias Disponíveis: " + this.numDisponivel);
 
 	}
+	//	geters e seters
+	public String getelenco() {
+		return elenco;
+	}
 
 
-//	geters e seters
-	public String getElendo() {
-		return elendo;
+
+	public void setelenco(String elenco) {
+		this.elenco = elenco;
 	}
 
 
@@ -51,32 +61,14 @@ public class DVD extends ItemMultimidia implements Prints {
 
 
 
-	public int getNumCopias() {
-		return numCopias;
-	}
-
-
-
-	public int getNumDisponivel() {
-		return numDisponivel;
-	}
-
-
-
-	public String getEstadoConvserv() {
-		return estadoConvserv;
-	}
-
-
-
-	public void setElendo(String elendo) {
-		this.elendo = elendo;
-	}
-
-
-
 	public void setDuracao(float duracao) {
 		this.duracao = duracao;
+	}
+
+
+
+	public int getNumCopias() {
+		return numCopias;
 	}
 
 
@@ -87,8 +79,20 @@ public class DVD extends ItemMultimidia implements Prints {
 
 
 
+	public int getNumDisponivel() {
+		return numDisponivel;
+	}
+
+
+
 	public void setNumDisponivel(int numDisponivel) {
 		this.numDisponivel = numDisponivel;
+	}
+
+
+
+	public String getEstadoConvserv() {
+		return estadoConvserv;
 	}
 
 
@@ -96,6 +100,8 @@ public class DVD extends ItemMultimidia implements Prints {
 	public void setEstadoConvserv(String estadoConvserv) {
 		this.estadoConvserv = estadoConvserv;
 	}
+
+
 
 
 }
