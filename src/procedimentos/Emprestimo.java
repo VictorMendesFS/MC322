@@ -7,24 +7,26 @@ import itensMultimidia.*;
 import pessoas.*;
 
 
-public class Emprestimo implements Relatorios{
+public class Emprestimo implements PrintInformacoes{
 	// atributos
 	private String codigoEmprestimo;
-	private String status; //3 possíveis status: "vigente", "atraso" ou "finalizado", SERÁ UM ENUM EM BREVE
+	private StatusEmprestimo status; //3 possíveis status: ATRASADO,ENCERRADO,VIGENTE;
 	private ItemMultimidia itemMultimidia;
 	private LocalDate dataEmprestimo;
 	private LocalDate dataDevolucao;
 	private Pessoa emprestante;
 
 	//construtor
-	public Emprestimo(String codigoEmprestimo, String status,
+	public Emprestimo(String codigoEmprestimo, StatusEmprestimo status,
 			ItemMultimidia materialEmprestado, Pessoa emprestante,
 			LocalDate dataEmprestimo) {
 		//se o material nao estiver emprestado e nem reservado (ou reservado para o proprio membro)
 		//alem disso a pessoa nao pode exceder seu limite de emprestimos
+		//E deve haver uma cópia disponível do material
 		if((!materialEmprestado.isReservado() || 
 				(materialEmprestado.isReservado() && materialEmprestado.getReservante() == emprestante))
-				&& !materialEmprestado.isEmprestado() && checarLimiteEmprestimos(emprestante)) {
+				&& !materialEmprestado.isEmprestado() && checarLimiteEmprestimos(emprestante)
+				&& materialEmprestado.getNumDisponivel() > 0) {
 			this.codigoEmprestimo = codigoEmprestimo;
 			this.status=status;
 			this.itemMultimidia = materialEmprestado;
@@ -41,8 +43,11 @@ public class Emprestimo implements Relatorios{
 			materialEmprestado.addEmprestimo(this);
 			//add um material a contagem de emprestimos do membro
 			emprestante.addEmprestimo(this);
+			//dimiui o numero de copias disponiveis
+			materialEmprestado.setNumDisponivel(materialEmprestado.getNumDisponivel()-1);
+	
 		}else
-			System.out.println("Material indisponível!");
+			System.out.println("Material indisponível!\n");
 	}
 
 	//metodos
@@ -111,9 +116,13 @@ public class Emprestimo implements Relatorios{
 	public String getCodigoEmprestimo() {
 		return codigoEmprestimo;
 	}
-	public String getStatus() {
+	public StatusEmprestimo getStatus() {
 		return status;
 	}
+	public void setStatus(StatusEmprestimo status) {
+		this.status = status;
+	}
+
 	public ItemMultimidia getMaterialEmprestado() {
 		return this.itemMultimidia;
 	}
@@ -125,6 +134,9 @@ public class Emprestimo implements Relatorios{
 	}
 	public Pessoa getEmprestante() {
 		return emprestante;
+	}
+	public void setDataDevolucaoEncerramento(LocalDate dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
 	}
 
 }

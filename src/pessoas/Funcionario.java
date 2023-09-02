@@ -1,9 +1,9 @@
 package pessoas;
 
 import java.time.LocalDate;
-import procedimentos.Relatorios;
+import procedimentos.PrintInformacoes;
 
-public class Funcionario extends Pessoa implements Relatorios {
+public class Funcionario extends Pessoa implements PrintInformacoes {
 	//atributos
 	public static final int LIMITE_EMPRESTIMO = 4; 
 	public static final int PRAZO_EMPRESTIMO = 20; 
@@ -25,6 +25,7 @@ public class Funcionario extends Pessoa implements Relatorios {
 		System.out.println("Informações do(a) Funcionário(a):\n"
 				+ "Nome: "+ this.getNome()+
 				"\nId: "+this.getId()+
+				"\nCargo: "+this.perfil +
 				"\nEndereço: "+this.getEndereco()+
 				"\nN° emprestimos: "+this.getNumEmprestimosVigentes()+"\n");
 		if(this.getNumEmprestimosVigentes()>0) {

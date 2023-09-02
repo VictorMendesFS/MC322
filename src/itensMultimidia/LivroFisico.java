@@ -2,31 +2,27 @@ package itensMultimidia;
 
 import java.time.LocalDate;
 
-import procedimentos.Relatorios;
+import procedimentos.PrintInformacoes;
 
-public class LivroFisico extends ItemMultimidia implements Relatorios{
+public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 	//atributos
 	private String isbn;	
 	private int edicao;
-	private int numCopias;
-	private int numDisponivel;
 	private String localizacao;
 	private String estadoConserv;
 	private static int CONTADOR_EMPRESTIMOS=0;
 
 
 	public LivroFisico(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
-			String genero, String sinopse, String capa, boolean disponibilidade, boolean reservado, String isbn,
-			int edicao, int numCopias, int numDisponivel, String localizacao, String estadoConserv) {
-		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, disponibilidade, reservado);
+			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, 
+			int numCopias, int numDisponivel, String isbn, int edicao, String localizacao, String estadoConserv) {
+		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
+				numDisponivel);
 		this.isbn = isbn;
 		this.edicao = edicao;
-		this.numCopias = numCopias;
-		this.numDisponivel = numDisponivel;
 		this.localizacao = localizacao;
 		this.estadoConserv = estadoConserv;
 	}
-
 	@Override
 
 	public void addCountEmprestimo() {
@@ -37,12 +33,13 @@ public class LivroFisico extends ItemMultimidia implements Relatorios{
 		System.out.println("Informações do livro físico:\n" +
 				"Título: " + this.getTitulo() + 
 				"\nAutores: " + this.autor +
-				"\nedicao: " + this.edicao +
+				"\nEditora: " +this.editora +
 				"\nEdicao: " + this.edicao +
 				"\nIdioma: " + this.idioma +
 				"\nN° Cópias Disponíveis: " + this.numDisponivel +
 				"\nData de Publicação: " + this.dataPublicacao +
-				"\nISBN: " + this.isbn);
+				"\nISBN: " + this.isbn +
+				"\nLocalização: " + this.localizacao + "\n");
 	}
 
 	

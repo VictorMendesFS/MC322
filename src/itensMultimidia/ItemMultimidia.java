@@ -6,8 +6,9 @@ import java.util.List;
 
 import pessoas.Pessoa;
 import procedimentos.Emprestimo;
+import procedimentos.PrintInformacoes;
 
-public abstract class ItemMultimidia {
+public abstract class ItemMultimidia implements PrintInformacoes{
 	//	atributos
 	protected String titulo;
 	protected String autor;
@@ -21,10 +22,14 @@ public abstract class ItemMultimidia {
 	protected boolean reservado; //TRUE = RESERVADO, INDISPONIVEL
 	protected List<Emprestimo> historicoEmprestimos = new ArrayList<>();
 	protected Pessoa reservante;
+	protected int numCopias;
+	protected int numDisponivel;
 
 	//	construtor
 	public ItemMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
-			String genero, String sinopse, String capa, boolean disponibilidade, boolean reservado) {
+			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
+			int numDisponivel) {
+		super();
 		this.titulo = titulo;
 		this.autor = autor;
 		this.editora = editora;
@@ -33,8 +38,10 @@ public abstract class ItemMultimidia {
 		this.genero = genero;
 		this.sinopse = sinopse;
 		this.capa = capa;
-		this.emprestado = disponibilidade;
+		this.emprestado = emprestado;
 		this.reservado = reservado;
+		this.numCopias = numCopias;
+		this.numDisponivel = numDisponivel;
 	}
 
 	//	metodos
@@ -54,12 +61,14 @@ public abstract class ItemMultimidia {
 			this.setReservado(true);
 			//coloca pessoa como revervante
 			this.setReservante(reservante);	
-			System.out.println("Material Reservado");
+			System.out.println("Material Reservado para o dia: "+historicoEmprestimos.get(historicoEmprestimos.size()-1).getDataDevolucao());
 		}else {
 			System.out.println("material indisponivel para reserva");
 		}
 
 	}
+
+	//metodos abstratos
 	//aumenta o contador de emprestimos de um item
 	public abstract void addCountEmprestimo();
 
@@ -158,5 +167,25 @@ public abstract class ItemMultimidia {
 
 	public void sethistoricoEmprestimos(List<Emprestimo> historicoEmprestimos) {
 		this.historicoEmprestimos = historicoEmprestimos;
+	}
+
+	public int getNumCopias() {
+		return numCopias;
+	}
+
+	public int getNumDisponivel() {
+		return numDisponivel;
+	}
+
+	public void setHistoricoEmprestimos(List<Emprestimo> historicoEmprestimos) {
+		this.historicoEmprestimos = historicoEmprestimos;
+	}
+
+	public void setNumCopias(int numCopias) {
+		this.numCopias = numCopias;
+	}
+
+	public void setNumDisponivel(int numDisponivel) {
+		this.numDisponivel = numDisponivel;
 	}
 }

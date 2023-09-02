@@ -2,44 +2,41 @@ package itensMultimidia;
 
 import java.time.LocalDate;
 
-import procedimentos.Relatorios;
+import procedimentos.PrintInformacoes;
 
-public class DVD extends ItemMultimidia implements Relatorios {
+public class DVD extends ItemMultimidia implements PrintInformacoes {
 	//atributos
 	private String elenco;
 	private float duracao;
-	private int numCopias;
-	private int numDisponivel;
 	private String estadoConvserv;
 	private static int CONTADOR_EMPRESTIMOS=0;
 
+	
+	//construtor
+	public DVD(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao, String genero,
+			String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias, int numDisponivel,
+			String elenco, float duracao, String estadoConvserv) {
+		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
+				numDisponivel);
+		this.elenco = elenco;
+		this.duracao = duracao;
+		this.estadoConvserv = estadoConvserv;
+	}
+	
 	//metodos
 	@Override
 	public void addCountEmprestimo() {
 		this.CONTADOR_EMPRESTIMOS++;
 	}
-	//construtor
-	public DVD(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao, String genero,
-			String sinopse, String capa, boolean disponibilidade, boolean reservado, String elenco, float duracao,
-			int numCopias, int numDisponivel, String estadoConvserv) {
-		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, disponibilidade, reservado);
-		this.elenco = elenco;
-		this.duracao = duracao;
-		this.numCopias = numCopias;
-		this.numDisponivel = numDisponivel;
-		this.estadoConvserv = estadoConvserv;
-	}
-
-
-
+	
 	@Override
 	public void printInfos() {
-		System.out.println("Informações do CD:\n" +
+		System.out.println("Informações do DVD:\n" +
 				"Título: " + this.getTitulo() + 
 				"\nAutores: " + this.autor +
 				"\nIdioma: " + this.idioma +
 				"\nData de Publicação: " + this.dataPublicacao +
-				"\nN° Cópias Disponíveis: " + this.numDisponivel);
+				"\nN° Cópias Disponíveis: " + this.numDisponivel + "\n");
 
 	}
 	//	geters e seters

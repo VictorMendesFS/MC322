@@ -1,9 +1,9 @@
 package pessoas;
 
 import java.time.LocalDate;
-import procedimentos.Relatorios;
+import procedimentos.PrintInformacoes;
 
-public class EstudantePos extends Pessoa implements Relatorios {
+public class EstudantePos extends Pessoa implements PrintInformacoes {
 	//atributos
 	public static final int LIMITE_EMPRESTIMO = 5; 
 	public static final int PRAZO_EMPRESTIMO = 20; 
@@ -23,7 +23,7 @@ public class EstudantePos extends Pessoa implements Relatorios {
 				+ "Nome: "+ this.getNome()+
 				"\nId: "+this.getId()+
 				"\nEndereço: "+this.getEndereco()+
-				"\nN° emprestimos: "+this.getNumEmprestimosVigentes()+"\n");
+				"\nN° emprestimos Vigentes: "+this.getNumEmprestimosVigentes()+"\n");
 		if(this.getNumEmprestimosVigentes()>0) {
 			emprestimosVigentes.get(0).printListaEmprestimosVigentes(emprestimosVigentes);
 		}

@@ -2,12 +2,11 @@ package itensMultimidia;
 
 import java.time.LocalDate;
 
-import procedimentos.Relatorios;
+import procedimentos.PrintInformacoes;
 
-public class LivroDigital extends ItemMultimidia implements Relatorios {
+public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 	//atributos
 	private String formato;
-	private int numDisponivel;
 	private String url;
 	private String requisitos;
 	private LocalDate dataDisponibilidade;
@@ -20,11 +19,11 @@ public class LivroDigital extends ItemMultimidia implements Relatorios {
 	}
 	//construtor
 	public LivroDigital(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
-			String genero, String sinopse, String capa, boolean disponibilidade, boolean reservado, String formato,
-			int numDisponivel, String url, String requisitos, LocalDate dataDisponibilidade) {
-		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, disponibilidade, reservado);
+			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
+			int numDisponivel, String formato, String url, String requisitos, LocalDate dataDisponibilidade) {
+		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
+				numDisponivel);
 		this.formato = formato;
-		this.numDisponivel = numDisponivel;
 		this.url = url;
 		this.requisitos = requisitos;
 		this.dataDisponibilidade = dataDisponibilidade;
@@ -40,8 +39,9 @@ public class LivroDigital extends ItemMultimidia implements Relatorios {
 				"\nAutores: " + this.autor +
 				"\nEditora: " + this.editora +
 				"\nIdioma: " + this.idioma +
-				"\nData de Publicação: " + this.dataPublicacao);
+				"\nData de Publicação: " + this.dataPublicacao + "\n");
 	}
+	
 	//	geters e seters
 	public String getFormato() {
 		return formato;

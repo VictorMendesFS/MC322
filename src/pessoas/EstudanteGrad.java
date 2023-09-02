@@ -1,9 +1,9 @@
 package pessoas;
 
 import java.time.LocalDate;
-import procedimentos.Relatorios;
+import procedimentos.PrintInformacoes;
 
-public class EstudanteGrad extends Pessoa implements Relatorios {
+public class EstudanteGrad extends Pessoa implements PrintInformacoes {
 	//atributos
 	public static final int LIMITE_EMPRESTIMO = 3; 
 	public static final int PRAZO_EMPRESTIMO = 15; 

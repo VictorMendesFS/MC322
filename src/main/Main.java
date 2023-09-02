@@ -1,6 +1,5 @@
 package main;
 import java.time.LocalDate;
-
 import itensMultimidia.*;
 import pessoas.*;
 import procedimentos.*;
@@ -9,47 +8,140 @@ public class Main {
 
 	public static void main(String[] args) {
 //		Esta implementação de teste consiste em:
-//		Instanciar um item multimidia de cada tipo
-//		Instanciar uma pessoa e atribuir a ela os materiais multimidia
+//		Instanciar um item multimidia de cada tipo em listas
+//		Instanciar uma pessoa e atribuir a ela os materiais multimidia via emprestimos
+//		Realizar operações de devolução, renovação e reserva de itens
 //		imprimir as informações dos obj e pessoas instanciadas
+
+		//OS PRINTS ESTÃO COMENTADOS, CASO QUEIRAM OBSERVAR AS SAÍDAS
+		
+		//livros fisicos
+		LivroFisico lf1 = new LivroFisico("Livro Físico Aprendendo JAVA", "CAFEO, B.", "Ed. UNICAMP","PT-BR", LocalDate.of(2023, 8, 1), 
+				"Material Didático","Livro sobre os conteitos básicos de OO em JAVA","CAPA",false, false, 
+				8, 8, "aass336541", 1, "Estante A, Fileira 1", "NOVO");
+		//armazenamento do material
+		ArmazenamentoBiblioteca.getLivrosFisicos().add(lf1);
+		
+		//livros digitais
+		LivroDigital ld1 = new LivroDigital("Livro digital Aprendendo JAVA", "CAFEO, B.", "Ed. UNICAMP","PT-BR", LocalDate.of(2023, 8, 1), 
+				"Material Didático","Livro sobre os conteitos básicos de OO em JAVA","CAPA",false, false,
+				20,20,"PDF","unicamp.br", "PC",  LocalDate.of(2023, 8, 1));
+		ArmazenamentoBiblioteca.getLivrosDigitais().add(ld1);
+		
+		//DVDs
+		DVD dvd1 = new DVD("DVD: Aprendendo JAVA", "CAFEO, B.", "Ed. UNICAMP","PT-BR", LocalDate.of(2023, 8, 1), 
+				"Material Didático","Livro sobre os conteitos básicos de OO em JAVA","CAPA",false, false,
+				 6, 6,"CAFEO, B.", 3600, "NOVO");
+		ArmazenamentoBiblioteca.getDvds().add(dvd1);
+		
+		//CDs
+		CD cd1 = new CD("DV: Aprendendo JAVA", "CAFEO, B.", "Ed. UNICAMP","PT-BR", LocalDate.of(2023, 8, 1), 
+				"Material Didático","Livro sobre os conteitos básicos de OO em JAVA","CAPA",false, false,
+				4, 4,"1. Introdução \n 2. Tipos de objetos\n", 68,  "NOVO");
+		ArmazenamentoBiblioteca.getCds().add(cd1);
+		
+		//Outros recursos
+		OutroRecursoMultimidia or1 = new OutroRecursoMultimidia("Banner: Aprendendo JAVA", "CAFEO, B.", "Ed. UNICAMP","PT-BR", LocalDate.of(2023, 8, 1), 
+				"Material Didático","Livro sobre os conteitos básicos de OO em JAVA","CAPA",false, false,
+				1, 1,"Banner", "Banner",  "Galpao principal", "Semi Novo");
+		ArmazenamentoBiblioteca.getOutrosRecursos().add(or1);
+		
+		//imprimir todos os itens de cada lista usando loop foreach
+		System.out.println("Itens multimidia cadastrados:\n");
+		for(LivroFisico item:ArmazenamentoBiblioteca.getLivrosFisicos()) {
+			item.printInfos();
+		}
+		for(LivroDigital item:ArmazenamentoBiblioteca.getLivrosDigitais()) {
+			item.printInfos();
+		}
+		for(DVD item:ArmazenamentoBiblioteca.getDvds()) {
+			item.printInfos();
+		}
+		for(CD item:ArmazenamentoBiblioteca.getCds()) {
+			item.printInfos();
+		}
+		for(OutroRecursoMultimidia item:ArmazenamentoBiblioteca.getOutrosRecursos()) {
+			item.printInfos();
+		}
+	
+		//instanciação de pessoas em listas
+		
+		EstudanteGrad eg1 = new EstudanteGrad("Victor Silva", "206574", "Rua a n° 1", "v206574@dac.unicamp.br", LocalDate.of(2017, 03, 01));
+		ArmazenamentoBiblioteca.getEstudantesGrad().add(eg1);
+		EstudantePos ep1 = new EstudantePos("jose gomes", "111111", "Rua b n° 2", "joseg@gmail.com", LocalDate.of(2020, 05, 12));
+		ArmazenamentoBiblioteca.getEstudantesPos().add(ep1);
+		Professor p1 = new Professor("Bruno Cafeo", "212121", "Rua C n° 3", "cafeo@unicamp.br", LocalDate.of(2015, 02, 10));
+		ArmazenamentoBiblioteca.getProfessores().add(p1);
+		Funcionario f1 = new Funcionario("Ana Luiza", "333333", "Rua D n° 4", "Analuiza@unicamp.br", LocalDate.now(), PerfilFuncionario.ADMINISTRADOR);
+		ArmazenamentoBiblioteca.getFuncionarios().add(f1);
+		Funcionario f2 = new Funcionario("Joao Souza", "465789", "Rua E n° 5", "jsouza@unicamp.br", LocalDate.now(), PerfilFuncionario.ATENDENTE);
+		ArmazenamentoBiblioteca.getFuncionarios().add(f2);
 		
 		
-		//instanciação de itens multimídia
-//		LivroFisico livroFisico1 = new LivroFisico("Aprendendo JAVA", "CAFEO, B.", 1, "PT-BR", "ago/2023", "abc123", false, null, "aass336541", null, null, null, null, null);
-//		LivroDigital livroDigital1 = new LivroDigital("Aprendendo JAVA - Edição Digital", "CAFEO, B.", 1, "PT-BR", 250, "ago/2023", "abc123", false, "Ed. UNICAMP", "aass336541");
-//		CD cd1 = new CD("Audiobook JAVA", "CAFEO, B.", 2, "PT-BR", 2370, "jul/2022", "zzxx6654", false, 0, "CD-R");
-//		DVD dvd1 = new DVD("Videobook JAVA", "CAFEO, B.", 2, "PT-BR", 16578, "jul/2022", "zzxx6654", false, "HD");
+		//criar lista de emprestimos e atribuir às pessoas e atribuir ao relatório da biblioteca
+
+		//emprestando livro fisico 1 para aluno de grad 1
+		Emprestimo e1 = new Emprestimo("001", StatusEmprestimo.VIGENTE, ArmazenamentoBiblioteca.getLivrosFisicos().get(0), 
+				 ArmazenamentoBiblioteca.getEstudantesGrad().get(0), LocalDate.now());
+		RelatorioAvancadoAndEstatisticas.getHistoricoEmprestimos().add(e1);
+		//livro digital 1 e dvd 1 para estudante pós
+		Emprestimo e2 = new Emprestimo("002", StatusEmprestimo.VIGENTE, ArmazenamentoBiblioteca.getLivrosDigitais().get(0), 
+				 ArmazenamentoBiblioteca.getEstudantesPos().get(0), LocalDate.now());
+		Emprestimo e3 = new Emprestimo("003", StatusEmprestimo.VIGENTE, ArmazenamentoBiblioteca.getDvds().get(0), 
+				 ArmazenamentoBiblioteca.getEstudantesPos().get(0), LocalDate.now());
+		RelatorioAvancadoAndEstatisticas.getHistoricoEmprestimos().add(e2);
+		RelatorioAvancadoAndEstatisticas.getHistoricoEmprestimos().add(e3);
+		//cd1 para professor
+		Emprestimo e4 = new Emprestimo("004", StatusEmprestimo.VIGENTE,  ArmazenamentoBiblioteca.getCds().get(0), 
+				ArmazenamentoBiblioteca.getProfessores().get(0), LocalDate.now());
+		RelatorioAvancadoAndEstatisticas.getHistoricoEmprestimos().add(e4);	
+
+		//imprimir infos das pessoas
+		System.out.println("Pessoas cadastradas e seus respectivos emprestimos:\n");
+		for(EstudanteGrad item: ArmazenamentoBiblioteca.getEstudantesGrad()) {
+			item.printInfos();
+		}
+		for(EstudantePos item: ArmazenamentoBiblioteca.getEstudantesPos()) {
+			item.printInfos();
+		}
+		for(Professor item: ArmazenamentoBiblioteca.getProfessores()) {
+			item.printInfos();
+		}
+		for(Funcionario item: ArmazenamentoBiblioteca.getFuncionarios()) {
+			item.printInfos();
+		}
 		
-		//informações dos itens
-//		System.out.println("Impressão dos itens instanciados:\n");
-//		livroFisico1.printInfos();
-//		livroDigital1.printInfos();
-//		cd1.printInfos();
-//		dvd1.printInfos();
-//		
-		//instanciar um aluno de grad. e um prof.
-//		EstudanteGrad estudanteGrad1 = new EstudanteGrad("Victor M.F. Silva","206574","v206574@dac.unicamp.br","aa12345", "Eng. Controle e Automação");
-//		Professor professor1 = new Professor("Bruno Cafeo", "123456", "cafeo@ic.unicamp.br", "cafeo321", "Instituto de Computação UNICAMP");
-		//imprimindo as infos das pessoas
-//		estudanteGrad1.printInfos();
-//		professor1.printInfos();
+		//operações de devolução, renovação e reserva de materiais pelas pessoas
+		//*UM ALGORITMO DE BUSCA DO FUNCIONARIO E DE UMA EDIÇÃO DE MATERIAL ATRAVES DO SEU 
+		//IDENTIFICADOR SERÁ IMPLEMENTADO FUTURAMENTE*
 		
-//		criar novos emprestimos e atribui para o estudante e o prof
-//		Emprestimo emprestimo1 = new Emprestimo("001", "vigente", livroFisico1, estudanteGrad1, LocalDate.now());
-//		Emprestimo emprestimo2 = new Emprestimo("002", "vigente", dvd1, estudanteGrad1, LocalDate.now());
-//		Emprestimo emprestimo3 = new Emprestimo("003", "vigente", livroDigital1, professor1, LocalDate.now());
+		//estudante de pós faz uma devolução
+		ArmazenamentoBiblioteca.getEstudantesPos().get(0).removerEmprestimo(
+				RelatorioAvancadoAndEstatisticas.getHistoricoEmprestimos().get(1));
+		//estudante grad faz uma renovação
+		ArmazenamentoBiblioteca.getEstudantesGrad().get(0).renovarEmprestimo(
+				RelatorioAvancadoAndEstatisticas.getHistoricoEmprestimos().get(0));
+		//funcionário faz uma reserva do item renovado pelo estudante de grad
+		RelatorioAvancadoAndEstatisticas.getHistoricoEmprestimos().get(0).getMaterialEmprestado().
+		criarReserva(ArmazenamentoBiblioteca.getFuncionarios().get(0));
 		
-//		System.out.println("Após realizar os emprestimos:\n");
-//		estudanteGrad1.printInfos();
-//		professor1.printInfos();
-//		
-////		manipulação de emprestimos
-//		estudanteGrad1.removerEmprestimo(emprestimo1);
-//		estudanteGrad1.renovarEmprestimo(emprestimo2);
-//		professor1.removerEmprestimo(emprestimo3);
-//		
-//		System.out.println("Após finalizar os emprestimos:\n");
-//		estudanteGrad1.printInfos();
-//		professor1.printInfos();
+		System.out.println("Pessoas cadastradas e seus respectivos emprestimos:\n");
+		for(EstudanteGrad item: ArmazenamentoBiblioteca.getEstudantesGrad()) {
+			item.printInfos();
+		}
+		for(EstudantePos item: ArmazenamentoBiblioteca.getEstudantesPos()) {
+			item.printInfos();
+		}
+		for(Professor item: ArmazenamentoBiblioteca.getProfessores()) {
+			item.printInfos();
+		}
+		for(Funcionario item: ArmazenamentoBiblioteca.getFuncionarios()) {
+			item.printInfos();
+		}
+		
+		
+		//relatorios avançados e estatísticas da biblioteca
+		//print de todos os emprestimos realizados
+		RelatorioAvancadoAndEstatisticas.printHistoricoTotalDeEmprestimos();
 	}
 }

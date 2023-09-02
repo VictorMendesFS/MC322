@@ -6,28 +6,39 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 	//atributos
 	private String tipo;
 	private String formato;
-	private int numCopias;
-	private int numDisponivel;
 	private String localizacao;
 	private String estadoConvserv;
 	private static int CONTADOR_EMPRESTIMOS=0;
+
+	
+	//construtor
+	public OutroRecursoMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
+			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
+			int numDisponivel, String tipo, String formato, String localizacao, String estadoConvserv) {
+		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
+				numDisponivel);
+		this.tipo = tipo;
+		this.formato = formato;
+		this.localizacao = localizacao;
+		this.estadoConvserv = estadoConvserv;
+	}
 
 	//metodos
 	@Override
 	public void addCountEmprestimo() {
 		this.CONTADOR_EMPRESTIMOS++;
 	}
-	
-	public OutroRecursoMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
-			String genero, String sinopse, String capa, boolean disponibilidade, boolean reservado, String tipo,
-			String formato, int numCopias, int numDisponivel, String localizacao, String estadoConvserv) {
-		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, disponibilidade, reservado);
-		this.tipo = tipo;
-		this.formato = formato;
-		this.numCopias = numCopias;
-		this.numDisponivel = numDisponivel;
-		this.localizacao = localizacao;
-		this.estadoConvserv = estadoConvserv;
+
+	public void printInfos() {
+		System.out.println("Informações do Recurso multimídia:\n" +
+				"Título: " + this.getTitulo() + 
+				"\nAutores: " + this.autor +
+				"\nEditora: " +this.editora +
+				"\nTipo: " + this.tipo +
+				"\nIdioma: " + this.idioma +
+				"\nN° Cópias Disponíveis: " + this.numDisponivel +
+				"\nData de Publicação: " + this.dataPublicacao +
+				"\nLocalização: " + this.localizacao + "\n");
 	}
 
 	//geters e seters
@@ -78,4 +89,6 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 	public void setEstadoConvserv(String estadoConvserv) {
 		this.estadoConvserv = estadoConvserv;
 	}
+
+
 }

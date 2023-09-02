@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import procedimentos.Emprestimo;
+import procedimentos.StatusEmprestimo;
 
 public abstract class Pessoa {
 	//atributos
@@ -51,8 +52,14 @@ public abstract class Pessoa {
 				//set o material como disponivel
 				emprestimo.getMaterialEmprestado().setEmprestado(false);
 				
+				//aumenta o numero de copias disponiveis 
+				emprestimo.getMaterialEmprestado().setNumDisponivel(emprestimo.getMaterialEmprestado().getNumDisponivel()+1);
+				
+				//set emprestimo como finalizado
+				emprestimo.setStatus(StatusEmprestimo.ENCERRADO);
+				
 				//se o livro for devolvido com atraso, avisar e acrescer multa
-				if(emprestimo.getDataDevolucao().isAfter(LocalDate.now())){
+				if(emprestimo.getDataDevolucao().isBefore(LocalDate.now())){
 					double diferencaEmDias = (double)ChronoUnit.DAYS.between(emprestimo.getDataDevolucao(), LocalDate.now());
 					//aplica a multa conforme a pessoa
 					if(emprestimo.getEmprestante() instanceof EstudanteGrad) {
@@ -65,7 +72,7 @@ public abstract class Pessoa {
 						this.multaDevida += diferencaEmDias*Funcionario.MULTA_ATRASO;
 					}
 					//imprimir o aviso de multa
-					System.out.println("Emprestimo atradado em "+ diferencaEmDias + "dias\n"
+					System.out.println("Emprestimo atradado em "+ diferencaEmDias + " dias\n"
 							+ "Multa aplicada de R$" + diferencaEmDias*EstudanteGrad.MULTA_ATRASO
 							+ "\nMulta total devida pelo usuário é R$" + this.multaDevida );
 					
@@ -73,6 +80,9 @@ public abstract class Pessoa {
 			
 				System.out.println("Emprestimo Código '"+emprestimo.getCodigoEmprestimo()
 				+"' removido\n");
+				
+				//atualiza a data de devolução
+				emprestimo.setDataDevolucaoEncerramento(LocalDate.now());
 			}
 		}
 	}
