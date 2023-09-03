@@ -61,7 +61,8 @@ public abstract class ItemMultimidia implements PrintInformacoes{
 			this.setReservado(true);
 			//coloca pessoa como revervante
 			this.setReservante(reservante);	
-			System.out.println("Material Reservado para o dia: "+historicoEmprestimos.get(historicoEmprestimos.size()-1).getDataDevolucao());
+			System.out.println("Material Reservado para o dia: "
+			+historicoEmprestimos.get(historicoEmprestimos.size()-1).getDataDevolucao()+"\n");
 		}else {
 			System.out.println("material indisponivel para reserva");
 		}

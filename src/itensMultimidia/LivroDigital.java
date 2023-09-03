@@ -38,6 +38,7 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 				"Título: " + this.getTitulo() + 
 				"\nAutores: " + this.autor +
 				"\nEditora: " + this.editora +
+				"\nN° Cópias Disponíveis: " + this.numDisponivel +
 				"\nIdioma: " + this.idioma +
 				"\nData de Publicação: " + this.dataPublicacao + "\n");
 	}

@@ -1,41 +1,72 @@
 package procedimentos;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RelatorioAvancadoAndEstatisticas {
-	//esta é uma classe responsavel por armazenar os materiais da bilbioteca, assim como seus históricos de atividades
-	//atributos
+import itensMultimidia.*;
 
-	
-	//criar lista de emprestimos e atribuir às pessoas
-	private static List<Emprestimo> historicoEmprestimos =  new ArrayList<>();
-	
-	
-	//metodos
-	//impressão do historico e emprestimos
+public class RelatorioAvancadoAndEstatisticas {
+	// esta é uma classe responsavel por acessar e imprimir dados relevantes da
+	// biblioteca
+
+	// impressão do historico e emprestimos
 	public static void printHistoricoTotalDeEmprestimos() {
-		System.out.println("Lista de todos os emprestimos realizados na biblioteca\n");
-		for(Emprestimo item:historicoEmprestimos) {
-			item.printInfos();
+		printHistoricoDeEmprestimosPorData(LocalDate.of(1, 1, 1), LocalDate.of(999999999, 12, 31), true, true);
+	}
+
+	public static void printHistoricoDeEmprestimosPorData(LocalDate dataInicial, LocalDate dataFinal,
+			boolean imprimirNumEmprestimos, boolean imprimirListaEmprestimos) {
+		// cria uma lista com os emprestimos compreendidos entre duas datas
+		List<Emprestimo> lista = new ArrayList<>();
+		for (Emprestimo item : ArmazenamentoBiblioteca.historicoEmprestimos) {
+			if (item.getDataEmprestimo().isEqual(dataInicial) || item.getDataEmprestimo().isEqual(dataFinal)
+					|| item.getDataEmprestimo().isAfter(dataInicial) || item.getDataEmprestimo().isBefore(dataFinal))
+				lista.add(item);
+		}
+		// imprimir infos da lista
+		if (imprimirNumEmprestimos) {
+			System.out.println("Número de imprestimos no intervalo: " + lista.size());
+		}
+		if (imprimirListaEmprestimos) {
+			for (Emprestimo item : lista)
+				item.printInfos();
 		}
 	}
-	//busca de emprestimo pelo codigo
-	public static Emprestimo procurarEmprestimo(String codigo) {
-		for(Emprestimo item:historicoEmprestimos) {
-			if(item.getCodigoEmprestimo()==codigo)
-				return item;
+
+	// relatorio de disponibilidade de itens
+	public static void relatorioDeDisponibilidadeDeItens() {
+		System.out.println("Relatório de Disponibilidade de ítens\n");
+		
+		System.out.println("Livros Físicos Disponíveis :\n");
+		for (LivroFisico item : ArmazenamentoBiblioteca.livrosFisicos) {
+			if (item.getNumDisponivel() > 0)
+				item.printInfos();
 		}
-		System.out.println("Emprestimo não encontrado");
-		return null;
+		
+		System.out.println("Livros Digitais Disponíveis :\n");
+		for (LivroDigital item : ArmazenamentoBiblioteca.livrosDigitais) {
+			if (item.getNumDisponivel() > 0)
+				item.printInfos();
+		}
+		
+		System.out.println("CDs Disponíveis :\n");
+		for (CD item : ArmazenamentoBiblioteca.cds) {
+			if (item.getNumDisponivel() > 0)
+				item.printInfos();
+		}
+		
+		System.out.println("DVDs Disponíveis :\n");
+		for (DVD item : ArmazenamentoBiblioteca.dvds) {
+			if (item.getNumDisponivel() > 0)
+				item.printInfos();
+		}
+		
+		System.out.println("Outros Recursos Disponíveis :\n");
+		for (OutroRecursoMultimidia item : ArmazenamentoBiblioteca.outrosRecursos) {
+			if (item.getNumDisponivel() > 0)
+				item.printInfos();
+		}
 	}
-	//geters e seters
-	public static List<Emprestimo> getHistoricoEmprestimos() {
-		return historicoEmprestimos;
-	}
-	public static void setHistoricoEmprestimos(List<Emprestimo> historicoEmprestimos) {
-		RelatorioAvancadoAndEstatisticas.historicoEmprestimos = historicoEmprestimos;
-	}
-	
-	
+
 }
