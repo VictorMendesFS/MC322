@@ -2,6 +2,7 @@ package itensMultimidia;
 
 import java.time.LocalDate;
 
+import procedimentos.ArmazenamentoBiblioteca;
 import procedimentos.PrintInformacoes;
 
 public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
@@ -22,6 +23,8 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 		this.edicao = edicao;
 		this.localizacao = localizacao;
 		this.estadoConserv = estadoConserv;
+		//add ao armazenamento da biblioteca
+		ArmazenamentoBiblioteca.getLivrosFisicos().add(this);
 	}
 	@Override
 

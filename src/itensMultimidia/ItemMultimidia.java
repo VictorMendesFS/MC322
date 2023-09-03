@@ -24,6 +24,8 @@ public abstract class ItemMultimidia implements PrintInformacoes{
 	protected Pessoa reservante;
 	protected int numCopias;
 	protected int numDisponivel;
+	protected int numReservas=0;
+	protected int numEmprestimos=0;
 
 	//	construtor
 	public ItemMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
@@ -48,8 +50,10 @@ public abstract class ItemMultimidia implements PrintInformacoes{
 	public void addEmprestimo(Emprestimo emprestimo) {
 		//add ao histórico
 		this.historicoEmprestimos.add(emprestimo);
-		//aumenta a contagem de emprestimos
+		//aumenta a contagem de emprestimos do tipo de item
 		emprestimo.getMaterialEmprestado().addCountEmprestimo();
+		//aumenta a contagem de emprestimos do item especifido
+		this.numEmprestimos++;
 		//o coloca como emprestado
 		emprestimo.getMaterialEmprestado().setEmprestado(true);
 	}
@@ -59,6 +63,8 @@ public abstract class ItemMultimidia implements PrintInformacoes{
 		if(this.isEmprestado() && !this.isReservado()) {
 			//set item para reservado
 			this.setReservado(true);
+			//add um emprestimo ao contador do item
+			this.numReservas++;
 			//coloca pessoa como revervante
 			this.setReservante(reservante);	
 			System.out.println("Material Reservado para o dia: "
@@ -188,5 +194,13 @@ public abstract class ItemMultimidia implements PrintInformacoes{
 
 	public void setNumDisponivel(int numDisponivel) {
 		this.numDisponivel = numDisponivel;
+	}
+
+	public int getNumReservas() {
+		return numReservas;
+	}
+
+	public void setNumReservas(int numReservas) {
+		this.numReservas = numReservas;
 	}
 }

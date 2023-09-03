@@ -2,6 +2,8 @@ package itensMultimidia;
 
 import java.time.LocalDate;
 
+import procedimentos.ArmazenamentoBiblioteca;
+
 public class OutroRecursoMultimidia extends ItemMultimidia {
 	//atributos
 	private String tipo;
@@ -21,6 +23,8 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 		this.formato = formato;
 		this.localizacao = localizacao;
 		this.estadoConvserv = estadoConvserv;
+		
+		ArmazenamentoBiblioteca.getOutrosRecursos().add(this);
 	}
 
 	//metodos

@@ -2,6 +2,7 @@ package itensMultimidia;
 
 import java.time.LocalDate;
 
+import procedimentos.ArmazenamentoBiblioteca;
 import procedimentos.PrintInformacoes;
 
 public class DVD extends ItemMultimidia implements PrintInformacoes {
@@ -21,6 +22,8 @@ public class DVD extends ItemMultimidia implements PrintInformacoes {
 		this.elenco = elenco;
 		this.duracao = duracao;
 		this.estadoConvserv = estadoConvserv;
+		
+		ArmazenamentoBiblioteca.getDvds().add(this);
 	}
 	
 	//metodos

@@ -2,6 +2,7 @@ package itensMultimidia;
 
 import java.time.LocalDate;
 
+import procedimentos.ArmazenamentoBiblioteca;
 import procedimentos.PrintInformacoes;
 
 public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
@@ -27,6 +28,8 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 		this.url = url;
 		this.requisitos = requisitos;
 		this.dataDisponibilidade = dataDisponibilidade;
+		//add ao armazenamento da biblioteca
+		ArmazenamentoBiblioteca.getLivrosDigitais().add(this);
 	}
 
 

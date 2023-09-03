@@ -1,6 +1,8 @@
 package pessoas;
 
 import java.time.LocalDate;
+
+import procedimentos.ArmazenamentoBiblioteca;
 import procedimentos.PrintInformacoes;
 
 public class EstudanteGrad extends Pessoa implements PrintInformacoes {
@@ -12,7 +14,8 @@ public class EstudanteGrad extends Pessoa implements PrintInformacoes {
 	//construtor
 	public EstudanteGrad(String nome, String id, String endereco, String contato, LocalDate dataRegistro) {
 		super(nome, id, endereco, contato, dataRegistro);
-		// TODO Auto-generated constructor stub
+		//add estudante ao armazenamento da biblioteca
+		ArmazenamentoBiblioteca.getEstudantesGrad().add(this);
 	}
 
 	@Override

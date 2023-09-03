@@ -37,7 +37,7 @@ public class Emprestimo implements PrintInformacoes{
 			materialEmprestado.setReservado(false);
 			//retira reservante
 			materialEmprestado.setReservante(null);
-			//o prazo para devolução vai dependeder de quem pegou emprestado, contando do dia da criação do emprestimo
+			//det. prazo para devolução a dependeder de quem pegou emprestado, contando do dia da criação do emprestimo
 			this.setDataDevolucao(emprestante);
 			//seta o material como emprestado e o add ao historico
 			materialEmprestado.addEmprestimo(this);
@@ -45,7 +45,9 @@ public class Emprestimo implements PrintInformacoes{
 			emprestante.addEmprestimo(this);
 			//dimiui o numero de copias disponiveis
 			materialEmprestado.setNumDisponivel(materialEmprestado.getNumDisponivel()-1);
-	
+			
+			//adiciona este emprestimo ao historico da biblioteca
+			ArmazenamentoBiblioteca.getHistoricoEmprestimos().add(this);
 		}else
 			System.out.println("Material indisponível!\n");
 	}

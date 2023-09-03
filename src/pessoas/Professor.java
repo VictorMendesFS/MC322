@@ -1,6 +1,8 @@
 package pessoas;
 
 import java.time.LocalDate;
+
+import procedimentos.ArmazenamentoBiblioteca;
 import procedimentos.PrintInformacoes;
 
 public class Professor extends Pessoa implements PrintInformacoes {
@@ -11,7 +13,8 @@ public class Professor extends Pessoa implements PrintInformacoes {
 	//construtor
 	public Professor(String nome, String id, String endereco, String contato, LocalDate dataRegistro) {
 		super(nome, id, endereco, contato, dataRegistro);
-		// TODO Auto-generated constructor stub
+		//add ao armazenamento da biblioteca
+		ArmazenamentoBiblioteca.getProfessores().add(this);
 	}
 
 	//metodos

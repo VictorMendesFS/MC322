@@ -1,6 +1,8 @@
 package pessoas;
 
 import java.time.LocalDate;
+
+import procedimentos.ArmazenamentoBiblioteca;
 import procedimentos.PrintInformacoes;
 
 public class Funcionario extends Pessoa implements PrintInformacoes {
@@ -14,6 +16,8 @@ public class Funcionario extends Pessoa implements PrintInformacoes {
 	public Funcionario(String nome, String id, String endereco, String contato, LocalDate dataRegistro, PerfilFuncionario perfil) {
 		super(nome, id, endereco, contato, dataRegistro);
 		this.perfil = perfil;
+		//add ao armazenamento da biblioteca
+		ArmazenamentoBiblioteca.getFuncionarios().add(this);
 	}
 
 	//metodos
