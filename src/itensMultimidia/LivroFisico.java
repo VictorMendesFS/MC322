@@ -12,6 +12,7 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 	private String localizacao;
 	private String estadoConserv;
 	private static int CONTADOR_EMPRESTIMOS=0;
+	private static int CONTADOR_RESERVAS=0;
 
 
 	public LivroFisico(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
@@ -101,6 +102,12 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 
 	public static void setCONTADOR_EMPRESTIMOS(int cONTADOR_EMPRESTIMOS) {
 		CONTADOR_EMPRESTIMOS = cONTADOR_EMPRESTIMOS;
+	}
+	public static int getCONTADOR_RESERVAS() {
+		return CONTADOR_RESERVAS;
+	}
+	public static void setCONTADOR_RESERVAS(int cONTADOR_RESERVAS) {
+		CONTADOR_RESERVAS = cONTADOR_RESERVAS;
 	}
 
 

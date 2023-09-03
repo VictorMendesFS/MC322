@@ -12,6 +12,7 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 	private String requisitos;
 	private LocalDate dataDisponibilidade;
 	private static int CONTADOR_EMPRESTIMOS=0;
+	private static int CONTADOR_RESERVAS=0;
 
 	//metodos
 	@Override
@@ -104,5 +105,18 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 	public void setDataDisponibilidade(LocalDate dataDisponibilidade) {
 		this.dataDisponibilidade = dataDisponibilidade;
 	}
+	public static int getCONTADOR_EMPRESTIMOS() {
+		return CONTADOR_EMPRESTIMOS;
+	}
+	public static void setCONTADOR_EMPRESTIMOS(int cONTADOR_EMPRESTIMOS) {
+		CONTADOR_EMPRESTIMOS = cONTADOR_EMPRESTIMOS;
+	}
+	public static int getCONTADOR_RESERVAS() {
+		return CONTADOR_RESERVAS;
+	}
+	public static void setCONTADOR_RESERVAS(int cONTADOR_RESERVAS) {
+		CONTADOR_RESERVAS = cONTADOR_RESERVAS;
+	}
+	
 
 }

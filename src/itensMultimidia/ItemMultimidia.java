@@ -63,9 +63,20 @@ public abstract class ItemMultimidia implements PrintInformacoes{
 		if(this.isEmprestado() && !this.isReservado()) {
 			//set item para reservado
 			this.setReservado(true);
-			//add um emprestimo ao contador do item
+			//add uma reserva ao contador do tipo especifico
 			this.numReservas++;
-			//coloca pessoa como revervante
+			//add uma reserva ao contador do tipo de item
+			if(this instanceof LivroFisico)
+				LivroFisico.setCONTADOR_RESERVAS(LivroFisico.getCONTADOR_RESERVAS()+1);
+			if(this instanceof LivroDigital)
+				LivroDigital.setCONTADOR_RESERVAS(LivroDigital.getCONTADOR_RESERVAS()+1);
+			if(this instanceof CD)
+				CD.setCONTADOR_RESERVAS(CD.getCONTADOR_RESERVAS()+1);
+			if(this instanceof DVD)
+				DVD.setCONTADOR_RESERVAS(DVD.getCONTADOR_RESERVAS()+1);
+			if(this instanceof OutroRecursoMultimidia)
+				OutroRecursoMultimidia.setCONTADOR_RESERVAS(OutroRecursoMultimidia.getCONTADOR_RESERVAS()+1);
+			//coloca pessoa como reservante
 			this.setReservante(reservante);	
 			System.out.println("Material Reservado para o dia: "
 			+historicoEmprestimos.get(historicoEmprestimos.size()-1).getDataDevolucao()+"\n");
