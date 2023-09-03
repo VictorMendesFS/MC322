@@ -51,7 +51,7 @@ public class Emprestimo implements PrintInformacoes{
 	}
 
 	//metodos
-
+	
 	//impressão da lista de emprestimos que uma pessoa possui
 	public void printListaEmprestimosVigentes(List<Emprestimo> emprestimos) {
 		System.out.println("Lista de Emprestimos da pessoa:\n");   

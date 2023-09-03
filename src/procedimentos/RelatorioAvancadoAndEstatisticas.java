@@ -13,13 +13,22 @@ public class RelatorioAvancadoAndEstatisticas {
 	
 	
 	//metodos
+	//impressão do historico e emprestimos
 	public static void printHistoricoTotalDeEmprestimos() {
 		System.out.println("Lista de todos os emprestimos realizados na biblioteca\n");
 		for(Emprestimo item:historicoEmprestimos) {
 			item.printInfos();
 		}
 	}
-	
+	//busca de emprestimo pelo codigo
+	public static Emprestimo procurarEmprestimo(String codigo) {
+		for(Emprestimo item:historicoEmprestimos) {
+			if(item.getCodigoEmprestimo()==codigo)
+				return item;
+		}
+		System.out.println("Emprestimo não encontrado");
+		return null;
+	}
 	//geters e seters
 	public static List<Emprestimo> getHistoricoEmprestimos() {
 		return historicoEmprestimos;
