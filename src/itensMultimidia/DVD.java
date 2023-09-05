@@ -11,6 +11,8 @@ public class DVD extends ItemMultimidia implements PrintInformacoes {
 	private float duracao;
 	private String estadoConvserv;
 	private static int CONTADOR_EMPRESTIMOS=0;
+	private static int CONTADOR_RESERVAS=0;
+	
 
 	
 	//construtor
@@ -99,6 +101,30 @@ public class DVD extends ItemMultimidia implements PrintInformacoes {
 
 	public void setEstadoConvserv(String estadoConvserv) {
 		this.estadoConvserv = estadoConvserv;
+	}
+
+	public String getElenco() {
+		return elenco;
+	}
+
+	public static int getCONTADOR_EMPRESTIMOS() {
+		return CONTADOR_EMPRESTIMOS;
+	}
+
+	public void setElenco(String elenco) {
+		this.elenco = elenco;
+	}
+
+	public static void setCONTADOR_EMPRESTIMOS(int cONTADOR_EMPRESTIMOS) {
+		CONTADOR_EMPRESTIMOS = cONTADOR_EMPRESTIMOS;
+	}
+
+	public static int getCONTADOR_RESERVAS() {
+		return CONTADOR_RESERVAS;
+	}
+
+	public static void setCONTADOR_RESERVAS(int cONTADOR_RESERVAS) {
+		CONTADOR_RESERVAS = cONTADOR_RESERVAS;
 	}
 
 

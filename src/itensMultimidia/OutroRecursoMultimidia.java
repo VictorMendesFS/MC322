@@ -11,6 +11,7 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 	private String localizacao;
 	private String estadoConvserv;
 	private static int CONTADOR_EMPRESTIMOS=0;
+	private static int CONTADOR_RESERVAS=0;
 
 	
 	//construtor
@@ -92,6 +93,22 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 
 	public void setEstadoConvserv(String estadoConvserv) {
 		this.estadoConvserv = estadoConvserv;
+	}
+
+	public static int getCONTADOR_EMPRESTIMOS() {
+		return CONTADOR_EMPRESTIMOS;
+	}
+
+	public static void setCONTADOR_EMPRESTIMOS(int cONTADOR_EMPRESTIMOS) {
+		CONTADOR_EMPRESTIMOS = cONTADOR_EMPRESTIMOS;
+	}
+
+	public static int getCONTADOR_RESERVAS() {
+		return CONTADOR_RESERVAS;
+	}
+
+	public static void setCONTADOR_RESERVAS(int cONTADOR_RESERVAS) {
+		CONTADOR_RESERVAS = cONTADOR_RESERVAS;
 	}
 
 

@@ -49,6 +49,7 @@ public class Emprestimo implements PrintInformacoes{
 			//adiciona este emprestimo ao historico da biblioteca
 			ArmazenamentoBiblioteca.getHistoricoEmprestimos().add(this);
 		}else
+			//se o material estiver indisponível (talvez seja substituido por algum return em outra função
 			System.out.println("Material indisponível!\n");
 	}
 

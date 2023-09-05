@@ -68,5 +68,23 @@ public class RelatorioAvancadoAndEstatisticas {
 				item.printInfos();
 		}
 	}
+	
+	//relatorio de numero de emprestimos para cada tipo de item
+	public static void relatorioNumEmprestimosPorItem() {
+		System.out.println("\nRelatório de Número de Emprestimos por Item\n");
+		System.out.println("Emprestimos de livros físicos: "+ LivroFisico.getCONTADOR_EMPRESTIMOS());
+		System.out.println("Emprestimos de livros digitais: "+ LivroDigital.getCONTADOR_EMPRESTIMOS());
+		System.out.println("Emprestimos de DVDs: "+ DVD.getCONTADOR_EMPRESTIMOS());
+		System.out.println("Emprestimos de CDs: "+ CD.getCONTADOR_EMPRESTIMOS());
+		System.out.println("Emprestimos de Outros Recursos: "+ OutroRecursoMultimidia.getCONTADOR_EMPRESTIMOS());
+		
+		//quantidade de reservas
+		System.out.println("\nRelatório de Número de Reservas por Item\n");
+		System.out.println("Emprestimos de livros físicos: "+ LivroFisico.getCONTADOR_RESERVAS());
+		System.out.println("Emprestimos de livros digitais: "+ LivroDigital.getCONTADOR_RESERVAS());
+		System.out.println("Emprestimos de DVDs: "+ DVD.getCONTADOR_RESERVAS());
+		System.out.println("Emprestimos de CDs: "+ CD.getCONTADOR_RESERVAS());
+		System.out.println("Emprestimos de Outros Recursos: "+ OutroRecursoMultimidia.getCONTADOR_RESERVAS());
+	}
 
 }
