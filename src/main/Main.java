@@ -2,6 +2,7 @@ package main;
 
 import java.time.LocalDate;
 import itensMultimidia.*;
+import itensMultimidia.Multimidia.FormatoMultimidia;
 import pessoas.*;
 import procedimentos.*;
 
@@ -45,23 +46,23 @@ public class Main {
 
 		// imprimir todos os itens de cada tipo
 
-//		 System.out.println("Itens multimidia cadastrados:\n");
-//		 for (LivroFisico item : ArmazenamentoBiblioteca.getLivrosFisicos()) {
-//		 item.printInfos();
-//		 }
-//		 for (LivroDigital item : ArmazenamentoBiblioteca.getLivrosDigitais()) {
-//		 item.printInfos();
-//		 }
-//		 for (DVD item : ArmazenamentoBiblioteca.getDvds()) {
-//		 item.printInfos();
-//		 }
-//		 for (CD item : ArmazenamentoBiblioteca.getCds()) {
-//		 item.printInfos();
-//		 }
-//		 for (OutroRecursoMultimidia item :
-//		 ArmazenamentoBiblioteca.getOutrosRecursos()) {
-//		 item.printInfos();
-//		 }
+		//		 System.out.println("Itens multimidia cadastrados:\n");
+		//		 for (LivroFisico item : ArmazenamentoBiblioteca.getLivrosFisicos()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (LivroDigital item : ArmazenamentoBiblioteca.getLivrosDigitais()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (DVD item : ArmazenamentoBiblioteca.getDvds()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (CD item : ArmazenamentoBiblioteca.getCds()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (OutroRecursoMultimidia item :
+		//		 ArmazenamentoBiblioteca.getOutrosRecursos()) {
+		//		 item.printInfos();
+		//		 }
 
 		// instanciação de pessoas
 
@@ -93,59 +94,59 @@ public class Main {
 				ArmazenamentoBiblioteca.procurarPessoa("222222"), LocalDate.now());
 
 		// imprimir infos das pessoas
-		
-//		 System.out.println("Pessoas cadastradas e seus respectivos emprestimos:\n");
-//		 for (EstudanteGrad item : ArmazenamentoBiblioteca.getEstudantesGrad()) {
-//		 item.printInfos();
-//		 }
-//		 for (EstudantePos item : ArmazenamentoBiblioteca.getEstudantesPos()) {
-//		 item.printInfos();
-//		 }
-//		 for (Professor item : ArmazenamentoBiblioteca.getProfessores()) {
-//		 item.printInfos();
-//		 }
-//		 for (Funcionario item : ArmazenamentoBiblioteca.getFuncionarios()) {
-//		 item.printInfos();
-//		 }
+
+		//		 System.out.println("Pessoas cadastradas e seus respectivos emprestimos:\n");
+		//		 for (EstudanteGrad item : ArmazenamentoBiblioteca.getEstudantesGrad()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (EstudantePos item : ArmazenamentoBiblioteca.getEstudantesPos()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (Professor item : ArmazenamentoBiblioteca.getProfessores()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (Funcionario item : ArmazenamentoBiblioteca.getFuncionarios()) {
+		//		 item.printInfos();
+		//		 }
 
 		// operações de devolução, renovação e reserva de materiais pelas pessoas
 
 		// estudante de pós faz uma devolução
 		ArmazenamentoBiblioteca.procurarPessoa("111111")
-				.removerEmprestimo(ArmazenamentoBiblioteca.procurarEmprestimo("002"));
+		.removerEmprestimo(ArmazenamentoBiblioteca.procurarEmprestimo("002"));
 		// estudante grad faz uma renovação
 		ArmazenamentoBiblioteca.procurarPessoa("206574")
-				.renovarEmprestimo(ArmazenamentoBiblioteca.procurarEmprestimo("001"));
+		.renovarEmprestimo(ArmazenamentoBiblioteca.procurarEmprestimo("001"));
 		// funcionário faz uma reserva do item renovado pelo estudante de grad
 		// (esta implementação via emprestimo será substituída pela verificação se o
 		// material está emprestado, se sim, faz a reserva)
 		ArmazenamentoBiblioteca.procurarEmprestimo("001").getMaterialEmprestado()
-				.criarReserva(ArmazenamentoBiblioteca.procurarPessoa("333333"));
+		.criarReserva(ArmazenamentoBiblioteca.procurarPessoa("333333"));
 
-//		 System.out.println("Pessoas cadastradas e seus respectivos emprestimos:\n");
-//		 for (EstudanteGrad item : ArmazenamentoBiblioteca.getEstudantesGrad()) {
-//		 item.printInfos();
-//		 }
-//		 for (EstudantePos item : ArmazenamentoBiblioteca.getEstudantesPos()) {
-//		 item.printInfos();
-//		 }
-//		 for (Professor item : ArmazenamentoBiblioteca.getProfessores()) {
-//		 item.printInfos();
-//		 }
-//		 for (Funcionario item : ArmazenamentoBiblioteca.getFuncionarios()) {
-//		 item.printInfos();
-//		 }
+		//		 System.out.println("Pessoas cadastradas e seus respectivos emprestimos:\n");
+		//		 for (EstudanteGrad item : ArmazenamentoBiblioteca.getEstudantesGrad()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (EstudantePos item : ArmazenamentoBiblioteca.getEstudantesPos()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (Professor item : ArmazenamentoBiblioteca.getProfessores()) {
+		//		 item.printInfos();
+		//		 }
+		//		 for (Funcionario item : ArmazenamentoBiblioteca.getFuncionarios()) {
+		//		 item.printInfos();
+		//		 }
 
 		// Relatorios avançados e estatísticas da biblioteca (os outros serão
 		// implementados em breve)
 
 		// print de todos os emprestimos realizados
-//		RelatorioAvancadoAndEstatisticas.printHistoricoTotalDeEmprestimos();
+		//		RelatorioAvancadoAndEstatisticas.printHistoricoTotalDeEmprestimos();
 
 		// print relatório de itens disponíveis
-//		RelatorioAvancadoAndEstatisticas.relatorioDeDisponibilidadeDeItens();
+		//		RelatorioAvancadoAndEstatisticas.relatorioDeDisponibilidadeDeItens();
 
 		// relatorio de numero de emprestimos para cada tipo de item
-//		RelatorioAvancadoAndEstatisticas.relatorioNumEmprestimosPorItem();
+		//		RelatorioAvancadoAndEstatisticas.relatorioNumEmprestimosPorItem();
 	}
 }

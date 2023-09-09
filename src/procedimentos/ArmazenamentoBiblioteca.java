@@ -25,7 +25,7 @@ public class ArmazenamentoBiblioteca {
 	protected static List<Funcionario> funcionarios = new ArrayList<>();
 
 	// instanciação do historico de emprestimos da biblioteca
-	static List<Emprestimo> historicoEmprestimos = new ArrayList<>();
+	protected static List<Emprestimo> historicoEmprestimos = new ArrayList<>();
 
 	// metodos
 	// procurar pessoas pelo ID
