@@ -3,6 +3,7 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Emprestimo;
 import models.ItemMultimidia;
 import models.Membro;
 
@@ -20,7 +21,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
 
     @Override
     public boolean emprestarItem(Membro membro, ItemMultimidia item) {
-        // Lógica de empréstimo
+        new Emprestimo(item, membro);
         return true;
     }
 

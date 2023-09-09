@@ -1,10 +1,7 @@
-package procedimentos;
+package models;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import itensMultimidia.*;
-import pessoas.*;
 
 public class ArmazenamentoBiblioteca {
 	// esta é a classe responsavel por centralizar todos os objetos instanciados na
@@ -29,7 +26,7 @@ public class ArmazenamentoBiblioteca {
 
 	// metodos
 	// procurar pessoas pelo ID
-	public static Pessoa procurarPessoa(String id) {
+	public static Membro procurarPessoa(String id) {
 		for (EstudanteGrad item : estudantesGrad) {
 			if (item.getId() == id) {
 				return item;
@@ -81,7 +78,7 @@ public class ArmazenamentoBiblioteca {
 	}
 
 	// busca de emprestimo pelo codigo
-	public static Emprestimo procurarEmprestimo(String codigo) {
+	public static Emprestimo procurarEmprestimo(int codigo) {
 		for (Emprestimo item : historicoEmprestimos) {
 			if (item.getCodigoEmprestimo() == codigo)
 				return item;

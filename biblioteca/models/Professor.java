@@ -1,11 +1,8 @@
-package pessoas;
+package models;
 
 import java.time.LocalDate;
 
-import procedimentos.ArmazenamentoBiblioteca;
-import procedimentos.PrintInformacoes;
-
-public class Professor extends Pessoa implements PrintInformacoes {
+public class Professor extends Membro implements PrintInformacoes {
 	//atributos
 	public static final int LIMITE_EMPRESTIMO = 7; 
 	public static final int PRAZO_EMPRESTIMO = 30; 
@@ -31,4 +28,24 @@ public class Professor extends Pessoa implements PrintInformacoes {
 			emprestimosVigentes.get(0).printListaEmprestimosVigentes(emprestimosVigentes);
 		}
 	}
+	@Override
+	public String getIdentificacao() {
+		return this.id;
+	}
+
+	@Override
+	public int getLimiteEmprestimo() {
+		return LIMITE_EMPRESTIMO;
+	}
+
+	@Override
+	public int getPrazoEmprestimo() {
+		return PRAZO_EMPRESTIMO;
+	}
+
+	@Override
+	public double getMultaAtraso() {
+		return MULTA_ATRASO;
+	}
+
 }

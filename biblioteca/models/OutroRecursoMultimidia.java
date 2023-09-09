@@ -1,8 +1,6 @@
-package itensMultimidia;
+package models;
 
 import java.time.LocalDate;
-
-import procedimentos.ArmazenamentoBiblioteca;
 
 public class OutroRecursoMultimidia extends ItemMultimidia {
 	//atributos
@@ -109,6 +107,19 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 
 	public static void setCONTADOR_RESERVAS(int cONTADOR_RESERVAS) {
 		CONTADOR_RESERVAS = cONTADOR_RESERVAS;
+	}
+
+	@Override
+	public String getDetalhes() {
+		return "Informações do Recurso multimídia:\n" +
+				"Título: " + this.getTitulo() + 
+				"\nAutores: " + this.autor +
+				"\nEditora: " +this.editora +
+				"\nTipo: " + this.tipo +
+				"\nIdioma: " + this.idioma +
+				"\nN° Cópias Disponíveis: " + this.numDisponivel +
+				"\nData de Publicação: " + this.dataPublicacao +
+				"\nLocalização: " + this.localizacao + "\n";
 	}
 
 

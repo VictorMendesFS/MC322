@@ -1,10 +1,8 @@
-package procedimentos;
+package models;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import itensMultimidia.*;
 
 public class RelatorioAvancadoAndEstatisticas {
 	// esta é uma classe responsavel por acessar e imprimir dados relevantes da

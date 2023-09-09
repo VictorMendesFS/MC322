@@ -1,4 +1,4 @@
-package itensMultimidia;
+package models;
 
 public class Equipamentos {
 	//atributos

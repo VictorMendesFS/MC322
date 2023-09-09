@@ -1,9 +1,6 @@
-package itensMultimidia;
+package models;
 
 import java.time.LocalDate;
-
-import procedimentos.ArmazenamentoBiblioteca;
-import procedimentos.PrintInformacoes;
 
 public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 	//atributos
@@ -116,6 +113,17 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 	}
 	public static void setCONTADOR_RESERVAS(int cONTADOR_RESERVAS) {
 		CONTADOR_RESERVAS = cONTADOR_RESERVAS;
+	}
+	@Override
+	public String getDetalhes() {
+		String detalhes = "Informações do livro digital:\n" +
+				"Título: " + this.getTitulo() + 
+				"\nAutores: " + this.autor +
+				"\nEditora: " + this.editora +
+				"\nN° Cópias Disponíveis: " + this.numDisponivel +
+				"\nIdioma: " + this.idioma +
+				"\nData de Publicação: " + this.dataPublicacao + "\n";
+		return detalhes;
 	}
 	
 

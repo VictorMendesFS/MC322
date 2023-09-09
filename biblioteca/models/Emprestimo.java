@@ -1,25 +1,21 @@
-package procedimentos;
+package models;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import itensMultimidia.*;
-import pessoas.*;
-
 
 public class Emprestimo implements PrintInformacoes{
 	// atributos
-	private String codigoEmprestimo;
+	private static int CONTAGEM_EMPRESTIMOS = 0;
+	private int codigo;
 	private StatusEmprestimo status; //3 possíveis status: ATRASADO,ENCERRADO,VIGENTE;
 	private ItemMultimidia itemMultimidia;
 	private LocalDate dataEmprestimo;
 	private LocalDate dataDevolucao;
-	private Pessoa emprestante;
+	private Membro emprestante;
 
 	//construtor
-	public Emprestimo(String codigoEmprestimo, StatusEmprestimo status,
-			ItemMultimidia materialEmprestado, Pessoa emprestante,
-			LocalDate dataEmprestimo) {
+	public Emprestimo(ItemMultimidia materialEmprestado, Membro emprestante) {
 		//se o material nao estiver emprestado e nem reservado (ou reservado para o proprio membro)
 		//alem disso a pessoa nao pode exceder seu limite de emprestimos
 		//E deve haver uma cópia disponível do material
@@ -27,11 +23,11 @@ public class Emprestimo implements PrintInformacoes{
 				(materialEmprestado.isReservado() && materialEmprestado.getReservante() == emprestante))
 				&& !materialEmprestado.isEmprestado() && checarLimiteEmprestimos(emprestante)
 				&& materialEmprestado.getNumDisponivel() > 0) {
-			this.codigoEmprestimo = codigoEmprestimo;
-			this.status=status;
+			this.status = StatusEmprestimo.VIGENTE;
+			this.codigo = CONTAGEM_EMPRESTIMOS++;
 			this.itemMultimidia = materialEmprestado;
 			this.emprestante = emprestante;
-			this.dataEmprestimo=dataEmprestimo;
+			this.dataEmprestimo=LocalDate.now();
 
 			//retira a reserva do item
 			materialEmprestado.setReservado(false);
@@ -63,7 +59,7 @@ public class Emprestimo implements PrintInformacoes{
 		}
 	}
 	//data de devolução em função do emprestante
-	public void setDataDevolucao(Pessoa emprestante) {
+	public void setDataDevolucao(Membro emprestante) {
 		if(emprestante instanceof EstudanteGrad) {
 			dataDevolucao=dataEmprestimo.plusDays(EstudanteGrad.PRAZO_EMPRESTIMO); //adiciona o prazo dependendo do emprestante
 		}else if(emprestante instanceof Professor) {
@@ -89,7 +85,7 @@ public class Emprestimo implements PrintInformacoes{
 		//poderá haver uma contagem de renovações permitidas, também a depender do tipo de pessoa
 	}
 
-	private static boolean checarLimiteEmprestimos(Pessoa emprestante) {
+	private static boolean checarLimiteEmprestimos(Membro emprestante) {
 		if(emprestante instanceof EstudanteGrad && emprestante.getNumEmprestimosVigentes()<=EstudanteGrad.LIMITE_EMPRESTIMO) {
 			return true;
 		}else if(emprestante instanceof EstudantePos && emprestante.getNumEmprestimosVigentes()<=EstudantePos.LIMITE_EMPRESTIMO) {
@@ -116,8 +112,8 @@ public class Emprestimo implements PrintInformacoes{
 
 	//getters e setters
 	//principais gets
-	public String getCodigoEmprestimo() {
-		return codigoEmprestimo;
+	public int getCodigoEmprestimo() {
+		return codigo;
 	}
 	public StatusEmprestimo getStatus() {
 		return status;
@@ -135,7 +131,7 @@ public class Emprestimo implements PrintInformacoes{
 	public LocalDate getDataEmprestimo() {
 		return dataEmprestimo;
 	}
-	public Pessoa getEmprestante() {
+	public Membro getEmprestante() {
 		return emprestante;
 	}
 	public void setDataDevolucaoEncerramento(LocalDate dataDevolucao) {
