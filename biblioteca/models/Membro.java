@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public abstract class Membro implements InterfaceMembro {
 	//atributos
@@ -12,6 +13,7 @@ public abstract class Membro implements InterfaceMembro {
 	protected String endereco;
 	protected String contato;
 	protected LocalDate dataRegistro;
+	protected PriorityQueue<Emprestimo> ordemDevolucaoDeEmprestimos = new PriorityQueue<>(); //implementação futura
 	protected List<Emprestimo> emprestimosVigentes = new ArrayList<>();
 	protected List<Emprestimo> historicoEmprestimos = new ArrayList<>();
 	protected int numEmprestimosVigentes=0;
@@ -24,24 +26,29 @@ public abstract class Membro implements InterfaceMembro {
 		this.endereco = endereco;
 		this.contato = contato;
 		this.dataRegistro = dataRegistro;
+		ArmazenamentoBiblioteca.addMembro(id,this);
 	}
 
 	//metodos
 
 	//adiciona um emprestimo vigente e a historico a lista da pessoa
 	public void addEmprestimo(Emprestimo emprestimo) {
+		//add a fila de ordem de vencimento e lista emprestimos vigentes
+		ordemDevolucaoDeEmprestimos.offer(emprestimo);
 		emprestimosVigentes.add(emprestimo);
-		historicoEmprestimos.add(emprestimo);
+		//aumenta o numero de emprestimos vigentes
 		numEmprestimosVigentes++;
+		//add ao historico de emprestimos
+		historicoEmprestimos.add(emprestimo);
 		//implementar print com o titulo do emprestimo
 		System.out.println("Emprestimo do material '" +
-				emprestimosVigentes.get(numEmprestimosVigentes-1).getMaterialEmprestado().getTitulo()
+				historicoEmprestimos.get(historicoEmprestimos.size()-1).getMaterialEmprestado().getTitulo()
 				+ "' para '" +this.nome +"' realizado com sucesso!\n");
 	}
 
-	//remove um emprestimo a lista da pessoa
+	//remove um emprestimo da fila
 	public void removerEmprestimo(Emprestimo emprestimo) {
-		for(int i=0; i<emprestimosVigentes.size();i++) {
+		for(int i=0; i<ordemDevolucaoDeEmprestimos.size();i++) {
 			if(emprestimosVigentes.get(i)==emprestimo) {
 				emprestimosVigentes.remove(i);
 				numEmprestimosVigentes--;
@@ -122,8 +129,11 @@ public abstract class Membro implements InterfaceMembro {
 	public LocalDate getDataRegistro() {
 		return dataRegistro;
 	}
-	public List<Emprestimo> getEmprestimos() {
+	public List<Emprestimo> getEmprestimosVigentes() {
 		return emprestimosVigentes;
+	}
+	public PriorityQueue<Emprestimo> getOrdemDeDevolucao(){
+		return ordemDevolucaoDeEmprestimos;
 	}
 	public int getNumEmprestimosVigentes() {
 		return numEmprestimosVigentes;
@@ -142,9 +152,6 @@ public abstract class Membro implements InterfaceMembro {
 	}
 	public void setDataRegistro(LocalDate dataRegistro) {
 		this.dataRegistro = dataRegistro;
-	}
-	public void setEmprestimos(List<Emprestimo> emprestimos) {
-		this.emprestimosVigentes = emprestimos;
 	}
 	public void setNumEmprestimosVigentes(int numEmprestimos) {
 		this.numEmprestimosVigentes = numEmprestimos;

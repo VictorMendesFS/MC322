@@ -10,8 +10,6 @@ public class Professor extends Membro implements PrintInformacoes {
 	//construtor
 	public Professor(String nome, String id, String endereco, String contato, LocalDate dataRegistro) {
 		super(nome, id, endereco, contato, dataRegistro);
-		//add ao armazenamento da biblioteca
-		ArmazenamentoBiblioteca.getProfessores().add(this);
 	}
 
 	//metodos

@@ -23,7 +23,7 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 		this.localizacao = localizacao;
 		this.estadoConvserv = estadoConvserv;
 		
-		ArmazenamentoBiblioteca.getOutrosRecursos().add(this);
+		ArmazenamentoBiblioteca.getItens().add(this);
 	}
 
 	//metodos

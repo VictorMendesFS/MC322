@@ -10,8 +10,6 @@ public class EstudantePos extends Membro implements PrintInformacoes {
 	//construtor
 	public EstudantePos(String nome, String id, String endereco, String contato, LocalDate dataRegistro) {
 		super(nome, id, endereco, contato, dataRegistro);
-		//add pessoa ao armazenamento da biblioteca
-		ArmazenamentoBiblioteca.getEstudantesPos().add(this);
 	}
 	//metodos
 

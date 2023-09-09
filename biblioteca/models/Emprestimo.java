@@ -1,10 +1,11 @@
 package models;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
-public class Emprestimo implements PrintInformacoes{
+public class Emprestimo implements PrintInformacoes,Comparable<Emprestimo>{
 	// atributos
 	private static int CONTAGEM_EMPRESTIMOS = 0;
 	private int codigo;
@@ -72,15 +73,19 @@ public class Emprestimo implements PrintInformacoes{
 	}
 	//renovação de emprestimo
 	public void renovarEmprestimo() {
-		//aumenta o prazo de entrega
+		//aumenta o prazo de entrega e o recoloca na fila de ordem de devolução
 		if(emprestante instanceof EstudanteGrad) {
 			dataDevolucao=dataDevolucao.plusDays(EstudanteGrad.PRAZO_EMPRESTIMO);
+			this.getEmprestante().getOrdemDeDevolucao().offer(this);
 		}else if(emprestante instanceof Professor) {
 			dataDevolucao=dataDevolucao.plusDays(Professor.PRAZO_EMPRESTIMO);
+			this.getEmprestante().getOrdemDeDevolucao().offer(this);
 		}else if(emprestante instanceof EstudantePos) {
 			dataDevolucao=dataDevolucao.plusDays(EstudantePos.PRAZO_EMPRESTIMO);
+			this.getEmprestante().getOrdemDeDevolucao().offer(this);
 		}else if(emprestante instanceof Funcionario) {
 			dataDevolucao=dataDevolucao.plusDays(Funcionario.PRAZO_EMPRESTIMO);
+			this.getEmprestante().getOrdemDeDevolucao().offer(this);
 		}
 		//poderá haver uma contagem de renovações permitidas, também a depender do tipo de pessoa
 	}
@@ -136,6 +141,12 @@ public class Emprestimo implements PrintInformacoes{
 	}
 	public void setDataDevolucaoEncerramento(LocalDate dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
+	}
+	//torna os emprestimos comparados em funcao da data de devolução (o menor a frente)
+	@Override
+	public int compareTo(Emprestimo outro) {
+		//retorna a diferença, em dias, das datas de devolução
+		return (int) ChronoUnit.DAYS.between(outro.getDataDevolucao(), this.getDataDevolucao());
 	}
 
 }

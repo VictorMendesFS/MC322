@@ -27,7 +27,7 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 		this.requisitos = requisitos;
 		this.dataDisponibilidade = dataDisponibilidade;
 		//add ao armazenamento da biblioteca
-		ArmazenamentoBiblioteca.getLivrosDigitais().add(this);
+		ArmazenamentoBiblioteca.getItens().add(this);
 	}
 
 

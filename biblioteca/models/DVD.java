@@ -21,7 +21,7 @@ public class DVD extends ItemMultimidia implements PrintInformacoes {
 		this.elenco = elenco;
 		this.duracao = duracao;
 		this.estadoConvserv = estadoConvserv;
-		ArmazenamentoBiblioteca.getDvds().add(this);
+		ArmazenamentoBiblioteca.getItens().add(this);
 	}
 	
 	//metodos

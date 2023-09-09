@@ -22,7 +22,7 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 		this.localizacao = localizacao;
 		this.estadoConserv = estadoConserv;
 		//add ao armazenamento da biblioteca
-		ArmazenamentoBiblioteca.getLivrosFisicos().add(this);
+		ArmazenamentoBiblioteca.getItens().add(this);
 	}
 	@Override
 

@@ -35,33 +35,7 @@ public class RelatorioAvancadoAndEstatisticas {
 	// relatorio de disponibilidade de itens
 	public static void relatorioDeDisponibilidadeDeItens() {
 		System.out.println("Relatório de Disponibilidade de ítens\n");
-		
-		System.out.println("Livros Físicos Disponíveis :\n");
-		for (LivroFisico item : ArmazenamentoBiblioteca.livrosFisicos) {
-			if (item.getNumDisponivel() > 0)
-				item.printInfos();
-		}
-		
-		System.out.println("Livros Digitais Disponíveis :\n");
-		for (LivroDigital item : ArmazenamentoBiblioteca.livrosDigitais) {
-			if (item.getNumDisponivel() > 0)
-				item.printInfos();
-		}
-		
-		System.out.println("CDs Disponíveis :\n");
-		for (CD item : ArmazenamentoBiblioteca.cds) {
-			if (item.getNumDisponivel() > 0)
-				item.printInfos();
-		}
-		
-		System.out.println("DVDs Disponíveis :\n");
-		for (DVD item : ArmazenamentoBiblioteca.dvds) {
-			if (item.getNumDisponivel() > 0)
-				item.printInfos();
-		}
-		
-		System.out.println("Outros Recursos Disponíveis :\n");
-		for (OutroRecursoMultimidia item : ArmazenamentoBiblioteca.outrosRecursos) {
+		for (ItemMultimidia item : ArmazenamentoBiblioteca.itens) {
 			if (item.getNumDisponivel() > 0)
 				item.printInfos();
 		}

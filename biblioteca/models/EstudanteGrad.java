@@ -11,8 +11,6 @@ public class EstudanteGrad extends Membro implements PrintInformacoes {
 	//construtor
 	public EstudanteGrad(String nome, String id, String endereco, String contato, LocalDate dataRegistro) {
 		super(nome, id, endereco, contato, dataRegistro);
-		//add estudante ao armazenamento da biblioteca
-		ArmazenamentoBiblioteca.getEstudantesGrad().add(this);
 	}
 
 	@Override

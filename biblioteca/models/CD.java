@@ -20,7 +20,7 @@ public class CD extends ItemMultimidia implements PrintInformacoes{
 		this.duracao = duracao;
 		this.estadoConvserv = estadoConvserv;
 		
-		ArmazenamentoBiblioteca.getCds().add(this);
+		ArmazenamentoBiblioteca.getItens().add(this);
 	}
 
 
