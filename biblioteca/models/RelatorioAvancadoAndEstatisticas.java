@@ -35,10 +35,12 @@ public class RelatorioAvancadoAndEstatisticas {
 	// relatorio de disponibilidade de itens
 	public static void relatorioDeDisponibilidadeDeItens() {
 		System.out.println("Relatório de Disponibilidade de ítens\n");
-		for (ItemMultimidia item : ArmazenamentoBiblioteca.itens) {
-			if (item.getNumDisponivel() > 0)
-				item.printInfos();
-		}
+		//implementa a varredura for each para um HashMap
+		ArmazenamentoBiblioteca.getItens().forEach((chave,valor) ->{
+			if(valor.getNumDisponivel()>0) { //se houver algum item disponivel, este é impresso
+				valor.printInfos();
+			}
+		});
 	}
 	
 	//relatorio de numero de emprestimos para cada tipo de item

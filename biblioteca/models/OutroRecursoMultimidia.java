@@ -15,15 +15,15 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 	//construtor
 	public OutroRecursoMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
-			int numDisponivel, String tipo, String formato, String localizacao, String estadoConvserv) {
+			int numDisponivel, String tipo, String formato, String localizacao, String estadoConvserv,Integer id) {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
-				numDisponivel);
+				numDisponivel,id);
 		this.tipo = tipo;
 		this.formato = formato;
 		this.localizacao = localizacao;
 		this.estadoConvserv = estadoConvserv;
 		
-		ArmazenamentoBiblioteca.getItens().add(this);
+		ArmazenamentoBiblioteca.addItemMultimidia(this);
 	}
 
 	//metodos

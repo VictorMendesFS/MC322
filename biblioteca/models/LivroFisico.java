@@ -14,15 +14,16 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 
 	public LivroFisico(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, 
-			int numCopias, int numDisponivel, String isbn, int edicao, String localizacao, String estadoConserv) {
+			int numCopias, int numDisponivel, String isbn, int edicao, String localizacao, String estadoConserv,Integer id) {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
-				numDisponivel);
+				numDisponivel,id);
 		this.isbn = isbn;
 		this.edicao = edicao;
 		this.localizacao = localizacao;
 		this.estadoConserv = estadoConserv;
+		
 		//add ao armazenamento da biblioteca
-		ArmazenamentoBiblioteca.getItens().add(this);
+		ArmazenamentoBiblioteca.addItemMultimidia(this);
 	}
 	@Override
 

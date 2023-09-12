@@ -26,7 +26,7 @@ public abstract class Membro implements InterfaceMembro {
 		this.endereco = endereco;
 		this.contato = contato;
 		this.dataRegistro = dataRegistro;
-		ArmazenamentoBiblioteca.addMembro(id,this);
+		ArmazenamentoBiblioteca.addMembro(this); //add membro ao banco de dados da biblioteca
 	}
 
 	//metodos

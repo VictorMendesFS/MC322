@@ -9,18 +9,19 @@ public class CD extends ItemMultimidia implements PrintInformacoes{
 	private String estadoConvserv;
 	private static int CONTADOR_EMPRESTIMOS=0;
 	private static int CONTADOR_RESERVAS=0;
+	private static Integer id;
 
 	//construtor
 	public CD(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao, String genero,
 			String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias, int numDisponivel,
-			String listaFaixas, float duracao, String estadoConvserv) {
+			String listaFaixas, float duracao, String estadoConvserv,Integer id) {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
-				numDisponivel);
+				numDisponivel, id);
 		this.listaFaixas = listaFaixas;
 		this.duracao = duracao;
 		this.estadoConvserv = estadoConvserv;
 		
-		ArmazenamentoBiblioteca.getItens().add(this);
+		ArmazenamentoBiblioteca.addItemMultimidia(this);
 	}
 
 

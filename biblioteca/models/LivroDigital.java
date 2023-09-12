@@ -19,15 +19,15 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 	//construtor
 	public LivroDigital(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
-			int numDisponivel, String formato, String url, String requisitos, LocalDate dataDisponibilidade) {
+			int numDisponivel, String formato, String url, String requisitos, LocalDate dataDisponibilidade,Integer id) {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
-				numDisponivel);
+				numDisponivel,id);
 		this.formato = formato;
 		this.url = url;
 		this.requisitos = requisitos;
 		this.dataDisponibilidade = dataDisponibilidade;
 		//add ao armazenamento da biblioteca
-		ArmazenamentoBiblioteca.getItens().add(this);
+		ArmazenamentoBiblioteca.addItemMultimidia(this);
 	}
 
 

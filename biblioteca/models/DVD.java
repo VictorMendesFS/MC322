@@ -10,18 +10,16 @@ public class DVD extends ItemMultimidia implements PrintInformacoes {
 	private static int CONTADOR_EMPRESTIMOS=0;
 	private static int CONTADOR_RESERVAS=0;
 	
-
-	
 	//construtor
 	public DVD(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao, String genero,
 			String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias, int numDisponivel,
-			String elenco, float duracao, String estadoConvserv) {
+			String elenco, float duracao, String estadoConvserv,Integer id) {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
-				numDisponivel);
+				numDisponivel,id);
 		this.elenco = elenco;
 		this.duracao = duracao;
 		this.estadoConvserv = estadoConvserv;
-		ArmazenamentoBiblioteca.getItens().add(this);
+		ArmazenamentoBiblioteca.addItemMultimidia(this);
 	}
 	
 	//metodos

@@ -2,13 +2,22 @@ package models;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventosBiblioteca {
 	//atributos
 	private TipoDeExposicao tipo;
+	private List<Membro> membros = new ArrayList<>();
+	
 	//construtor
 	public EventosBiblioteca(TipoDeExposicao tipo) {
 		this.tipo = tipo;
+	}
+	//metodos
+	//add membro ao evento
+	public void addMembro(Membro membro) {
+		membros.add(membro);
 	}
 	//enum
 	public enum TipoDeExposicao{
@@ -83,6 +92,7 @@ public class EventosBiblioteca {
 			this.local = local;
 			this.materiaisNecessarios = materiaisNecessarios;
 		}
+		
 		//get e set
 		public String getInstrutor() {
 			return instrutor;
@@ -160,6 +170,19 @@ public class EventosBiblioteca {
 		public void setLocal(String local) {
 			this.local = local;
 		}
-
 	}
+	//geters e seters
+	public TipoDeExposicao getTipo() {
+		return tipo;
+	}
+	public List<Membro> getMembros() {
+		return membros;
+	}
+	public void setTipo(TipoDeExposicao tipo) {
+		this.tipo = tipo;
+	}
+	public void setMembros(List<Membro> membros) {
+		this.membros = membros;
+	}
+	
 }

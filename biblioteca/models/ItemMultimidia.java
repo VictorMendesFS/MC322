@@ -23,11 +23,12 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 	protected int numDisponivel;
 	protected int numReservas=0;
 	protected int numEmprestimos=0;
+	protected Integer id;
 
 	//	construtor
 	public ItemMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
-			int numDisponivel) {
+			int numDisponivel, Integer id) {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
@@ -41,6 +42,8 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 		this.reservado = reservado;
 		this.numCopias = numCopias;
 		this.numDisponivel = numDisponivel;
+		this.id = id;
+		ArmazenamentoBiblioteca.addItemMultimidia(this);
 	}
 
 	//	metodos
@@ -210,5 +213,8 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 
 	public void setNumReservas(int numReservas) {
 		this.numReservas = numReservas;
+	}
+	public Integer getId() {
+		return this.id;
 	}
 }
