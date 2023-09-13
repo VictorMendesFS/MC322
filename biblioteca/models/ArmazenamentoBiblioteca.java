@@ -2,7 +2,9 @@ package models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ArmazenamentoBiblioteca {
 	// esta é a classe responsavel por centralizar todos os objetos instanciados na
@@ -17,9 +19,17 @@ public class ArmazenamentoBiblioteca {
 
 	// instanciação do historico de emprestimos da biblioteca
 	protected static List<Emprestimo> historicoEmprestimos = new ArrayList<>();
+	
+	//instanciação da lista de emprestimos vigentes
+	protected static Set<Emprestimo> emprestimosVigentes = new HashSet<>();
+
+	//lista de reservas 
+	protected static List<Reserva> reservasVigentes = new ArrayList<>();
+	
+	
 
 	// metodos
-	//METODO PARA MEMBROS
+	//	METODO PARA MEMBROS
 	//add membro ao armazenamento
 	public static void addMembro(Membro membro)  {
 		if(procurarMembro(membro.getId())==null) //caso não haja membro, cadastrá-lo
@@ -79,7 +89,27 @@ public class ArmazenamentoBiblioteca {
 		System.out.println("Emprestimo não encontrado");
 		return null;
 	}
-	
+	//add um novo emprestimo vigente
+	public static void addEmprestimoVigente(Emprestimo emprestimo) {
+		//flag de emprestimo
+		boolean emprestado = true;
+		// realiza varredura para ver se o material do emprestimo já está emprestado atualmente
+		for(Emprestimo elemento:emprestimosVigentes) {
+			//compara se ambos tem o msm id
+			if(procurarItemMultimidia(elemento.getMaterialEmprestado().getId()) == 
+					procurarItemMultimidia(emprestimo.getMaterialEmprestado().getId())) {
+				System.out.println("Material atualmente emprestado");
+				emprestado = false;
+			}
+		}
+		if(emprestado) {
+			//o adiciona aos emprestimos
+			emprestimosVigentes.add(emprestimo);
+			System.out.println("Emprestimo do material '" +
+					emprestimo.getMaterialEmprestado().getTitulo()
+					+ "' para '" +emprestimo.getEmprestante().getNome() +"' realizado com sucesso!\n");
+		}
+	}
 	// geters e seters
 
 	public static List<Emprestimo> getHistoricoEmprestimos() {
@@ -105,5 +135,6 @@ public class ArmazenamentoBiblioteca {
 	public static void setMembros(List<Membro> membros) {
 		ArmazenamentoBiblioteca.membros = membros;
 	}
+	
 
 }

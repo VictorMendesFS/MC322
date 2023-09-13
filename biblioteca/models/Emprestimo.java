@@ -36,15 +36,17 @@ public class Emprestimo implements PrintInformacoes,Comparable<Emprestimo>{
 			materialEmprestado.setReservante(null);
 			//det. prazo para devolução a dependeder de quem pegou emprestado, contando do dia da criação do emprestimo
 			this.setDataDevolucao(emprestante);
-			//seta o material como emprestado e o add ao historico
+			//seta o material como emprestado e o add ao historico dele
 			materialEmprestado.addEmprestimo(this);
 			//add um material a contagem de emprestimos do membro
 			emprestante.addEmprestimo(this);
 			//dimiui o numero de copias disponiveis
 			materialEmprestado.setNumDisponivel(materialEmprestado.getNumDisponivel()-1);
-			
 			//adiciona este emprestimo ao historico da biblioteca
 			ArmazenamentoBiblioteca.getHistoricoEmprestimos().add(this);
+			//add o emprestimo a lista de emprestimos vigentes da biblioteca
+			ArmazenamentoBiblioteca.addEmprestimoVigente(this);
+			
 		}else
 			//se o material estiver indisponível (talvez seja substituido por algum return em outra função
 			System.out.println("Material indisponível!\n");

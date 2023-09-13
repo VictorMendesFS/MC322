@@ -41,9 +41,7 @@ public abstract class Membro implements InterfaceMembro {
 		//add ao historico de emprestimos
 		historicoEmprestimos.add(emprestimo);
 		//implementar print com o titulo do emprestimo
-		System.out.println("Emprestimo do material '" +
-				historicoEmprestimos.get(historicoEmprestimos.size()-1).getMaterialEmprestado().getTitulo()
-				+ "' para '" +this.nome +"' realizado com sucesso!\n");
+		
 	}
 
 	//remove um emprestimo da fila

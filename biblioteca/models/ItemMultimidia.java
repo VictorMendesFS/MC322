@@ -24,6 +24,7 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 	protected int numReservas=0;
 	protected int numEmprestimos=0;
 	protected Integer id;
+	protected List<Comentario> comentarios = new ArrayList<>();
 
 	//	construtor
 	public ItemMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
@@ -56,36 +57,9 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 		this.numEmprestimos++;
 		//o coloca como emprestado
 		emprestimo.getMaterialEmprestado().setEmprestado(true);
-	}
-
-	public void criarReserva(Membro reservante) {
-		//se nao esta reservado e esta emprestado
-		if(this.isEmprestado() && !this.isReservado()) {
-			//set item para reservado
-			this.setReservado(true);
-			//add uma reserva ao contador do tipo especifico
-			this.numReservas++;
-			//add uma reserva ao contador do tipo de item
-			if(this instanceof LivroFisico)
-				LivroFisico.setCONTADOR_RESERVAS(LivroFisico.getCONTADOR_RESERVAS()+1);
-			if(this instanceof LivroDigital)
-				LivroDigital.setCONTADOR_RESERVAS(LivroDigital.getCONTADOR_RESERVAS()+1);
-			if(this instanceof CD)
-				CD.setCONTADOR_RESERVAS(CD.getCONTADOR_RESERVAS()+1);
-			if(this instanceof DVD)
-				DVD.setCONTADOR_RESERVAS(DVD.getCONTADOR_RESERVAS()+1);
-			if(this instanceof OutroRecursoMultimidia)
-				OutroRecursoMultimidia.setCONTADOR_RESERVAS(OutroRecursoMultimidia.getCONTADOR_RESERVAS()+1);
-			//coloca pessoa como reservante
-			this.setReservante(reservante);	
-			System.out.println("Material Reservado para o dia: "
-			+historicoEmprestimos.get(historicoEmprestimos.size()-1).getDataDevolucao()+"\n");
-		}else {
-			System.out.println("material indisponivel para reserva");
-		}
 
 	}
-
+	
 	//metodos abstratos
 	//aumenta o contador de emprestimos de um item
 	public abstract void addCountEmprestimo();
@@ -216,5 +190,25 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 	}
 	public Integer getId() {
 		return this.id;
+	}
+
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+
+	public int getNumEmprestimos() {
+		return numEmprestimos;
+	}
+
+	public void setNumEmprestimos(int numEmprestimos) {
+		this.numEmprestimos = numEmprestimos;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }
