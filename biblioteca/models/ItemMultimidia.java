@@ -18,13 +18,15 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 	protected boolean emprestado; //TRUE = EMPRESTADO, INDISPONIVEL
 	protected boolean reservado; //TRUE = RESERVADO, INDISPONIVEL
 	protected List<Emprestimo> historicoEmprestimos = new ArrayList<>();
-	protected Membro reservante;
 	protected int numCopias;
 	protected int numDisponivel;
 	protected int numReservas=0;
 	protected int numEmprestimos=0;
 	protected Integer id;
 	protected List<Comentario> comentarios = new ArrayList<>();
+	protected List<Reserva> reservas = new ArrayList<>();
+	
+	//implementar a lista de reservas do item futuramente
 
 	//	construtor
 	public ItemMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
@@ -145,14 +147,6 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 		this.reservado = reservado;
 	}
 
-	public Membro getReservante() {
-		return reservante;
-	}
-
-	public void setReservante(Membro reservista) {
-		this.reservante = reservista;
-	}
-
 	public List<Emprestimo> getHistoricoEmprestimos() {
 		return historicoEmprestimos;
 	}
@@ -210,5 +204,13 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
 	}
 }

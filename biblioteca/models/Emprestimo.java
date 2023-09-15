@@ -16,44 +16,59 @@ public class Emprestimo implements PrintInformacoes,Comparable<Emprestimo>{
 	private Membro emprestante;
 
 	//construtor
-	public Emprestimo(ItemMultimidia materialEmprestado, Membro emprestante) {
+	public Emprestimo(ItemMultimidia itemEmprestado, Membro emprestante) {
 		//se o material nao estiver emprestado e nem reservado (ou reservado para o proprio membro)
 		//alem disso a pessoa nao pode exceder seu limite de emprestimos
 		//E deve haver uma cópia disponível do material
-		if((!materialEmprestado.isReservado() || 
-				(materialEmprestado.isReservado() && materialEmprestado.getReservante() == emprestante))
-				&& !materialEmprestado.isEmprestado() && checarLimiteEmprestimos(emprestante)
-				&& materialEmprestado.getNumDisponivel() > 0) {
+		if((!itemEmprestado.isReservado() || 
+				(itemEmprestado.isReservado() && 
+						itemEmprestado.getReservas().get(0).getReservante() == emprestante))
+				&& !itemEmprestado.isEmprestado() && checarLimiteEmprestimos(emprestante)
+				&& itemEmprestado.getNumDisponivel() > 0) {
 			this.status = StatusEmprestimo.VIGENTE;
 			this.codigo = CONTAGEM_EMPRESTIMOS++;
-			this.itemMultimidia = materialEmprestado;
+			this.itemMultimidia = itemEmprestado;
 			this.emprestante = emprestante;
 			this.dataEmprestimo=LocalDate.now();
 
 			//retira a reserva do item
-			materialEmprestado.setReservado(false);
-			//retira reservante
-			materialEmprestado.setReservante(null);
+			itemEmprestado.setReservado(false);
+			//se o material veio de uma reserva, retira-la da lista de reservasVigentes
+			if((itemEmprestado.isReservado() && 
+						itemEmprestado.getReservas().get(0).getReservante() == emprestante)) {
+				ArmazenamentoBiblioteca.getReservasVigentes().remove(itemEmprestado.getReservas().get(0));			
+			}
+			//retira o reservante da lista
+			itemEmprestado.getReservas().remove(0); // retira a reserva cabeça da fila
 			//det. prazo para devolução a dependeder de quem pegou emprestado, contando do dia da criação do emprestimo
 			this.setDataDevolucao(emprestante);
 			//seta o material como emprestado e o add ao historico dele
-			materialEmprestado.addEmprestimo(this);
+			itemEmprestado.addEmprestimo(this);
 			//add um material a contagem de emprestimos do membro
 			emprestante.addEmprestimo(this);
 			//dimiui o numero de copias disponiveis
-			materialEmprestado.setNumDisponivel(materialEmprestado.getNumDisponivel()-1);
+			itemEmprestado.setNumDisponivel(itemEmprestado.getNumDisponivel()-1);
 			//adiciona este emprestimo ao historico da biblioteca
 			ArmazenamentoBiblioteca.getHistoricoEmprestimos().add(this);
 			//add o emprestimo a lista de emprestimos vigentes da biblioteca
 			ArmazenamentoBiblioteca.addEmprestimoVigente(this);
 			
-		}else
+			
+
+
+		}else if (itemEmprestado.isReservado() && 
+				itemEmprestado.getReservas().get(0).getReservante() != emprestante){
+			//se o material estiver reservado a outra pessoa, chamar o mecanismo de criar reserva
+			Reserva R = new Reserva(emprestante,itemEmprestado);
+			itemEmprestado.getReservas().add(R);
+		}
+		else
 			//se o material estiver indisponível (talvez seja substituido por algum return em outra função
 			System.out.println("Material indisponível!\n");
 	}
 
 	//metodos
-	
+
 	//impressão da lista de emprestimos que uma pessoa possui
 	public void printListaEmprestimosVigentes(List<Emprestimo> emprestimos) {
 		System.out.println("Lista de Emprestimos da pessoa:\n");   
@@ -128,7 +143,6 @@ public class Emprestimo implements PrintInformacoes,Comparable<Emprestimo>{
 	public void setStatus(StatusEmprestimo status) {
 		this.status = status;
 	}
-
 	public ItemMultimidia getMaterialEmprestado() {
 		return this.itemMultimidia;
 	}
@@ -144,7 +158,7 @@ public class Emprestimo implements PrintInformacoes,Comparable<Emprestimo>{
 	public void setDataDevolucaoEncerramento(LocalDate dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
-	//torna os emprestimos comparados em funcao da data de devolução (o menor a frente)
+	//torna os emprestimos comparáveis em funcao da data de devolução (o menor a frente)
 	@Override
 	public int compareTo(Emprestimo outro) {
 		//retorna a diferença, em dias, das datas de devolução

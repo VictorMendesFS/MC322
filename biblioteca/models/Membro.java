@@ -60,6 +60,9 @@ public abstract class Membro implements InterfaceMembro {
 				//set emprestimo como finalizado
 				emprestimo.setStatus(StatusEmprestimo.ENCERRADO);
 				
+				//remove da lista de emprestimos vigentes 
+				ArmazenamentoBiblioteca.getEmprestimosVigentes().remove(emprestimo);
+				
 				//se o livro for devolvido com atraso, avisar e acrescer multa
 				if(emprestimo.getDataDevolucao().isBefore(LocalDate.now())){
 					double diferencaEmDias = (double)ChronoUnit.DAYS.between(emprestimo.getDataDevolucao(), LocalDate.now());
@@ -85,6 +88,14 @@ public abstract class Membro implements InterfaceMembro {
 				
 				//atualiza a data de devolução
 				emprestimo.setDataDevolucaoEncerramento(LocalDate.now());
+				
+				//direcionar o material a quem o reservou
+				
+				//se houver reservas, criar o emprestimo para o proximo reservante
+				if(emprestimo.getMaterialEmprestado().getReservas().size()>0) {
+					new Emprestimo(emprestimo.getMaterialEmprestado(), 
+							emprestimo.getMaterialEmprestado().getReservas().get(0).getReservante());
+				}
 			}
 		}
 	}
