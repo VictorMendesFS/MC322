@@ -19,17 +19,17 @@ public class ArmazenamentoBiblioteca {
 
 	// instanciação do historico de emprestimos da biblioteca
 	protected static List<Emprestimo> historicoEmprestimos = new ArrayList<>();
-	
+
 	//instanciação da lista de emprestimos vigentes
-	protected static Set<Emprestimo> emprestimosVigentes = new HashSet<>();
+	protected static Set<Emprestimo> emprestimosVigentes = new HashSet<>(); 
 
 	//lista de reservas 
 	protected static List<Reserva> reservasVigentes = new ArrayList<>();
-	
+
 	//lista de categorias
 	protected static HashSet<Categoria> categorias = new HashSet<>();
-	
-	
+
+
 
 	// metodos
 	//	METODO PARA MEMBROS
@@ -58,14 +58,14 @@ public class ArmazenamentoBiblioteca {
 		}
 		return null;
 	}
-	
+
 	//MÉTODO PARA ITENS MULTIMIDIA
 	//add item 
 	public static void addItemMultimidia(ItemMultimidia item) {
-//		if(!itens.containsKey(item.getId())) //add se não houver o item ou pode repetir?
-//				itens.put(item.getId(), item);
-//		else
-//			System.out.println("Item ja cadastrado");
+		//		if(!itens.containsKey(item.getId())) //add se não houver o item ou pode repetir?
+		//				itens.put(item.getId(), item);
+		//		else
+		//			System.out.println("Item ja cadastrado");
 		itens.put(item.getId(), item);
 	}
 	//remover
@@ -112,7 +112,7 @@ public class ArmazenamentoBiblioteca {
 					+ "' para '" +emprestimo.getEmprestante().getNome() +"' realizado com sucesso!\n");
 		}
 	}
-	
+
 	//MÉTODO PARA CATEGORIAS
 	public static void addCategoria(Categoria categoria) {
 		//se nao houver a categoria no set, adicionar ele
@@ -121,7 +121,7 @@ public class ArmazenamentoBiblioteca {
 		else
 			System.out.println("Categoria já pertence a biblioteca");
 	}
-	
+
 	// geters e seters
 
 	public static List<Emprestimo> getHistoricoEmprestimos() {
@@ -159,6 +159,6 @@ public class ArmazenamentoBiblioteca {
 	public static void setReservasVigentes(List<Reserva> reservasVigentes) {
 		ArmazenamentoBiblioteca.reservasVigentes = reservasVigentes;
 	}
-	
+
 
 }

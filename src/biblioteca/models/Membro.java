@@ -41,7 +41,7 @@ public abstract class Membro implements InterfaceMembro {
 		//add ao historico de emprestimos
 		historicoEmprestimos.add(emprestimo);
 		//implementar print com o titulo do emprestimo
-		
+
 	}
 
 	//remove um emprestimo da fila
@@ -50,19 +50,19 @@ public abstract class Membro implements InterfaceMembro {
 			if(emprestimosVigentes.get(i)==emprestimo) {
 				emprestimosVigentes.remove(i);
 				numEmprestimosVigentes--;
-				
+
 				//set o material como disponivel
 				emprestimo.getMaterialEmprestado().setEmprestado(false);
-				
+
 				//aumenta o numero de copias disponiveis 
 				emprestimo.getMaterialEmprestado().setNumDisponivel(emprestimo.getMaterialEmprestado().getNumDisponivel()+1);
-				
+
 				//set emprestimo como finalizado
 				emprestimo.setStatus(StatusEmprestimo.ENCERRADO);
-				
+
 				//remove da lista de emprestimos vigentes 
 				ArmazenamentoBiblioteca.getEmprestimosVigentes().remove(emprestimo);
-				
+
 				//se o livro for devolvido com atraso, avisar e acrescer multa
 				if(emprestimo.getDataDevolucao().isBefore(LocalDate.now())){
 					double diferencaEmDias = (double)ChronoUnit.DAYS.between(emprestimo.getDataDevolucao(), LocalDate.now());
@@ -80,17 +80,17 @@ public abstract class Membro implements InterfaceMembro {
 					System.out.println("Emprestimo atradado em "+ diferencaEmDias + " dias\n"
 							+ "Multa aplicada de R$" + diferencaEmDias*EstudanteGrad.MULTA_ATRASO
 							+ "\nMulta total devida pelo usuário é R$" + this.multaDevida );
-					
+
 				}
-			
+
 				System.out.println("Emprestimo Código '"+emprestimo.getCodigoEmprestimo()
 				+"' removido\n");
-				
+
 				//atualiza a data de devolução
 				emprestimo.setDataDevolucaoEncerramento(LocalDate.now());
-				
+
 				//direcionar o material a quem o reservou
-				
+
 				//se houver reservas, criar o emprestimo para o proximo reservante
 				if(emprestimo.getMaterialEmprestado().getReservas().size()>0) {
 					new Emprestimo(emprestimo.getMaterialEmprestado(), 
@@ -112,7 +112,7 @@ public abstract class Membro implements InterfaceMembro {
 			}
 		}
 	}
-	
+
 	//realiza pagamento de multa
 	public double pagarMulta(double pagamento) {
 		//desconta o pagamento da multa
