@@ -14,11 +14,12 @@ public class Reserva {
 		acrescerContadorDeReservas(itemReservado);
 		// coloca pessoa como reservante na fila do item
 		itemReservado.getReservas().add(this);
+		//add reserva a lista da bilbioteca
+		ArmazenamentoBiblioteca.getReservasVigentes().add(this);
 		//imprime a data que o material estará disponível
 		System.out.println("Material Reservado para o dia: "
 				+ itemReservado.getHistoricoEmprestimos().
 				get(itemReservado.getHistoricoEmprestimos().size()-1).getDataDevolucao() + "\n");
-
 	}
 
 	//metodos

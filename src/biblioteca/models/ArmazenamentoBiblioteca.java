@@ -121,6 +121,7 @@ public class ArmazenamentoBiblioteca {
 		else
 			System.out.println("Categoria já pertence a biblioteca");
 	}
+	
 	// geters e seters
 
 	public static List<Emprestimo> getHistoricoEmprestimos() {

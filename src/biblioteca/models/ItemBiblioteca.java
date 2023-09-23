@@ -1,19 +1,35 @@
 package models;
 
-public class ItemBiblioteca<T> {
-	private T item;
-	private Integer id;
-	private  StatusItem status; //enum com os tipos (disponível, emprestado, reservado
-	private String titulo;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ItemBiblioteca<T extends ItemMultimidia> {
+	private List<T> itensReservados = new ArrayList<>();
+	private List<T> itensEmprestados = new ArrayList<>();
+	private Integer numeroDeItensEmprestados = 0;
+	private Integer numeroDeItensReservados = 0;
 	
-	public ItemBiblioteca(T item, String titulo, Integer id, StatusItem status) {
-		this.item = item;
-		this.id = id;
-		this.status = status;
-		this.titulo = titulo;
+	
+	
+	//metodos
+	public void reservarItem(T item, Membro membro) {
+		new Reserva(membro, item);
+		itensReservados.add(item);
+		numeroDeItensEmprestados++;
 		
 	}
 	
-	//metodos
-	public void emprestar() {}
+	public void emprestarItem(T item, Membro membro) {
+		new Emprestimo(item,membro);
+		itensEmprestados.add(item);
+		numeroDeItensReservados++;
+	}
+	
+	public void devolverItem(T item, Membro membro) {
+		// procurar o emprestimo o item em questao e o remove
+		for(Emprestimo emprestimo:membro.getEmprestimosVigentes()) {
+			if(emprestimo.getMaterialEmprestado() == item)
+				membro.removerEmprestimo(emprestimo);
+		}
+	}
 }
