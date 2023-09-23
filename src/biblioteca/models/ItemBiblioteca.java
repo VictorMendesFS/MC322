@@ -32,4 +32,36 @@ public class ItemBiblioteca<T extends ItemMultimidia> {
 				membro.removerEmprestimo(emprestimo);
 		}
 	}
+	//get and set
+	public List<T> getItensReservados() {
+		return itensReservados;
+	}
+
+	public List<T> getItensEmprestados() {
+		return itensEmprestados;
+	}
+
+	public Integer getNumeroDeItensEmprestados() {
+		return numeroDeItensEmprestados;
+	}
+
+	public Integer getNumeroDeItensReservados() {
+		return numeroDeItensReservados;
+	}
+
+	public void setItensReservados(List<T> itensReservados) {
+		this.itensReservados = itensReservados;
+	}
+
+	public void setItensEmprestados(List<T> itensEmprestados) {
+		this.itensEmprestados = itensEmprestados;
+	}
+
+	public void setNumeroDeItensEmprestados(Integer numeroDeItensEmprestados) {
+		this.numeroDeItensEmprestados = numeroDeItensEmprestados;
+	}
+
+	public void setNumeroDeItensReservados(Integer numeroDeItensReservados) {
+		this.numeroDeItensReservados = numeroDeItensReservados;
+	}
 }
