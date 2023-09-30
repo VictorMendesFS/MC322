@@ -35,8 +35,11 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     }
 
     @Override
-    public boolean devolverItem(Membro membro, ItemMultimidia item) {
-        // Lógica de devolução
+    public boolean devolverItem(Membro membro, ItemMultimidia item) 
+    		throws ExcecaoItemNaoEmprestado{
+        if(item.getHistoricoEmprestimos().get(0).getEmprestante() != membro) {
+        	throw new ExcecaoItemNaoEmprestado("Material nao foi emprestado ao usuário");
+        }
         return true;
     }
 }
