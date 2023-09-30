@@ -13,7 +13,7 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 
 	public LivroFisico(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, 
-			int numCopias, int numDisponivel, String isbn, int edicao, String localizacao, String estadoConserv,Integer id) throws ExcecaoItemJaCadastrado {
+			int numCopias, int numDisponivel, String isbn, int edicao, String localizacao, String estadoConserv,Integer id) throws ExcecaoItemJaCadastrado, ExcecaoDadosInvalidos {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
 				numDisponivel,id);
 		this.isbn = isbn;

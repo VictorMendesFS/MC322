@@ -14,7 +14,14 @@ public class ReservaSala {
 
 	//construtor
 	public ReservaSala(LocalDate dataReserva, LocalTime horaInicio, LocalTime horaFim) {
-		super();
+		try {
+			if(this.status == StatusReserva.CONFIRMADA || this.status == StatusReserva.PENDENTE) {
+				throw new ExcecaoSalaReservada("Sala indisponível");
+			}
+		} catch(ExcecaoSalaReservada e) {
+			System.err.println("Erro ao reservar sala: "+ 
+					e.getMessage());
+		}
 		this.dataReserva = dataReserva;
 		this.horaInicio = horaInicio;
 		this.horaFim = horaFim;
@@ -51,10 +58,19 @@ public class ReservaSala {
 	public static class SalaGrupo{
 		//atributos
 		private int capacidadeMax;
+		private int pessoasNaSala;
 		private boolean dispApresentacao;
 		//construtor 
-		public SalaGrupo(int capacidadeMax, boolean dispApresentacao) {
-			super();
+		public SalaGrupo(int capacidadeMax, boolean dispApresentacao,
+				int pessoasNaSala) {
+			try {
+				if(pessoasNaSala>capacidadeMax)
+					throw new ExcecaoCapacidadeMaximaSala("Capacidade de sala excedida");
+				
+			} catch(ExcecaoCapacidadeMaximaSala e){
+				System.err.println("Erro na administração da sala" + 
+						e.getMessage());
+			}
 			this.capacidadeMax = capacidadeMax;
 			this.dispApresentacao = dispApresentacao;
 		}
@@ -70,8 +86,6 @@ public class ReservaSala {
 		public void setDispApresentacao(boolean dispApresentacao) {
 			this.dispApresentacao = dispApresentacao;
 		}
-
-
 	}
 	public static class SalaSilenciosa{
 		//atributos

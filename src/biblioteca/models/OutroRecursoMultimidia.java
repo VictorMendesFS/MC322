@@ -15,7 +15,7 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 	//construtor
 	public OutroRecursoMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
-			int numDisponivel, String tipo, String formato, String localizacao, String estadoConvserv,Integer id) throws ExcecaoItemJaCadastrado {
+			int numDisponivel, String tipo, String formato, String localizacao, String estadoConvserv,Integer id) throws ExcecaoItemJaCadastrado, ExcecaoDadosInvalidos {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
 				numDisponivel,id);
 		this.tipo = tipo;

@@ -13,7 +13,7 @@ public class DVD extends ItemMultimidia implements PrintInformacoes {
 	//construtor
 	public DVD(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao, String genero,
 			String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias, int numDisponivel,
-			String elenco, float duracao, String estadoConvserv,Integer id) throws ExcecaoItemJaCadastrado {
+			String elenco, float duracao, String estadoConvserv,Integer id) throws ExcecaoItemJaCadastrado, ExcecaoDadosInvalidos {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
 				numDisponivel,id);
 		this.elenco = elenco;
