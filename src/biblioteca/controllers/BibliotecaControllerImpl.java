@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.Emprestimo;
+import models.ExcecaoLimiteEmprestimoExcedido;
 import models.ItemMultimidia;
 import models.Membro;
 
@@ -20,8 +21,13 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     }
 
     @Override
-    public boolean emprestarItem(Membro membro, ItemMultimidia item) {
-        new Emprestimo(item, membro);
+    public boolean emprestarItem(Membro membro, ItemMultimidia item) throws 
+    ExcecaoLimiteEmprestimoExcedido{
+    	//tratamento de exceção de limite de emprestimos
+        if(membro.getNumEmprestimosVigentes()==membro.getLimiteEmprestimo()) {
+        	throw new ExcecaoLimiteEmprestimoExcedido("Limite de Emprestimos atingido");
+        }
+    	new Emprestimo(item, membro);
         return true;
     }
 
