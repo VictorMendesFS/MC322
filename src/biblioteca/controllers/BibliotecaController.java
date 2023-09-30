@@ -2,13 +2,7 @@ package  controllers;
 
 import java.util.List;
 
-import models.ExcecaoItemDanificado;
-import models.ExcecaoItemNaoDisponivel;
-import models.ExcecaoItemNaoEmprestado;
-import models.ExcecaoLimiteEmprestimoExcedido;
-import models.ExcecaoMultasPendentes;
-import  models.ItemMultimidia;
-import  models.Membro;
+import models.*;
 import  views.BibliotecaView;
 
 public interface BibliotecaController {

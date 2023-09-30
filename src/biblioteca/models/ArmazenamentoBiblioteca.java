@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -61,13 +62,30 @@ public class ArmazenamentoBiblioteca {
 
 	//MÉTODO PARA ITENS MULTIMIDIA
 	//add item 
-	public static void addItemMultimidia(ItemMultimidia item) {
-		//		if(!itens.containsKey(item.getId())) //add se não houver o item ou pode repetir?
-		//				itens.put(item.getId(), item);
-		//		else
-		//			System.out.println("Item ja cadastrado");
+	public static void addItemMultimidia(ItemMultimidia item) throws ExcecaoItemJaCadastrado,ExcecaoDadosInvalidos{	
+		if(itens.containsKey(item.getId())) { //add se não houver o item ou pode repetir?
+			throw new ExcecaoItemJaCadastrado("Item já cadastrado");
+		} else
+			try {
+				if(checarDados(item)) {//checar se há dados nulos
+					throw new ExcecaoDadosInvalidos("Dados inválidos");
+				}
+			} catch (IllegalArgumentException | IllegalAccessException | ExcecaoDadosInvalidos e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		itens.put(item.getId(), item);
 	}
+	 public static boolean checarDados(ItemMultimidia item) throws IllegalArgumentException, IllegalAccessException{
+	        Field[] fields = item.getClass().getDeclaredFields();
+	        for (Field field : fields) {
+	            field.setAccessible(true); // Torna o campo acessível, mesmo se for privado
+	            if (field.get(item) == null) {
+	                return true; // Se algum atributo for null, retorne true
+	            }
+	        }
+	        return false; // Se nenhum atributo for null, retorne false
+	    }
 	//remover
 	public static void removerItemMultimidia(Integer id) {
 		if(itens.containsKey(id)) //se o item estiver cadastrado

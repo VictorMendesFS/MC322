@@ -15,7 +15,7 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 	//construtor
 	public OutroRecursoMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
-			int numDisponivel, String tipo, String formato, String localizacao, String estadoConvserv,Integer id) {
+			int numDisponivel, String tipo, String formato, String localizacao, String estadoConvserv,Integer id) throws ExcecaoItemJaCadastrado {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
 				numDisponivel,id);
 		this.tipo = tipo;
@@ -23,7 +23,11 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 		this.localizacao = localizacao;
 		this.estadoConvserv = estadoConvserv;
 		
-		ArmazenamentoBiblioteca.addItemMultimidia(this);
+		try {
+			ArmazenamentoBiblioteca.addItemMultimidia(this);
+		}catch(ExcecaoItemJaCadastrado e) {
+			System.err.println("Erro de inserção de dados: " + e.getMessage());
+		};
 	}
 
 	//metodos

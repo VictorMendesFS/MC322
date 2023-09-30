@@ -19,7 +19,7 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 	//construtor
 	public LivroDigital(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
-			int numDisponivel, String formato, String url, String requisitos, LocalDate dataDisponibilidade,Integer id) {
+			int numDisponivel, String formato, String url, String requisitos, LocalDate dataDisponibilidade,Integer id) throws ExcecaoItemJaCadastrado {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
 				numDisponivel,id);
 		this.formato = formato;
@@ -27,7 +27,11 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 		this.requisitos = requisitos;
 		this.dataDisponibilidade = dataDisponibilidade;
 		//add ao armazenamento da biblioteca
-		ArmazenamentoBiblioteca.addItemMultimidia(this);
+		try {
+			ArmazenamentoBiblioteca.addItemMultimidia(this);
+		}catch(ExcecaoItemJaCadastrado e) {
+			System.err.println("Erro de inserção de dados: " + e.getMessage());
+		}
 	}
 
 

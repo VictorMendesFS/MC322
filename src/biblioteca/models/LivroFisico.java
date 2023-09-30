@@ -13,15 +13,18 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 
 	public LivroFisico(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, 
-			int numCopias, int numDisponivel, String isbn, int edicao, String localizacao, String estadoConserv,Integer id) {
+			int numCopias, int numDisponivel, String isbn, int edicao, String localizacao, String estadoConserv,Integer id) throws ExcecaoItemJaCadastrado {
 		super(titulo, autor, editora, idioma, dataPublicacao, genero, sinopse, capa, emprestado, reservado, numCopias,
 				numDisponivel,id);
 		this.isbn = isbn;
 		this.edicao = edicao;
 		this.localizacao = localizacao;
 		
-		//add ao armazenamento da biblioteca
-		ArmazenamentoBiblioteca.addItemMultimidia(this);
+		try {
+			ArmazenamentoBiblioteca.addItemMultimidia(this);
+		}catch(ExcecaoItemJaCadastrado e) {
+			System.err.println("Erro de inserção de dados: " + e.getMessage());
+		}
 	}
 	@Override
 

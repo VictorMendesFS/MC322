@@ -32,7 +32,7 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 	//	construtor
 	public ItemMultimidia(String titulo, String autor, String editora, String idioma, LocalDate dataPublicacao,
 			String genero, String sinopse, String capa, boolean emprestado, boolean reservado, int numCopias,
-			int numDisponivel, Integer id) {
+			int numDisponivel, Integer id) throws ExcecaoItemJaCadastrado {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
@@ -47,7 +47,13 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 		this.numCopias = numCopias;
 		this.numDisponivel = numDisponivel;
 		this.id = id;
-		ArmazenamentoBiblioteca.addItemMultimidia(this);
+		try {
+			ArmazenamentoBiblioteca.addItemMultimidia(this);
+		}catch(ExcecaoItemJaCadastrado e) {
+			System.err.println("Erro de inserção de dados: " + e.getMessage());
+		}catch(ExcecaoDadosInvalidos e) {
+			System.err.println("Erro de inserção de dados: "+ e.getMessage());
+		}
 	}
 
 	//	metodos
