@@ -19,13 +19,16 @@ public class BibliotecaControllerImpl implements BibliotecaController {
 
     @Override
     public boolean emprestarItem(Membro membro, ItemMultimidia item) throws 
-    ExcecaoLimiteEmprestimoExcedido, ExcecaoItemNaoDisponivel{
+    ExcecaoLimiteEmprestimoExcedido, ExcecaoItemNaoDisponivel,ExcecaoMultasPendentes{
     	//tratamento de exceção de limite de emprestimos
         if(membro.getNumEmprestimosVigentes()==membro.getLimiteEmprestimo()) {
         	throw new ExcecaoLimiteEmprestimoExcedido("Limite de Emprestimos atingido");
         }
-        else if(item.isEmprestado()) {
+        else if(item.isEmprestado()) {//exceçao de item ja emprestado
         	throw new ExcecaoItemNaoDisponivel("Item não disponível");
+        }
+        else if(membro.getMultaAtraso()>=0) {
+        	throw new ExcecaoMultasPendentes("Membro possui multas pendentes");
         }
     	new Emprestimo(item, membro);
         return true;
