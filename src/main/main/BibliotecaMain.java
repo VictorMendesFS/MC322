@@ -235,7 +235,8 @@ public class BibliotecaMain {
     }
 
     private static void menuAdministradores(Scanner scanner) {
-        // Lógica para administração de administradores
+        
+    	// Lógica para administração de administradores
     }
 
     private static void menuAtendentes(Scanner scanner) {
