@@ -25,6 +25,7 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 	protected Integer id;
 	protected List<Comentario> comentarios = new ArrayList<>();
 	protected List<Reserva> reservas = new ArrayList<>();
+	protected String estadoConserv;
 	
 	//implementar a lista de reservas do item futuramente
 
@@ -212,5 +213,13 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 
 	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
+	}
+
+	public String getEstadoConserv() {
+		return estadoConserv;
+	}
+
+	public void setEstadoConserv(String estadoConserv) {
+		this.estadoConserv = estadoConserv;
 	}
 }

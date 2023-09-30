@@ -7,7 +7,6 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 	private String isbn;	
 	private int edicao;
 	private String localizacao;
-	private String estadoConserv;
 	private static int CONTADOR_EMPRESTIMOS=0;
 	private static int CONTADOR_RESERVAS=0;
 
@@ -20,7 +19,6 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 		this.isbn = isbn;
 		this.edicao = edicao;
 		this.localizacao = localizacao;
-		this.estadoConserv = estadoConserv;
 		
 		//add ao armazenamento da biblioteca
 		ArmazenamentoBiblioteca.addItemMultimidia(this);
@@ -87,13 +85,6 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 		this.localizacao = localizacao;
 	}
 
-	public String getEstadoConserv() {
-		return estadoConserv;
-	}
-
-	public void setEstadoConserv(String estadoConserv) {
-		this.estadoConserv = estadoConserv;
-	}
 	public static int getCONTADOR_EMPRESTIMOS() {
 		return CONTADOR_EMPRESTIMOS;
 	}

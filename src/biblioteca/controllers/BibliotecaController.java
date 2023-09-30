@@ -2,6 +2,7 @@ package  controllers;
 
 import java.util.List;
 
+import models.ExcecaoItemDanificado;
 import models.ExcecaoItemNaoDisponivel;
 import models.ExcecaoItemNaoEmprestado;
 import models.ExcecaoLimiteEmprestimoExcedido;
@@ -13,5 +14,5 @@ import  views.BibliotecaView;
 public interface BibliotecaController {
     List<ItemMultimidia> consultarItensDisponiveis();
     boolean emprestarItem(Membro membro, ItemMultimidia item) throws ExcecaoLimiteEmprestimoExcedido, ExcecaoItemNaoDisponivel, ExcecaoMultasPendentes;
-    boolean devolverItem(Membro membro, ItemMultimidia item) throws ExcecaoItemNaoEmprestado;
+    boolean devolverItem(Membro membro, ItemMultimidia item) throws ExcecaoItemNaoEmprestado, ExcecaoItemDanificado;
 }

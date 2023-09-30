@@ -36,10 +36,16 @@ public class BibliotecaControllerImpl implements BibliotecaController {
 
     @Override
     public boolean devolverItem(Membro membro, ItemMultimidia item) 
-    		throws ExcecaoItemNaoEmprestado{
-        if(item.getHistoricoEmprestimos().get(0).getEmprestante() != membro) {
-        	throw new ExcecaoItemNaoEmprestado("Material nao foi emprestado ao usuário");
+    		throws ExcecaoItemNaoEmprestado, ExcecaoItemDanificado{
+    	//se o material nao foi emprestado por ultimo ao membro
+        if(item.getHistoricoEmprestimos().get(item.getHistoricoEmprestimos().size()-1)
+        		.getEmprestante() != membro) {
+        	throw new ExcecaoItemNaoEmprestado("Material nao foi emprestado ao membro");
         }
+        else if(item.getEstadoConserv() == "danificado") {
+        	throw new ExcecaoItemDanificado("Item danificado");
+        }
+        //lógica de devolução
         return true;
     }
 }
