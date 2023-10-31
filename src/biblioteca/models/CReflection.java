@@ -1,6 +1,7 @@
 package models;
 
 import java.lang.reflect.*;
+import java.util.List;
 
 public class CReflection {
 	//metodos para Membros
@@ -50,6 +51,20 @@ public class CReflection {
 			System.out.println(att);
 		}
 	}
-	
+	//imprimir informações de uma lista
+	public static void printInfosLista(List<?> lista) {
+		//imprimir o nome da lista, os tipos de elementos, tamanho e os elementos.
+		System.out.println("Nome da classe da lista: " + lista.getClass().getName());
+	    if (!lista.isEmpty()) {
+	    	System.out.println("Tipo de elementos na lista: " + lista.get(0).getClass().getName());
+	    } else {
+	    	System.out.println("A lista está vazia.");
+	    }
+	    System.out.println("Tamanho da lista: " + lista.size());
+	    System.out.println("Elementos da lista:");
+	    for (Object elemento : lista) {
+	    	System.out.println(" - " + elemento);
+	    }
+	}
 	
 }
