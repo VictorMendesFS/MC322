@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.lang.reflect.*;
 
 public abstract class Membro implements InterfaceMembro {
 	//atributos

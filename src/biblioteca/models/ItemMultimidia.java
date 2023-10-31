@@ -3,6 +3,8 @@ package models;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.reflect.*;
+
 
 
 public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMultimidia{
