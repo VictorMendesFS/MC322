@@ -30,7 +30,7 @@ public class CReflection {
 		Method[] metodos = classe.getDeclaredMethods(); //obter os metodos
 		
 		//impressao dos nomes dos metodos
-		System.out.println("Lista de Métodos de " + classe.getName());
+		System.out.println("Lista de Métodos de: " + classe.getName());
 		for(Method metodo:metodos) {
 			System.out.println(metodo.getName());
 		}
@@ -46,7 +46,7 @@ public class CReflection {
 		Field[] atributos = classe.getDeclaredFields();//obter os atributos (fields/campos)
 		
 		//impressao do nome dos atts
-		System.out.println("Lista de Atributos de "+classe.getName());
+		System.out.println("Lista de Atributos de: "+classe.getName());
 		for(Field att:atributos) {
 			System.out.println(att);
 		}
