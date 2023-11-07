@@ -14,7 +14,7 @@ public class ArmazenamentoBiblioteca {
 	// atributos
 	// instanciação de itens multimídia em listas
 	protected static HashMap<Integer,ItemMultimidia> itens = new HashMap<>();
-
+	
 	// instanciação de pessoas em listas
 	protected static List<Membro> membros = new ArrayList<>();
 
