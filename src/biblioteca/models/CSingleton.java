@@ -1,27 +1,30 @@
 package models;
 
 public class CSingleton {
+	//esta classe garante que a classe ArmazenamentoBiblioteca 
+	//seja instanciada uma unica vez
+	
 	// atributos
-	private CSingleton instance = null;
+	private ArmazenamentoBiblioteca instance = null;
 
 	// construtor
 	private CSingleton() {
 	};
 
 	// função de instanciação
-	public CSingleton InstanceCSingleton() {
+	public ArmazenamentoBiblioteca InstanceCSingleton() {
 		if (instance == null) { // garante uma instancia
-			instance = new CSingleton();
+			instance = new ArmazenamentoBiblioteca();
 		}
 		return instance;
 	}
 	
 	// metodos
-	public CSingleton getInstance() {
+	public ArmazenamentoBiblioteca getInstance() {
 		return instance;
 	}
 
-	public void setInstance(CSingleton instance) {
+	public void setInstance(ArmazenamentoBiblioteca instance) {
 		this.instance = instance;
 	}
 
