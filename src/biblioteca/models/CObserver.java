@@ -1,11 +1,11 @@
 package models;
 
-public class CObservador {
+public class CObserver {
 	//atributo
 	private Membro membro; //cada membro é um observador
 	
 	//construtor
-	public CObservador(Membro membro) {
+	public CObserver(Membro membro) {
 		this.membro = membro;
 	};
 	

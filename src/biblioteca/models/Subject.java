@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class Subject {
 	//atributos
-	private CObservador obs;
+	private CObserver obs;
 	
 	//construtor
 	public Subject() {
 		this.obs = null;
 	}
 	//metodos
-	public CObservador inscrever(Membro membro) {
-		return new CObservador(membro);
+	public CObserver inscrever(Membro membro) {
+		return new CObserver(membro);
 	}
 	public void notificar(Membro membro) {
 		this.setObs(inscrever(membro));
@@ -21,10 +21,10 @@ public class Subject {
 	
 	
 	//geters e seters
-	public CObservador getObs() {
+	public CObserver getObs() {
 		return obs;
 	}
-	public void setObs(CObservador obs) {
+	public void setObs(CObserver obs) {
 		this.obs = obs;
 	}
 	
