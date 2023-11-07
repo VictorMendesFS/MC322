@@ -5,13 +5,15 @@ public class CSingleton {
 	//seja instanciada uma unica vez
 	
 	// atributos
-	private ArmazenamentoBiblioteca instance = null;
+	private ArmazenamentoBiblioteca instance;
 
 	// construtor
-	private CSingleton() {
-	};
+	public CSingleton() {
+		this.instance = null;
+	}; //este construtor é publico, mas o
+	//construtor de ArmazenamentoBiblioteca é Protected.
 
-	// função de instanciação
+	// função de instanciação de ArmazenamentoBiblioteca
 	public ArmazenamentoBiblioteca InstanceCSingleton() {
 		if (instance == null) { // garante uma instancia
 			instance = new ArmazenamentoBiblioteca();
@@ -27,6 +29,4 @@ public class CSingleton {
 	public void setInstance(ArmazenamentoBiblioteca instance) {
 		this.instance = instance;
 	}
-
-	
 }

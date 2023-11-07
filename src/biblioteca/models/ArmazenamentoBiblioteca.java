@@ -30,9 +30,10 @@ public class ArmazenamentoBiblioteca {
 	//lista de categorias
 	protected static HashSet<Categoria> categorias = new HashSet<>();
 
-
-
+	//construtor
+	protected ArmazenamentoBiblioteca() {};
 	// metodos
+	
 	//	METODO PARA MEMBROS
 	//add membro ao armazenamento
 	public static void addMembro(Membro membro)  {
