@@ -90,12 +90,12 @@ public abstract class Membro implements InterfaceMembro {
 				//atualiza a data de devolução
 				emprestimo.setDataDevolucaoEncerramento(LocalDate.now());
 
-				//direcionar o material a quem o reservou
-
-				//se houver reservas, criar o emprestimo para o proximo reservante
+				//se houver reservas, criar o emprestimo para o proximo reservante 
+				//e notifica-lo
 				if(emprestimo.getMaterialEmprestado().getReservas().size()>0) {
-					new Emprestimo(emprestimo.getMaterialEmprestado(), 
+					Emprestimo novoEmp = new Emprestimo(emprestimo.getMaterialEmprestado(), 
 							emprestimo.getMaterialEmprestado().getReservas().get(0).getReservante());
+					new Subject().notificar(novoEmp.getEmprestante());
 				}
 			}
 		}

@@ -53,9 +53,6 @@ public class Emprestimo implements PrintInformacoes,Comparable<Emprestimo>{
 			//add o emprestimo a lista de emprestimos vigentes da biblioteca
 			ArmazenamentoBiblioteca.addEmprestimoVigente(this);
 			
-			
-
-
 		}else if (itemEmprestado.isReservado() && 
 				itemEmprestado.getReservas().get(0).getReservante() != emprestante){
 			//se o material estiver reservado a outra pessoa, chamar o mecanismo de criar reserva

@@ -11,7 +11,6 @@ public class CObserver {
 	
 	//metodos
 	public void update() { // notificar os usuários que um item foi devolvido
-		//implementar em membro a notificação
-		//this.membro.
+		//implementar a notificação do membro
 	};
 }
