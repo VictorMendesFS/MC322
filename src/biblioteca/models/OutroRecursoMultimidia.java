@@ -30,6 +30,9 @@ public class OutroRecursoMultimidia extends ItemMultimidia {
 		};
 	}
 
+	//construtor vazio
+	public OutroRecursoMultimidia() {};
+
 	//metodos
 	@Override
 	public void addCountEmprestimo() {

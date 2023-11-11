@@ -26,6 +26,9 @@ public class CD extends ItemMultimidia implements PrintInformacoes{
 			System.err.println("Erro de inserção de dados: " + e.getMessage());
 		}
 	}
+	
+	//construtor vazio
+	public CD() {};
 
 
 
@@ -120,13 +123,5 @@ public class CD extends ItemMultimidia implements PrintInformacoes{
 				"\nIdioma: " + this.idioma +
 				"\nData de Publicação: " + this.dataPublicacao +
 				"\nN° Cópias Disponíveis: " + this.numDisponivel + "\n";
-	}
-
-
-
-	@Override
-	public ItemMultimidia criarItemMultimidia() {
-		// TODO Auto-generated method stub
-		return null;
 	}	
 }

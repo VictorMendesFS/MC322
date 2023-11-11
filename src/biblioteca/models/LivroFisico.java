@@ -26,6 +26,10 @@ public class LivroFisico extends ItemMultimidia implements PrintInformacoes{
 			System.err.println("Erro de inserção de dados: " + e.getMessage());
 		}
 	}
+	
+	//construtor vazio
+	public LivroFisico() {};
+
 	@Override
 
 	public void addCountEmprestimo() {

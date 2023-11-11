@@ -57,6 +57,8 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 		}
 	}
 
+	public ItemMultimidia() {}; //construtor vazio
+
 	//	metodos
 	public void addEmprestimo(Emprestimo emprestimo) {
 		//add ao histórico
@@ -69,7 +71,25 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 		emprestimo.getMaterialEmprestado().setEmprestado(true);
 
 	}
-
+	
+	@Override
+	public ItemMultimidia criarItemMultimidia(ItemMultimidia item) {
+		//cria um item a depender do tipo
+		String tipoInstancia = item.getClass().getName();
+		if(tipoInstancia == "CD") {
+			return new CD();
+		}else if(tipoInstancia == "DVD") {
+			return new DVD();
+		}else if(tipoInstancia == "LivroFisico") {
+			return new LivroFisico();
+		}else if(tipoInstancia == "LivroDigital") {
+				return new LivroDigital();
+		}else if (tipoInstancia == "OutroRecursoMultimidia") {
+			return new OutroRecursoMultimidia();
+		}else
+			return null;
+	}
+	
 	//metodos abstratos
 	//aumenta o contador de emprestimos de um item
 	public abstract void addCountEmprestimo();

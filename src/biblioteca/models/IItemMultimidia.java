@@ -1,5 +1,5 @@
 package models;
 
 public interface IItemMultimidia {
-	public ItemMultimidia criarItemMultimidia();
+	public ItemMultimidia criarItemMultimidia(ItemMultimidia item);
 }

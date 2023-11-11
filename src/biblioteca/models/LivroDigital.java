@@ -33,8 +33,9 @@ public class LivroDigital extends ItemMultimidia implements PrintInformacoes {
 			System.err.println("Erro de inserção de dados: " + e.getMessage());
 		}
 	}
-
-
+	
+	//construtor vazio
+	public LivroDigital() {};
 
 	@Override
 	//implementando o metodo de impressao das informações 
