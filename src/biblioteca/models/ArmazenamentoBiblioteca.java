@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ArmazenamentoBiblioteca {
+	//Exemplo de Dependency Inversion Principle
 	//Exemplo de Open Closed Principle
 	// esta é a classe responsavel por centralizar todos os objetos instanciados na
 	// bilbioteca
