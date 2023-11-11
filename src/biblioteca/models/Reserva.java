@@ -1,6 +1,7 @@
 package models;
 
 public class Reserva {
+	//Exemplo de implementação de Single Responsibility Principle
 	//atributos
 	private Membro reservante;
 	private ItemMultimidia itemReservado;
