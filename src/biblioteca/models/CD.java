@@ -30,8 +30,6 @@ public class CD extends ItemMultimidia implements PrintInformacoes{
 	//construtor vazio
 	public CD() {};
 
-
-
 	//metodos
 	@Override
 	public void addCountEmprestimo() {
