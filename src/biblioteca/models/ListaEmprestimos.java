@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaEmprestimos<T> {
+	//exemplo de Liskov Substitution Principle
 	private List<T> emprestimos = new ArrayList<>();
 	private Integer numEmprestimos = 0;
 
