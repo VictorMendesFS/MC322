@@ -6,7 +6,7 @@ import java.util.List;
 
 
 
-public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMultimidia{
+public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMultimidia,IItemMultimidia{
 	//	atributos
 	protected String titulo;
 	protected String autor;
@@ -69,7 +69,7 @@ public abstract class ItemMultimidia implements PrintInformacoes,InterfaceItemMu
 		emprestimo.getMaterialEmprestado().setEmprestado(true);
 
 	}
-	
+
 	//metodos abstratos
 	//aumenta o contador de emprestimos de um item
 	public abstract void addCountEmprestimo();

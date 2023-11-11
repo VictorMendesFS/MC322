@@ -135,6 +135,12 @@ public class DVD extends ItemMultimidia implements PrintInformacoes {
 				"\nN° Cópias Disponíveis: " + this.numDisponivel + "\n";
 	}
 
+	@Override
+	public ItemMultimidia criarItemMultimidia() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 
